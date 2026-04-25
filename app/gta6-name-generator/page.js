@@ -10,7 +10,7 @@ export default function Gta6NameGeneratorPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <GameGenerator game={GAMES.gta6} preSelectedStyle={config.preSelectedStyle} intro={config.intro} faqOverride={config.faq} sections={config.sections} />
+      <GameGenerator game={GAMES.gta6} preSelectedStyle={config.preSelectedStyle} intro={config.intro} faqOverride={config.faq} sections={config.sections} seoContent={config.seoContent} />
     </>
   );
 }

@@ -57,6 +57,30 @@ export default function CodNameGeneratorPage() {
           h1: "Call of Duty Name Generator",
           text: "Génère des pseudos Call of Duty uniques avec notre générateur gratuit. NickGen propose 5 styles inspirés de l'univers COD — Operator, Ghost, Warzone, Tactical et Prestige — pour créer le callsign militaire parfait pour Warzone et Modern Warfare. Filtre par longueur et partage ton pseudo sur Discord, Twitter ou WhatsApp.",
         }}
+        seoContent={{
+          sections: [
+            {
+              heading: "Call of Duty name generator : créer son callsign militaire",
+              text: "Sur Call of Duty Warzone et Modern Warfare, ton Display Name Activision est visible dans chaque kill feed, tableau de scores et écran de victoire. Un callsign COD efficace doit être intimidant, mémorable et cohérent avec l'univers militaire du jeu. NickGen génère des pseudos dans 5 styles directement inspirés de la saga — des callsigns d'opérateurs légendaires comme Ghost aux vétérans Prestige en passant par les joueurs Warzone orientés victoires.",
+            },
+            {
+              heading: "Les styles de pseudos Call of Duty les plus populaires",
+              text: "La communauté COD a développé des conventions de nommage bien distinctes selon le mode de jeu :",
+              list: [
+                "Operator — codes militaires avec grades (Sgt_, Lt_, Col_) et numéros d'unité (_141, _Six)",
+                "Ghost — pseudos sombres et stealth (Dark_Phantom, Silent_Shadow) — inspirés de Simon Riley",
+                "Warzone — callsigns battle royale (_WZ, _Dub, Drop_) — optimisés pour les sessions",
+                "Tactical — alphabet NATO (Alpha, Bravo, Delta, Echo) — pour les joueurs stratèges",
+                "Prestige — pseudos de vétérans (_P10, Diamond_, Gold_) — pour afficher son niveau",
+              ],
+            },
+            {
+              level: 3,
+              heading: "Changer son pseudo COD et utiliser les clan tags",
+              text: "Ton pseudo COD est ton Activision Display Name, modifiable gratuitement une fois par mois sur s.activision.com. Dans Warzone, un clan tag entre crochets ([TAG]) peut précéder ton pseudo pour identifier ton équipe. Les pseudos COD générés par NickGen respectent le format Activision. Le style Tactical produit des préfixes courts (Alpha_, Delta_, Bravo_) qui fonctionnent parfaitement comme clan tags — une façon d'allier identité individuelle et identité de team.",
+            },
+          ],
+        }}
       />
     </>
   );

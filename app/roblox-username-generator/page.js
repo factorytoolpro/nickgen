@@ -19,7 +19,7 @@ export default function RobloxUsernameGeneratorPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <GameGenerator game={GAMES.roblox} preSelectedStyle={config.preSelectedStyle} intro={config.intro} faqOverride={config.faq} />
+      <GameGenerator game={GAMES.roblox} preSelectedStyle={config.preSelectedStyle} intro={config.intro} faqOverride={config.faq} seoContent={config.seoContent} />
     </>
   );
 }

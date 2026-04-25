@@ -15,6 +15,30 @@ export const MINECRAFT_PAGES = {
       h1: "Minecraft Username Generator",
       text: "Génère des pseudos Minecraft uniques pour Java et Bedrock Edition avec notre générateur gratuit. Le Minecraft username generator de NickGen propose 5 styles — Survival, Creative, PvP, Redstone et Builder — pour créer des noms entre 3 et 16 caractères (lettres, chiffres et underscores uniquement). Trouve l'identité parfaite pour tes serveurs et tes aventures.",
     },
+    seoContent: {
+      sections: [
+        {
+          heading: "Trouver un pseudo Minecraft disponible sur Java et Bedrock",
+          text: "Minecraft est l'un des jeux les plus anciens encore actifs — et ça se ressent dans la rareté des pseudos disponibles. Des millions de comptes créés depuis 2009 ont absorbé la majorité des noms courts et évidents. En 2025, la stratégie gagnante pour trouver un bon Minecraft username libre passe par la créativité : combiner un style de jeu (PvP, Survival, Redstone) avec un mot inattendu et un nombre discret. NickGen génère ces combinaisons originales dans 5 styles adaptés au gameplay Minecraft.",
+        },
+        {
+          heading: "Java Edition vs Bedrock : les différences pour ton pseudo",
+          text: "Les règles de pseudos varient selon la version de Minecraft que tu joues :",
+          list: [
+            "Java Edition — 3-16 caractères, lettres/chiffres/underscores uniquement, compte Microsoft obligatoire",
+            "Bedrock/Xbox — Gamertag Xbox, 3-12 caractères, accepte les espaces et plus de symboles",
+            "Unicité — la casse n'est pas distincte : 'Steve' et 'steve' ne peuvent coexister",
+            "Changement Java — gratuit et immédiat sur minecraft.net, sans limite de fréquence",
+            "Changement Bedrock — 1 changement gratuit sur Xbox, puis payant selon le compte",
+          ],
+        },
+        {
+          level: 3,
+          heading: "Conventions de nommage par type de joueur Minecraft",
+          text: "Chaque profil de joueur Minecraft a ses propres codes. Les compétitifs PvP (Hypixel, SkyWars, BedWars) préfèrent des pseudos courts avec préfixes xX_ ou God_. Les créateurs et builders optent pour des noms évocateurs (Master_Builder, Grand_Architect). Les joueurs SMP choisissent des pseudos narratifs et détendus. Le style Redstone est le moins exploité et donc statistiquement le plus facile à trouver disponible — une aubaine pour les joueurs techniques.",
+        },
+      ],
+    },
     faq: [
       { q: "Comment fonctionne le Minecraft username generator de NickGen ?", a: "Sélectionne un style selon ton type de jeu (Survival pour l'exploration, PvP pour le combat, Creative ou Builder pour la construction, Redstone pour la technique), choisis la longueur et génère 12 pseudos Minecraft instantanément. Tous les pseudos respectent les règles Minecraft (3-16 car., lettres/chiffres/underscores)." },
       { q: "Les pseudos générés fonctionnent-ils sur Java ET Bedrock ?", a: "Oui, les pseudos Minecraft générés par NickGen respectent les contraintes communes aux deux éditions (3-16 caractères, caractères alphanumériques et underscores). Note que Java utilise un compte Microsoft unique, tandis que Bedrock permet des Gamertags Xbox avec plus de caractères spéciaux." },

@@ -30,6 +30,31 @@ export const GTA6_PAGES = {
         text: "Dans GTA Online, ton pseudo devient ton identité dans les missions, les braquages et les sessions libres. Un bon pseudo GTA 6 doit sonner crédible dans l'univers Vice City tout en étant mémorable pour tes équipiers. Les noms de personnages les plus iconiques de la saga GTA (Tommy Vercetti, Niko Bellic, Michael De Santa) combinent toujours un prénom crédible avec une connotation criminelle subtile. NickGen reproduit cette logique avec ses générateurs RP et Character spécialement conçus pour l'immersion GTA.",
       },
     ],
+    seoContent: {
+      sections: [
+        {
+          heading: "GTA 6 Online : préparer son pseudo avant le lancement",
+          text: "GTA 6 sort en 2026 sur PlayStation 5 et Xbox Series X/S. Comme pour GTA 5 en 2013, les meilleurs callsigns GTA Online partiront dans les premières heures. Préparer ton pseudo maintenant avec NickGen te donne un avantage décisif : tu arrives Day One avec ton identité choisie, testée avec tes amis via le mode Battle, et prête à être saisie dès l'ouverture des serveurs. Les pseudos qui font référence à Vice City et à l'univers hispanique de Miami (Torres, Rivera, Santos) seront particulièrement prisés.",
+        },
+        {
+          heading: "Vice City et ses codes : choisir le bon style de pseudo",
+          text: "GTA 6 se déroule à Vice City (Miami fictif) et Leonida (Floride fictive). NickGen propose 10 styles couvrant tout l'univers criminel du jeu :",
+          list: [
+            "RP — noms réalistes hispano-américains pour les serveurs roleplay (Tommy_Rivera, Luis_Cruz)",
+            "Gang — identités de rue territoriales (East_Banger, South_Rider, Vice_Shooter)",
+            "Crew — noms d'équipe pour le système Crew de GTA Online (Phantom_Crew, Cobra_Squad)",
+            "Character — immersion Vice City avec sonorités méditerranéennes (Neon_Valentino, Ocean_DeLuca)",
+            "Mafia — crime organisé italo-américain (Don_Marchetti, Capo_Esposito, Boss_Valentini)",
+            "Hustler, Criminal, Outlaw, Street, Kingpin — tous les archétypes criminels du jeu",
+          ],
+        },
+        {
+          level: 3,
+          heading: "Crew et clan tags dans GTA 6 Online",
+          text: "Dans GTA Online, les Crews sont les équipes officielles avec emblème, tag de 4 lettres et classement. Ton crew name peut coexister avec un RP name pour les serveurs roleplay. Assure-toi que ton pseudo NickGen se condense naturellement en un tag mémorable — Phantom_Crew devient PHTM, Shadow_Squad devient SHSQ. NickGen génère des noms qui respectent cette logique de tag pour une identité cohérente entre ton pseudo et l'emblème de ton crew.",
+        },
+      ],
+    },
     faq: [
       { q: "GTA 6 permet-il de choisir son pseudo de personnage ?", a: "Oui, GTA 6 Online permettra la personnalisation du nom de personnage comme dans GTA 5 Online. Le nom s'affiche dans les sessions Online et les classements. Utilise NickGen pour explorer différentes options et préparer ton identité avant le lancement." },
       { q: "Quelle est la longueur idéale d'un pseudo GTA 6 Online ?", a: "Les pseudos GTA Online acceptent généralement jusqu'à 16 caractères. Un pseudo court (6-10 car.) est plus impactant dans le kill feed et les sessions libres. Utilise le filtre Short de NickGen avec le style Criminal ou Gang pour des callsigns percutants." },

@@ -15,6 +15,31 @@ export const FORTNITE_PAGES = {
       h1: "Fortnite Name Generator",
       text: "Génère des pseudos Fortnite uniques en un clic avec NickGen. Notre Fortnite name generator propose 6 styles — Sweaty, OG, Funny, Aesthetic, Tryhard et Badass — pour trouver le pseudo parfait qui représente ton style de jeu. Filtre par longueur, active les symboles Unicode et partage ton pseudo directement sur Discord, Twitter ou WhatsApp.",
     },
+    seoContent: {
+      sections: [
+        {
+          heading: "Comment choisir un bon pseudo Fortnite ?",
+          text: "Ton pseudo Fortnite est ta première impression dans le lobby — avant même d'avoir construit une structure ou tiré un coup. Un bon pseudo doit être mémorable, cohérent avec ton style de jeu et disponible sur les plateformes où tu joues. NickGen génère des centaines de combinaisons en quelques secondes pour trouver celui qui te représente vraiment. Les six styles disponibles couvrent toutes les identités gaming :",
+          list: [
+            "Sweaty — préfixes eSport (FaZe_, NRG_, C9_) et suffixes TTV/YT pour un look pro",
+            "OG — suffixes nostalgiques _2011, _Legacy pour afficher ton ancienneté Fortnite",
+            "Tryhard — leetspeak agressif (M4X_, L33T_) avec symboles Ω et ∞",
+            "Aesthetic — mots poétiques (Aurora, Nexus) et symboles Unicode ✦ ☽",
+            "Funny — autodérision et mèmes gaming (Im_A_Potato, NotA_Camper)",
+            "Badass — références sombres et intimidantes (Dark_Reaper, Iron_Nemesis)",
+          ],
+        },
+        {
+          heading: "Fortnite name generator : fonctionnement et filtres",
+          text: "NickGen combine des pools de préfixes, mots-clés et suffixes spécifiques à chaque style pour produire des pseudos Fortnite uniques que tu ne trouveras nulle part ailleurs. Contrairement aux listes statiques copiées sur d'autres sites, chaque génération est entièrement aléatoire. Filtre par longueur (Court ≤8 car., Moyen 9-13, Long 14+) pour respecter la limite de 16 caractères imposée par Epic Games. Active le toggle Symbols pour intégrer des caractères Unicode dans le style Aesthetic. Le mode Battle compare deux pseudos face à face pour t'aider à décider.",
+        },
+        {
+          level: 3,
+          heading: "Changer son pseudo Fortnite : étapes et conseils",
+          text: "Pour changer ton pseudo Fortnite, connecte-toi sur epicgames.com, accède à ton compte et modifie ton nom d'affichage. Certains symboles Unicode nécessitent un test préalable — tous les caractères spéciaux ne sont pas supportés par Epic Games. Une fois ton pseudo NickGen choisi, copie-le en un clic avec le bouton COPY. Si tu hésites entre plusieurs options, génère plusieurs séries et utilise l'historique (bouton History en haut à droite) pour comparer tes favoris.",
+        },
+      ],
+    },
     faq: [
       { q: "Comment fonctionne le Fortnite name generator de NickGen ?", a: "Sélectionne un style (Sweaty, OG, Funny, Aesthetic, Tryhard ou Badass), configure la longueur souhaitée et clique sur Generate Names. NickGen génère 12 pseudos Fortnite uniques instantanément. Copie celui que tu préfères en un clic ou partage-le sur tes réseaux." },
       { q: "Le générateur de noms Fortnite est-il vraiment gratuit ?", a: "Oui, NickGen est 100% gratuit, sans inscription et sans limite d'utilisation. Génère autant de pseudos Fortnite que tu veux, utilise le mode Battle pour comparer des options et partage tes favoris." },

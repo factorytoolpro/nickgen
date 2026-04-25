@@ -19,7 +19,7 @@ export default function FortniteNameGeneratorPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <GameGenerator game={GAMES.fortnite} preSelectedStyle={config.preSelectedStyle} intro={config.intro} faqOverride={config.faq} />
+      <GameGenerator game={GAMES.fortnite} preSelectedStyle={config.preSelectedStyle} intro={config.intro} faqOverride={config.faq} seoContent={config.seoContent} />
     </>
   );
 }

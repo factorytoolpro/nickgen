@@ -15,6 +15,31 @@ export const ROBLOX_PAGES = {
       h1: "Roblox Username Generator",
       text: "Trouve le pseudo Roblox parfait avec notre générateur gratuit. Le Roblox username generator de NickGen propose 5 styles — Cute, Cool, Funny, Aesthetic et ProPlayer — pour créer des noms Roblox uniques entre 3 et 20 caractères. Chaque pseudo généré respecte les règles de la plateforme (lettres, chiffres et underscores uniquement, sans espace) et est prêt à être testé sur ton compte Roblox.",
     },
+    seoContent: {
+      sections: [
+        {
+          heading: "Trouver un Roblox username disponible en 2025",
+          text: "Avec plus de 200 millions de comptes actifs sur Roblox, trouver un username encore libre est devenu un défi réel. Les pseudos courts et génériques sont pris depuis des années. La stratégie gagnante en 2025 consiste à viser des combinaisons originales de 10-15 caractères avec underscore central, des mots inattendus ou des thèmes peu exploités — dark aesthetic, cottagecore, Redstone tech. NickGen génère précisément ce type de combinaisons créatives dans 5 styles différents, avec le mode Battle pour comparer deux options instantanément.",
+        },
+        {
+          heading: "Les règles pour un Roblox username valide",
+          text: "Avant de dépenser 1 000 Robux pour changer ton pseudo, vérifie que ton nom respecte toutes les contraintes de la plateforme :",
+          list: [
+            "Entre 3 et 20 caractères — les pseudos très courts (3-5 car.) sont presque tous pris",
+            "Uniquement lettres (A-Z), chiffres (0-9) et underscores (_)",
+            "Aucun espace, symbole spécial ou emoji autorisé",
+            "Unique sur toute la plateforme indépendamment de la casse",
+            "Pas de termes offensants, de données personnelles ou de noms de célébrités",
+            "Les pseudos de comptes inactifs depuis +2 ans peuvent redevenir disponibles",
+          ],
+        },
+        {
+          level: 3,
+          heading: "Roblox username generator : les tendances 2025",
+          text: "En 2025, trois grandes tendances dominent les Roblox usernames. L'aesthetic (Lunar_Glow, Dream_Aurora) règne sur les serveurs RP et sociaux comme Royale High et Brookhaven. Le cute (Sweet_Bunny_Xo, Tiny_Peach) reste incontournable dans la communauté. Le ProPlayer (Elite_Champion, Ranked_Master) monte en puissance avec l'essor de la scène compétitive Roblox. NickGen couvre les cinq styles les plus populaires de la plateforme et génère des pseudos compatibles avec les règles strictes de Roblox.",
+        },
+      ],
+    },
     faq: [
       { q: "Comment fonctionne le Roblox username generator de NickGen ?", a: "Sélectionne un style (Cool, Cute, Funny, Aesthetic ou ProPlayer), configure la longueur souhaitée (Short, Medium, Long) et clique sur Generate Names. NickGen génère 12 Roblox usernames uniques instantanément. Copie celui que tu préfères en un clic ou utilise le mode Battle pour comparer deux options." },
       { q: "Les usernames générés sont-ils disponibles sur Roblox ?", a: "NickGen génère des combinaisons originales avec de fortes chances d'être disponibles, mais ne peut pas vérifier la disponibilité en temps réel. Après avoir copié ton pseudo préféré, tape-le dans le champ de changement de pseudo Roblox (roblox.com > Paramètres > Compte) pour vérifier sa disponibilité." },

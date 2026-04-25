@@ -344,6 +344,44 @@ function Toggle({ value, onChange }) {
   );
 }
 
+// ─── SEO content block (H2/H3 + text + list, above FAQ) ─────────────────────
+
+function SEOContent({ content }) {
+  if (!content?.sections?.length) return null;
+  return (
+    <section style={{ marginTop: 52, paddingTop: 36, borderTop: "1px solid rgba(30,58,138,0.2)" }}>
+      {content.sections.map((sec, i) => {
+        const Tag = `h${sec.level || 2}`;
+        return (
+          <div key={i} style={{ marginBottom: 36 }}>
+            <Tag
+              className="font-black mb-3"
+              style={{ color: "#e2e8f0", fontSize: sec.level === 3 ? 16 : 20 }}
+            >
+              {sec.heading}
+            </Tag>
+            {sec.text && (
+              <p className="text-sm leading-relaxed mb-3" style={{ color: "#93c5fd", maxWidth: "68ch" }}>
+                {sec.text}
+              </p>
+            )}
+            {sec.list && (
+              <ul className="flex flex-col gap-2 mt-1">
+                {sec.list.map((item, j) => (
+                  <li key={j} className="flex items-start gap-2.5 text-sm" style={{ color: "#93c5fd" }}>
+                    <span style={{ color: "#f97316", fontWeight: 900, flexShrink: 0, marginTop: 1 }}>›</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        );
+      })}
+    </section>
+  );
+}
+
 // ─── FAQ accordion ────────────────────────────────────────────────────────────
 
 function FAQAccordion({ items }) {
@@ -627,7 +665,7 @@ function GameNav() {
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
-export default function GameGenerator({ game, preSelectedStyle, intro, faqOverride, sections }) {
+export default function GameGenerator({ game, preSelectedStyle, intro, faqOverride, sections, seoContent }) {
   const { name: gameName, badge, tagline, headline, styles: styleList, defaultStyle, nameData, faq: gameFaq } = game;
   const faq = faqOverride || gameFaq;
 
@@ -814,6 +852,9 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
 
           {/* Related links — shown on all sub-pages */}
           <RelatedLinks links={related} />
+
+          {/* SEO content block — above FAQ */}
+          <SEOContent content={seoContent} />
 
           {/* FAQ */}
           {faq?.length > 0 && <FAQAccordion items={faq} />}

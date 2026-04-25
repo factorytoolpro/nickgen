@@ -57,6 +57,30 @@ export default function ApexNameGeneratorPage() {
           h1: "Apex Legends Name Generator",
           text: "Génère des pseudos Apex Legends uniques avec notre générateur gratuit. NickGen propose 5 styles inspirés des rôles et legends du jeu — Legend, Aggressive, Support, Recon et Wraith — pour créer le callsign parfait adapté à ta legend principale. Filtre par longueur, active les symboles et partage ton pseudo directement sur Discord ou Twitter.",
         }}
+        seoContent={{
+          sections: [
+            {
+              heading: "Apex Legends name generator : trouver son callsign",
+              text: "Dans Apex Legends, ton EA ID devient ton identité sur tous les serveurs — d'Olympus à Storm Point. Les meilleurs joueurs de la communauté comme Aceu, Hal ou ImperialHal ont construit leur marque autour de callsigns mémorables directement associés à leur style de jeu. NickGen génère des pseudos Apex dans 5 styles distincts inspirés des rôles et legends officiels du jeu, avec le mode Battle pour comparer deux options et l'historique pour garder tes favoris.",
+            },
+            {
+              heading: "Choisir son pseudo Apex selon sa legend principale",
+              text: "Le meilleur callsign Apex Legends est celui qui correspond à ta legend et ton rôle en équipe :",
+              list: [
+                "Legend — pseudos inspirés des legends iconiques (Wraith, Octane, Bloodhound, Seer)",
+                "Aggressive — fragger et rusher (Rush_Flanker, Hunt_Blitz) — Octane, Revenant, Fuse",
+                "Support — orienté team (Revive_Lifeline, Shield_Guardian) — Lifeline, Newcastle, Loba",
+                "Recon — tracking et information (Scout_Radar, Track_Intel) — Bloodhound, Seer, Crypto",
+                "Wraith — mystérieux et void (Phantom_Rift, Void_Shadow) — Wraith, Fade, Ash",
+              ],
+            },
+            {
+              level: 3,
+              heading: "Apex Legends : règles et conseils pour changer son pseudo",
+              text: "Ton pseudo Apex Legends correspond à ton EA ID. Il peut contenir de 3 à 16 caractères avec lettres, chiffres, espaces et certains caractères spéciaux. Le premier changement est gratuit dans les paramètres du jeu (Paramètres > Compte). Les suivants coûtent des Apex Coins. Un bon callsign Apex doit être court (8-12 car.), prononçable en vocal sur Discord et lié à ta legend principale pour créer une identité gaming cohérente sur toutes les plateformes.",
+            },
+          ],
+        }}
       />
     </>
   );

@@ -15,6 +15,30 @@ export const VALORANT_PAGES = {
       h1: "Valorant Name Generator",
       text: "Génère des pseudos Valorant uniques avec notre Valorant name generator gratuit. NickGen propose 5 styles inspirés du jeu — Agent, Duelist, Controller, Initiator et Sentinel — pour créer un Riot ID parfaitement adapté à ton rôle. Filtre par longueur, explore des dizaines de combinaisons et partage ton pseudo directement sur Discord ou Twitter.",
     },
+    seoContent: {
+      sections: [
+        {
+          heading: "Choisir son Riot ID Valorant : l'identité compétitive",
+          text: "Dans Valorant, ton Riot ID est bien plus qu'un pseudo — c'est ta marque aux yeux de tous les joueurs de ta région. Les pros comme TenZ ou Shroud ont construit leur réputation autour de pseudos courts, mémorables et directement associés à leur style de jeu. Un bon Riot ID Valorant doit être prononçable sur Discord et en stream, refléter ton rôle principal et rester disponible dans ta région. NickGen génère des centaines de combinaisons spécifiques à l'univers de Valorant.",
+        },
+        {
+          heading: "Valorant name generator : styles par rôle d'agent",
+          text: "NickGen propose 5 styles de pseudos Valorant directement calqués sur les rôles officiels du jeu :",
+          list: [
+            "Agent — codenames tactiques d'opération secrète (Cipher_VII, Oracle_Zero) — universel",
+            "Duelist — agressif et frag-orienté (Rush_Entry, Peak_Clutch) — pour Jett, Reyna, Neon, Iso",
+            "Controller — stratège et post-plant (Smoke_Control, Zone_Post) — pour Viper, Omen, Brimstone",
+            "Initiator — info et flash (Flash_Intel, Scout_Tag) — pour Sova, Breach, Fade, Gekko",
+            "Sentinel — défensif et anti-flank (Lock_Guard, Watch_Wall) — pour Killjoy, Cypher, Deadlock",
+          ],
+        },
+        {
+          level: 3,
+          heading: "Format du Riot ID et disponibilité des pseudos",
+          text: "Un Riot ID Valorant peut contenir jusqu'à 16 caractères avec un tag de 5 caractères (#tag). L'avantage du système Riot : le même nom peut exister avec des tags différents (#EU, #NA, #1234), ce qui multiplie considérablement les possibilités. Les pseudos en style Agent ou Initiator — moins courants que Duelist — ont statistiquement plus de chances d'être disponibles dans ta région. Génère une dizaine d'options avec NickGen puis vérifie sur account.riotgames.com.",
+        },
+      ],
+    },
     faq: [
       { q: "Comment fonctionne le Valorant name generator de NickGen ?", a: "Sélectionne un style parmi Agent, Duelist, Controller, Initiator ou Sentinel selon ton rôle principal, configure la longueur souhaitée et clique sur Generate Names. NickGen génère 12 Riot IDs Valorant uniques instantanément. Copie ton préféré ou utilise le mode Battle pour comparer deux options." },
       { q: "Quelle est la longueur maximale d'un Riot ID Valorant ?", a: "Un Riot ID Valorant peut contenir jusqu'à 16 caractères pour le nom et 5 caractères pour le tag (#tag). Les espaces sont autorisés. NickGen propose les filtres Short (≤8 car.), Medium (9-13 car.) et Long (14+) pour générer des pseudos Valorant adaptés à tes préférences." },
