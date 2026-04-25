@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.fantasynamegenerators.com)",
+      "WebFetch(domain:namelix.com)",
+      "WebFetch(domain:www.nickfinder.com)",
+      "WebFetch(domain:lingojam.com)",
+      "WebFetch(domain:www.spinxo.com)",
+      "WebFetch(domain:jimpix.co.uk)",
+      "WebFetch(domain:fantasynamegenerators.com)",
+      "WebSearch",
+      "WebFetch(domain:musely.ai)",
+      "WebFetch(domain:www.gamertag.net)",
+      "WebFetch(domain:glima.ai)",
+      "WebFetch(domain:www.name-generator.org.uk)",
+      "WebFetch(domain:fontlix.com)"
+    ]
+  }
+}
