@@ -27,7 +27,7 @@ function generateName(nameData, style, useSymbols) {
 
 const LENGTH_RANGES = { Any: null, Short: [1, 8], Medium: [9, 13], Long: [14, 99] };
 
-function generateNames(nameData, style, lengthFilter, useSymbols, count = 12) {
+function generateNames(nameData, style, lengthFilter, useSymbols, count = 5) {
   const range = LENGTH_RANGES[lengthFilter];
   if (!range) return Array.from({ length: count }, () => generateName(nameData, style, useSymbols));
   const results = [];
@@ -307,7 +307,7 @@ function NameCard({ name, isCopied, onCopy, onShare }) {
       style={{ background: hov ? "linear-gradient(135deg,rgba(22,33,68,0.95),rgba(28,18,52,0.92))" : "rgba(16,25,50,0.84)", border: `1px solid ${hov ? "rgba(249,115,22,0.6)" : "rgba(30,58,138,0.4)"}`, boxShadow: hov ? "0 6px 28px rgba(249,115,22,0.2),inset 0 0 40px rgba(249,115,22,0.04)" : "0 2px 10px rgba(0,0,0,0.35)", transform: hov ? "translateY(-3px) scale(1.015)" : "none", transition: "all 0.18s ease" }}
       className="flex items-center justify-between rounded-xl px-4 py-3 gap-2"
     >
-      <span className="text-white font-bold text-sm truncate flex-1" style={{ textShadow: hov ? "0 0 14px rgba(249,115,22,0.35)" : "none" }}>{name}</span>
+      <span className="text-white font-bold text-sm flex-1" style={{ textShadow: hov ? "0 0 14px rgba(249,115,22,0.35)" : "none", overflowWrap: "anywhere", wordBreak: "break-word", minWidth: 0 }}>{name}</span>
       <div className="flex items-center gap-1.5 shrink-0">
         <button onClick={onShare} title="Partager" className="text-sm px-2 py-1.5 rounded-lg transition-all" style={{ color: hov ? "#f97316" : "#475569", background: hov ? "rgba(249,115,22,0.1)" : "transparent" }}>📤</button>
         <button onClick={() => onCopy(name)} className="text-xs font-black px-3 py-1.5 rounded-lg transition-all whitespace-nowrap"
@@ -703,7 +703,7 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
   const generate = () => {
     setIsGenerating(true);
     setTimeout(() => {
-      const newNames = generateNames(nameData, style, lengthFilter, useSymbols);
+      const newNames = generateNames(nameData, style, lengthFilter, useSymbols, 5);
       setNames(newNames);
       setHistory((prev) => [...newNames.map((n) => ({ name: n, style })), ...prev].slice(0, 20));
       addToCount(newNames.length);
@@ -716,6 +716,13 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
     setCopied(index);
     setTimeout(() => setCopied(null), 1500);
   }, []);
+
+  const generateMore = () => {
+    const moreNames = generateNames(nameData, style, lengthFilter, useSymbols, 5);
+    setNames((prev) => [...prev, ...moreNames].slice(0, 20));
+    setHistory((prev) => [...moreNames.map((n) => ({ name: n, style })), ...prev].slice(0, 20));
+    addToCount(moreNames.length);
+  };
 
   return (
     <div className="min-h-screen relative" style={{ background: "#0d1224" }}>
@@ -829,9 +836,25 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
               {names.length > 0 ? (
                 <div>
                   <p className="text-xs text-center uppercase tracking-widest mb-5" style={{ color: "#334155" }}>{style} · {lengthFilter} · {useSymbols ? "Symbols ON" : "Symbols OFF"} · {names.length} names</p>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                     {names.map((name, i) => <NameCard key={`${name}-${i}`} name={name} isCopied={copied === i} onCopy={(n) => copyName(n, i)} onShare={() => setShareTarget({ name, style })} />)}
                   </div>
+
+                  {/* Generate more */}
+                  {names.length < 20 && (
+                    <div className="flex justify-center mt-5">
+                      <button
+                        onClick={generateMore}
+                        className="flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-black transition-all active:scale-95"
+                        style={{ background: "rgba(249,115,22,0.08)", color: "#f97316", border: "1px solid rgba(249,115,22,0.32)" }}
+                        onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(249,115,22,0.18)"; e.currentTarget.style.borderColor = "rgba(249,115,22,0.55)"; e.currentTarget.style.transform = "scale(1.03)"; }}
+                        onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(249,115,22,0.08)"; e.currentTarget.style.borderColor = "rgba(249,115,22,0.32)"; e.currentTarget.style.transform = "none"; }}
+                      >
+                        ⚡ <span>+5 pseudos</span>
+                        <span style={{ opacity: 0.5, fontSize: 11 }}>({names.length}/20)</span>
+                      </button>
+                    </div>
+                  )}
                 </div>
               ) : (
                 <div className="text-center py-20 rounded-2xl" style={{ border: "1px dashed rgba(30,58,138,0.45)", color: "#475569" }}>
