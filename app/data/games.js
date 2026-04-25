@@ -1,7 +1,7 @@
 // ─── Game navigation ──────────────────────────────────────────────────────────
 
 export const GAME_NAV = [
-  { name: "Fortnite",      slug: "/",                                badge: "BR"    },
+  { name: "Fortnite",      slug: "/fortnite-name-generator",         badge: "BR"    },
   { name: "Roblox",        slug: "/roblox-username-generator",       badge: "MMO"   },
   { name: "GTA 6",         slug: "/gta6-name-generator",             badge: "RPG"   },
   { name: "Minecraft",     slug: "/minecraft-username-generator",    badge: "CRAFT" },

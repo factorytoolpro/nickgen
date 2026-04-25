@@ -497,6 +497,7 @@ function SiteFooter() {
 
 const GAME_EMOJI = {
   "/":                                "⚡",
+  "/fortnite-name-generator":         "⚡",
   "/roblox-username-generator":       "🎮",
   "/gta6-name-generator":             "🚗",
   "/minecraft-username-generator":    "⛏",
@@ -536,8 +537,10 @@ function GameNav() {
       {/* Game buttons */}
       <div className="flex flex-wrap gap-2.5">
         {GAME_NAV.map((g, i) => {
-          const active   = pathname === g.slug;
-          const featured = i === 0 && !active; // Fortnite gently pulsed when not current
+          // Fortnite button is active on both "/" and "/fortnite-name-generator"
+          const active   = pathname === g.slug ||
+            (g.slug === "/fortnite-name-generator" && pathname === "/");
+          const featured = i === 0 && !active;
 
           return (
             <Link

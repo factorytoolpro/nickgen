@@ -3,6 +3,7 @@ const nextConfig = {
   async redirects() {
     return [
       // ── Game hub redirects (301 Permanent) ─────────────────────────────
+      { source: "/fortnite",  destination: "/fortnite-name-generator",          permanent: true },
       { source: "/roblox",    destination: "/roblox-username-generator",        permanent: true },
       { source: "/gta6",      destination: "/gta6-name-generator",              permanent: true },
       { source: "/minecraft", destination: "/minecraft-username-generator",     permanent: true },
