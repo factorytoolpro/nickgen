@@ -548,7 +548,7 @@ function GameNav() {
   const pathname = usePathname();
 
   return (
-    <nav aria-label="Jeux disponibles" className="max-w-4xl mx-auto px-6 py-4">
+    <nav aria-label="Jeux disponibles" className="max-w-4xl mx-auto px-3 sm:px-6 py-3 sm:py-4">
 
       {/* Section label + bouncing arrow */}
       <div className="flex items-center gap-2 mb-3.5">
@@ -572,8 +572,11 @@ function GameNav() {
         </span>
       </div>
 
-      {/* Game buttons */}
-      <div className="flex flex-wrap gap-2.5">
+      {/* Game buttons — horizontal scroll on mobile, wrap on desktop */}
+      <div
+        className="flex gap-2 sm:gap-2.5 overflow-x-auto sm:flex-wrap scrollbar-hide"
+        style={{ WebkitOverflowScrolling: "touch", scrollSnapType: "x mandatory" }}
+      >
         {GAME_NAV.map((g, i) => {
           // Fortnite button is active on both "/" and "/fortnite-name-generator"
           const active   = pathname === g.slug ||
@@ -584,9 +587,10 @@ function GameNav() {
             <Link
               key={g.slug}
               href={g.slug}
-              className="flex items-center gap-2 rounded-xl font-black text-sm whitespace-nowrap"
+              className="flex items-center gap-2 rounded-xl font-black text-sm whitespace-nowrap shrink-0"
               style={{
-                padding: "9px 16px",
+                padding: "8px 14px",
+                scrollSnapAlign: "start",
                 transition: "transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.16s ease, color 0.16s ease",
                 ...(active
                   ? {
