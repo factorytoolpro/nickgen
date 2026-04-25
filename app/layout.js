@@ -11,6 +11,11 @@ export const metadata = {
     default: "NickGen — Générateur de Pseudo Gaming",
     template: "%s — NickGen",
   },
+  
+  verification: {
+  google: "kU2vHQFbzkx6KdWeSGgb8K2mdsGe2muPZHZINeREfKw",
+},
+
   description: "Génère des pseudos gaming uniques pour Fortnite, Valorant, Minecraft, Apex Legends et Call of Duty. Styles variés, mode Battle, partage social. Gratuit et sans inscription.",
   keywords: ["pseudo gaming", "générateur de pseudo", "gaming username", "gamertag generator", "fortnite names", "valorant names", "minecraft username", "apex legends name", "call of duty name"],
   authors: [{ name: "NickGen" }],
