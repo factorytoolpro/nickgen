@@ -495,25 +495,120 @@ function SiteFooter() {
 
 // ─── Game navigation ──────────────────────────────────────────────────────────
 
+const GAME_EMOJI = {
+  "/": "⚡", "/roblox": "🎮", "/gta6": "🚗",
+  "/minecraft": "⛏", "/valorant": "🎯", "/apex": "🔥", "/cod": "💀",
+};
+
 function GameNav() {
   const pathname = usePathname();
+
   return (
-    <nav aria-label="Jeux disponibles" className="max-w-4xl mx-auto px-6 py-3">
-      <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none" style={{ msOverflowStyle: "none", scrollbarWidth: "none" }}>
-        {GAME_NAV.map((g) => {
-          const active = pathname === g.slug;
+    <nav aria-label="Jeux disponibles" className="max-w-4xl mx-auto px-6 py-4">
+
+      {/* Section label + bouncing arrow */}
+      <div className="flex items-center gap-2 mb-3.5">
+        <p
+          className="text-xs font-black uppercase tracking-widest"
+          style={{ color: "#60a5fa", letterSpacing: "0.17em" }}
+        >
+          🎮 Choose your game
+        </p>
+        <span
+          style={{
+            color: "#f97316",
+            display: "inline-block",
+            animation: "bounce-down 1.6s ease-in-out infinite",
+            fontSize: 13,
+            fontWeight: 900,
+            lineHeight: 1,
+          }}
+        >
+          ↓
+        </span>
+      </div>
+
+      {/* Game buttons */}
+      <div className="flex flex-wrap gap-2.5">
+        {GAME_NAV.map((g, i) => {
+          const active   = pathname === g.slug;
+          const featured = i === 0 && !active; // Fortnite gently pulsed when not current
+
           return (
             <Link
               key={g.slug}
               href={g.slug}
-              className="flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-black whitespace-nowrap transition-all"
-              style={active
-                ? { background: "rgba(249,115,22,0.18)", color: "#f97316", border: "1px solid rgba(249,115,22,0.45)" }
-                : { background: "rgba(15,23,42,0.7)", color: "#60a5fa", border: "1px solid rgba(30,58,138,0.4)" }
-              }
+              className="flex items-center gap-2 rounded-xl font-black text-sm whitespace-nowrap"
+              style={{
+                padding: "9px 16px",
+                transition: "transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.16s ease, color 0.16s ease",
+                ...(active
+                  ? {
+                      background: "linear-gradient(135deg,#f97316,#ea580c)",
+                      color: "#fff",
+                      boxShadow: "0 0 22px rgba(249,115,22,0.42), 0 4px 14px rgba(249,115,22,0.22)",
+                    }
+                  : featured
+                  ? {
+                      background: "rgba(249,115,22,0.07)",
+                      color: "#f97316",
+                      border: "1px solid rgba(249,115,22,0.3)",
+                      animation: "nav-pulse 2.6s ease-in-out infinite",
+                    }
+                  : {
+                      background: "rgba(15,23,42,0.8)",
+                      color: "#93c5fd",
+                      border: "1px solid rgba(30,58,138,0.5)",
+                    }
+                ),
+              }}
+              onMouseEnter={(e) => {
+                if (active) return;
+                e.currentTarget.style.animation = "none";
+                e.currentTarget.style.transform = "scale(1.07) translateY(-2px)";
+                e.currentTarget.style.background = "rgba(249,115,22,0.13)";
+                e.currentTarget.style.borderColor = "rgba(249,115,22,0.5)";
+                e.currentTarget.style.color = "#f97316";
+                e.currentTarget.style.boxShadow = "0 6px 22px rgba(249,115,22,0.22)";
+              }}
+              onMouseLeave={(e) => {
+                if (active) return;
+                e.currentTarget.style.transform = "none";
+                e.currentTarget.style.boxShadow = "none";
+                if (featured) {
+                  e.currentTarget.style.background = "rgba(249,115,22,0.07)";
+                  e.currentTarget.style.borderColor = "rgba(249,115,22,0.3)";
+                  e.currentTarget.style.color = "#f97316";
+                  e.currentTarget.style.animation = "nav-pulse 2.6s ease-in-out infinite";
+                } else {
+                  e.currentTarget.style.background = "rgba(15,23,42,0.8)";
+                  e.currentTarget.style.borderColor = "rgba(30,58,138,0.5)";
+                  e.currentTarget.style.color = "#93c5fd";
+                }
+              }}
             >
+              {/* Game emoji */}
+              <span style={{ fontSize: 15, lineHeight: 1 }}>
+                {GAME_EMOJI[g.slug] ?? "🎮"}
+              </span>
+
+              {/* Game name */}
               <span>{g.name}</span>
-              <span className="text-xs opacity-60" style={{ fontSize: 10 }}>{g.badge}</span>
+
+              {/* Genre badge */}
+              <span
+                style={{
+                  fontSize: 9,
+                  fontWeight: 900,
+                  letterSpacing: "0.07em",
+                  padding: "2px 5px",
+                  borderRadius: 4,
+                  background: active ? "rgba(255,255,255,0.22)" : "rgba(30,58,138,0.5)",
+                  color: active ? "#fff" : "#60a5fa",
+                }}
+              >
+                {g.badge}
+              </span>
             </Link>
           );
         })}
