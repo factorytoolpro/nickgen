@@ -1,6 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      // ── Game hub redirects (301 Permanent) ─────────────────────────────
+      { source: "/roblox",    destination: "/roblox-username-generator",        permanent: true },
+      { source: "/gta6",      destination: "/gta6-name-generator",              permanent: true },
+      { source: "/minecraft", destination: "/minecraft-username-generator",     permanent: true },
+      { source: "/valorant",  destination: "/valorant-name-generator",          permanent: true },
+      { source: "/apex",      destination: "/apex-legends-name-generator",      permanent: true },
+      { source: "/cod",       destination: "/call-of-duty-name-generator",      permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -496,8 +496,13 @@ function SiteFooter() {
 // ─── Game navigation ──────────────────────────────────────────────────────────
 
 const GAME_EMOJI = {
-  "/": "⚡", "/roblox": "🎮", "/gta6": "🚗",
-  "/minecraft": "⛏", "/valorant": "🎯", "/apex": "🔥", "/cod": "💀",
+  "/":                                "⚡",
+  "/roblox-username-generator":       "🎮",
+  "/gta6-name-generator":             "🚗",
+  "/minecraft-username-generator":    "⛏",
+  "/valorant-name-generator":         "🎯",
+  "/apex-legends-name-generator":     "🔥",
+  "/call-of-duty-name-generator":     "💀",
 };
 
 function GameNav() {

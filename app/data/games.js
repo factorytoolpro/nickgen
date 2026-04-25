@@ -1,13 +1,13 @@
 // ─── Game navigation ──────────────────────────────────────────────────────────
 
 export const GAME_NAV = [
-  { name: "Fortnite",      slug: "/",          badge: "BR"    },
-  { name: "Roblox",        slug: "/roblox",    badge: "MMO"   },
-  { name: "GTA 6",         slug: "/gta6",      badge: "RPG"   },
-  { name: "Minecraft",     slug: "/minecraft", badge: "CRAFT" },
-  { name: "Valorant",      slug: "/valorant",  badge: "FPS"   },
-  { name: "Apex Legends",  slug: "/apex",      badge: "BR"    },
-  { name: "Call of Duty",  slug: "/cod",       badge: "FPS"   },
+  { name: "Fortnite",      slug: "/",                                badge: "BR"    },
+  { name: "Roblox",        slug: "/roblox-username-generator",       badge: "MMO"   },
+  { name: "GTA 6",         slug: "/gta6-name-generator",             badge: "RPG"   },
+  { name: "Minecraft",     slug: "/minecraft-username-generator",    badge: "CRAFT" },
+  { name: "Valorant",      slug: "/valorant-name-generator",         badge: "FPS"   },
+  { name: "Apex Legends",  slug: "/apex-legends-name-generator",     badge: "BR"    },
+  { name: "Call of Duty",  slug: "/call-of-duty-name-generator",     badge: "FPS"   },
 ];
 
 // ─── Games data ───────────────────────────────────────────────────────────────

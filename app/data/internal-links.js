@@ -237,15 +237,15 @@ export const RELATED = {
     { href: "/tryhard-fortnite-names",   label: "Tryhard Fortnite" },
   ],
 
-  // Apex + COD
-  "/apex": [
-    { href: "/cod",                          label: "Call of Duty" },
+  // Apex + COD (hub pages)
+  "/apex-legends-name-generator": [
+    { href: "/call-of-duty-name-generator",  label: "Call of Duty Generator" },
     { href: "/valorant-name-generator",      label: "Valorant Generator" },
     { href: "/fortnite-name-generator",      label: "Fortnite Generator" },
     { href: "/minecraft-username-generator", label: "Minecraft Generator" },
   ],
-  "/cod": [
-    { href: "/apex",                         label: "Apex Legends" },
+  "/call-of-duty-name-generator": [
+    { href: "/apex-legends-name-generator",  label: "Apex Legends Generator" },
     { href: "/valorant-name-generator",      label: "Valorant Generator" },
     { href: "/gta6-name-generator",          label: "GTA 6 Generator" },
     { href: "/fortnite-name-generator",      label: "Fortnite Generator" },
@@ -350,8 +350,8 @@ export const FOOTER_COLS = [
       { href: "/valorant-usernames",       label: "Valorant Usernames" },
       { href: "/cool-valorant-names",      label: "Cool Valorant" },
       { href: "/sweaty-valorant-names",    label: "Sweaty Valorant" },
-      { href: "/apex",                     label: "Apex Legends" },
-      { href: "/cod",                      label: "Call of Duty" },
+      { href: "/apex-legends-name-generator",    label: "Apex Legends Generator" },
+      { href: "/call-of-duty-name-generator",    label: "Call of Duty Generator" },
     ],
   },
 ];
