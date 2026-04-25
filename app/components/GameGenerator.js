@@ -127,7 +127,7 @@ function FlameCounter({ total }) {
       <div className="relative flex items-center justify-center" style={{ gap: 20 }}>
         <div style={{ position: "absolute", inset: "-24px -60px", background: "radial-gradient(ellipse,rgba(249,115,22,0.14) 0%,transparent 68%)", animation: "glow-pulse 2.8s ease-in-out infinite", pointerEvents: "none" }} />
         <FlameCluster mirror />
-        <div ref={popRef} style={{ fontSize: 58, fontWeight: 900, lineHeight: 1, fontVariantNumeric: "tabular-nums", letterSpacing: "-0.03em", background: "linear-gradient(175deg,#fcd34d 0%,#f97316 45%,#c2410c 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", filter: "drop-shadow(0 0 16px rgba(249,115,22,0.5))" }}>
+        <div ref={popRef} style={{ fontSize: 58, fontWeight: 900, lineHeight: 1, fontVariantNumeric: "tabular-nums", letterSpacing: "-0.03em", background: "linear-gradient(175deg,#fde68a 0%,#fb923c 45%,#c2410c 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", filter: "drop-shadow(0 0 24px rgba(249,115,22,0.68))" }}>
           {displayed.toLocaleString("fr-FR")}
         </div>
         <FlameCluster />
@@ -304,7 +304,7 @@ function NameCard({ name, isCopied, onCopy, onShare }) {
   const [hov, setHov] = useState(false);
   return (
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      style={{ background: hov ? "linear-gradient(135deg,rgba(22,33,68,0.95),rgba(28,18,52,0.92))" : "rgba(15,23,42,0.72)", border: `1px solid ${hov ? "rgba(249,115,22,0.6)" : "rgba(30,58,138,0.4)"}`, boxShadow: hov ? "0 6px 28px rgba(249,115,22,0.2),inset 0 0 40px rgba(249,115,22,0.04)" : "0 2px 10px rgba(0,0,0,0.35)", transform: hov ? "translateY(-3px) scale(1.015)" : "none", transition: "all 0.18s ease" }}
+      style={{ background: hov ? "linear-gradient(135deg,rgba(22,33,68,0.95),rgba(28,18,52,0.92))" : "rgba(16,25,50,0.84)", border: `1px solid ${hov ? "rgba(249,115,22,0.6)" : "rgba(30,58,138,0.4)"}`, boxShadow: hov ? "0 6px 28px rgba(249,115,22,0.2),inset 0 0 40px rgba(249,115,22,0.04)" : "0 2px 10px rgba(0,0,0,0.35)", transform: hov ? "translateY(-3px) scale(1.015)" : "none", transition: "all 0.18s ease" }}
       className="flex items-center justify-between rounded-xl px-4 py-3 gap-2"
     >
       <span className="text-white font-bold text-sm truncate flex-1" style={{ textShadow: hov ? "0 0 14px rgba(249,115,22,0.35)" : "none" }}>{name}</span>
@@ -324,7 +324,7 @@ function NameCard({ name, isCopied, onCopy, onShare }) {
 function HistoryCard({ name, style: s }) {
   const [c, setC] = useState(false);
   return (
-    <div className="flex items-center justify-between rounded-lg px-3 py-2 gap-2" style={{ background: "rgba(15,23,42,0.8)", border: "1px solid rgba(30,58,138,0.3)" }}>
+    <div className="flex items-center justify-between rounded-lg px-3 py-2 gap-2" style={{ background: "rgba(16,25,50,0.88)", border: "1px solid rgba(30,58,138,0.3)" }}>
       <div className="min-w-0"><p className="text-white text-xs font-semibold truncate">{name}</p><p className="text-xs" style={{ color: "#475569" }}>{s}</p></div>
       <button onClick={async () => { await navigator.clipboard.writeText(name); setC(true); setTimeout(() => setC(false), 1400); }} className="shrink-0 text-xs font-black px-2 py-1 rounded-lg" style={c ? { color: "#4ade80", background: "rgba(74,222,128,0.1)" } : { color: "#60a5fa" }}>{c ? "✓" : "⎘"}</button>
     </div>
@@ -356,7 +356,7 @@ function SEOContent({ content }) {
           <div key={i} style={{ marginBottom: 36 }}>
             <Tag
               className="font-black mb-3"
-              style={{ color: "#e2e8f0", fontSize: sec.level === 3 ? 16 : 20 }}
+              style={{ color: "#f1f5f9", fontSize: sec.level === 3 ? 16 : 20 }}
             >
               {sec.heading}
             </Tag>
@@ -397,9 +397,9 @@ function FAQAccordion({ items }) {
             <button
               onClick={() => setOpen(open === i ? null : i)}
               className="w-full flex items-center justify-between px-5 py-4 text-left gap-4"
-              style={{ background: open === i ? "rgba(249,115,22,0.06)" : "rgba(15,23,42,0.7)" }}
+              style={{ background: open === i ? "rgba(249,115,22,0.09)" : "rgba(16,25,50,0.88)" }}
             >
-              <span className="font-bold text-sm" style={{ color: "#e2e8f0" }}>{item.q}</span>
+              <span className="font-bold text-sm" style={{ color: "#f1f5f9" }}>{item.q}</span>
               <span className="shrink-0 text-xl font-black leading-none" style={{ color: "#f97316" }}>{open === i ? "−" : "+"}</span>
             </button>
             <div style={{ maxHeight: open === i ? 300 : 0, overflow: "hidden", transition: "max-height 0.28s ease" }}>
@@ -427,9 +427,9 @@ function RelatedLinks({ links }) {
             key={link.href}
             href={link.href}
             className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all"
-            style={{ background: "rgba(15,23,42,0.7)", color: "#93c5fd", border: "1px solid rgba(30,58,138,0.4)" }}
+            style={{ background: "rgba(16,25,50,0.82)", color: "#93c5fd", border: "1px solid rgba(30,58,138,0.4)" }}
             onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(249,115,22,0.45)"; e.currentTarget.style.color = "#f97316"; e.currentTarget.style.background = "rgba(22,33,68,0.9)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(30,58,138,0.4)"; e.currentTarget.style.color = "#93c5fd"; e.currentTarget.style.background = "rgba(15,23,42,0.7)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(30,58,138,0.4)"; e.currentTarget.style.color = "#93c5fd"; e.currentTarget.style.background = "rgba(16,25,50,0.82)"; }}
           >
             {link.label}
             <span style={{ opacity: 0.5, fontSize: 11 }}>→</span>
@@ -456,9 +456,9 @@ function HubLinksSection({ links, gameName }) {
             key={link.href}
             href={link.href}
             className="flex items-center justify-between rounded-xl px-4 py-3 transition-all"
-            style={{ background: "rgba(15,23,42,0.72)", border: "1px solid rgba(30,58,138,0.4)" }}
+            style={{ background: "rgba(16,25,50,0.84)", border: "1px solid rgba(30,58,138,0.4)" }}
             onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(249,115,22,0.45)"; e.currentTarget.style.background = "rgba(22,33,68,0.95)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(30,58,138,0.4)"; e.currentTarget.style.background = "rgba(15,23,42,0.72)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(30,58,138,0.4)"; e.currentTarget.style.background = "rgba(16,25,50,0.84)"; }}
           >
             <span className="text-white text-sm font-bold">{link.label}</span>
             <span style={{ color: "#f97316", fontSize: 14, fontWeight: 900 }}>→</span>
@@ -473,7 +473,7 @@ function HubLinksSection({ links, gameName }) {
 
 function SiteFooter() {
   return (
-    <footer style={{ borderTop: "1px solid rgba(30,58,138,0.28)", background: "rgba(6,10,20,0.9)", marginTop: 48 }}>
+    <footer style={{ borderTop: "1px solid rgba(30,58,138,0.35)", background: "rgba(9,14,28,0.95)", marginTop: 48 }}>
       <div className="max-w-4xl mx-auto px-6 py-12">
         {/* Logo row */}
         <div className="flex items-center gap-2 mb-10">
@@ -513,14 +513,14 @@ function SiteFooter() {
         {/* Bottom bar */}
         <div
           className="flex flex-wrap items-center justify-between gap-3 pt-5"
-          style={{ borderTop: "1px solid rgba(30,58,138,0.2)", color: "#1e3a5f", fontSize: 11 }}
+          style={{ borderTop: "1px solid rgba(30,58,138,0.25)", color: "#475569", fontSize: 11 }}
         >
           <span>© 2025 NickGen · Gratuit · Sans inscription</span>
           <div className="flex gap-4">
             {["/fortnite-name-generator", "/roblox-username-generator", "/gta6-name-generator", "/minecraft-username-generator", "/valorant-name-generator"].map((href) => (
-              <Link key={href} href={href} className="transition-colors" style={{ color: "#1e3a5f" }}
+              <Link key={href} href={href} className="transition-colors" style={{ color: "#334155" }}
                 onMouseEnter={(e) => e.currentTarget.style.color = "#475569"}
-                onMouseLeave={(e) => e.currentTarget.style.color = "#1e3a5f"}>
+                onMouseLeave={(e) => e.currentTarget.style.color = "#334155"}>
                 {href.replace("/", "").replace("-name-generator", "").replace("-username-generator", "")}
               </Link>
             ))}
@@ -602,7 +602,7 @@ function GameNav() {
                       animation: "nav-pulse 2.6s ease-in-out infinite",
                     }
                   : {
-                      background: "rgba(15,23,42,0.8)",
+                      background: "rgba(16,25,50,0.88)",
                       color: "#93c5fd",
                       border: "1px solid rgba(30,58,138,0.5)",
                     }
@@ -627,7 +627,7 @@ function GameNav() {
                   e.currentTarget.style.color = "#f97316";
                   e.currentTarget.style.animation = "nav-pulse 2.6s ease-in-out infinite";
                 } else {
-                  e.currentTarget.style.background = "rgba(15,23,42,0.8)";
+                  e.currentTarget.style.background = "rgba(16,25,50,0.88)";
                   e.currentTarget.style.borderColor = "rgba(30,58,138,0.5)";
                   e.currentTarget.style.color = "#93c5fd";
                 }
@@ -718,7 +718,7 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
   }, []);
 
   return (
-    <div className="min-h-screen relative" style={{ background: "#0a0e1a" }}>
+    <div className="min-h-screen relative" style={{ background: "#0d1224" }}>
       <ParticleCanvas />
       {shareTarget && <ShareModal name={shareTarget.name} style={shareTarget.style} onClose={() => setShareTarget(null)} />}
 
@@ -776,13 +776,13 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
           </div>
 
           {/* Controls */}
-          <div className="flex flex-wrap items-end justify-between gap-5 p-5 rounded-2xl mb-8" style={{ background: "rgba(13,20,40,0.7)", border: "1px solid rgba(30,58,138,0.35)", backdropFilter: "blur(8px)" }}>
+          <div className="flex flex-wrap items-end justify-between gap-5 p-5 rounded-2xl mb-8" style={{ background: "rgba(14,22,44,0.84)", border: "1px solid rgba(30,58,138,0.4)", backdropFilter: "blur(8px)" }}>
             <div>
               <p className="text-xs font-black uppercase tracking-widest mb-2.5" style={{ color: "#7dd3fc" }}>Length</p>
               <div className="flex gap-2">
                 {lengths.map((l) => (
                   <button key={l} onClick={() => setLengthFilter(l)} className="px-3 py-1.5 rounded-lg text-xs font-black transition-all active:scale-95"
-                    style={lengthFilter === l ? { background: "rgba(249,115,22,0.2)", color: "#f97316", border: "1px solid rgba(249,115,22,0.45)", boxShadow: "0 0 10px rgba(249,115,22,0.15)" } : { background: "rgba(15,23,42,0.7)", color: "#60a5fa", border: "1px solid rgba(30,64,175,0.3)" }}>
+                    style={lengthFilter === l ? { background: "rgba(249,115,22,0.2)", color: "#f97316", border: "1px solid rgba(249,115,22,0.45)", boxShadow: "0 0 10px rgba(249,115,22,0.15)" } : { background: "rgba(16,25,50,0.82)", color: "#60a5fa", border: "1px solid rgba(30,64,175,0.3)" }}>
                     {l}
                   </button>
                 ))}
@@ -800,7 +800,7 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
             <div className="flex flex-wrap justify-center gap-3">
               {styleList.map((s) => (
                 <button key={s} onClick={() => setStyle(s)} className="px-6 py-2 rounded-full text-sm font-black transition-all active:scale-95"
-                  style={style === s ? { background: "linear-gradient(135deg,#f97316,#ea580c)", color: "#fff", boxShadow: "0 0 22px rgba(249,115,22,0.38)" } : { background: "rgba(15,23,42,0.7)", color: "#93c5fd", border: "1px solid rgba(30,58,138,0.5)" }}>
+                  style={style === s ? { background: "linear-gradient(135deg,#f97316,#ea580c)", color: "#fff", boxShadow: "0 0 22px rgba(249,115,22,0.38)" } : { background: "rgba(16,25,50,0.82)", color: "#93c5fd", border: "1px solid rgba(30,58,138,0.5)" }}>
                   {s}
                 </button>
               ))}
@@ -811,7 +811,7 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
           <div className="flex justify-center gap-3 mb-8">
             {[{ id: "normal", label: "⚡ Générateur" }, { id: "battle", label: "⚔ Battle Mode" }].map(({ id, label }) => (
               <button key={id} onClick={() => setMode(id)} className="px-6 py-2.5 rounded-xl text-sm font-black transition-all active:scale-95"
-                style={mode === id ? { background: "linear-gradient(135deg,#f97316,#ea580c)", color: "#fff", boxShadow: "0 0 22px rgba(249,115,22,0.35)" } : { background: "rgba(15,23,42,0.7)", color: "#60a5fa", border: "1px solid rgba(30,58,138,0.45)" }}>
+                style={mode === id ? { background: "linear-gradient(135deg,#f97316,#ea580c)", color: "#fff", boxShadow: "0 0 22px rgba(249,115,22,0.35)" } : { background: "rgba(16,25,50,0.82)", color: "#60a5fa", border: "1px solid rgba(30,58,138,0.45)" }}>
                 {label}
               </button>
             ))}
@@ -822,7 +822,7 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
             <>
               <div className="flex justify-center mb-12">
                 <button onClick={generate} disabled={isGenerating} className="px-14 py-4 font-black text-lg rounded-2xl transition-all active:scale-95"
-                  style={{ background: isGenerating ? "rgba(249,115,22,0.35)" : "linear-gradient(135deg,#f97316,#ea580c)", color: "#fff", boxShadow: isGenerating ? "none" : "0 8px 36px rgba(249,115,22,0.32)", cursor: isGenerating ? "not-allowed" : "pointer" }}>
+                  style={{ background: isGenerating ? "rgba(249,115,22,0.35)" : "linear-gradient(135deg,#f97316,#ea580c)", color: "#fff", boxShadow: isGenerating ? "none" : "0 8px 44px rgba(249,115,22,0.52), inset 0 1px 0 rgba(255,210,120,0.22)", cursor: isGenerating ? "not-allowed" : "pointer" }}>
                   {isGenerating ? "Generating..." : "⚡ Generate Names"}
                 </button>
               </div>
@@ -834,7 +834,7 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
                   </div>
                 </div>
               ) : (
-                <div className="text-center py-20 rounded-2xl" style={{ border: "1px dashed rgba(30,58,138,0.35)", color: "#1e3a5f" }}>
+                <div className="text-center py-20 rounded-2xl" style={{ border: "1px dashed rgba(30,58,138,0.45)", color: "#475569" }}>
                   <div className="text-4xl mb-3">🎮</div>
                   <p className="text-sm font-medium">Sélectionne un style et clique sur Generate Names</p>
                 </div>
