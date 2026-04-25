@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { GAME_NAV } from "../data/games";
+import { RELATED, HUB, FOOTER_COLS } from "../data/internal-links";
 
 // ─── Name generation ──────────────────────────────────────────────────────────
 
@@ -373,6 +374,125 @@ function FAQAccordion({ items }) {
   );
 }
 
+// ─── Related links ────────────────────────────────────────────────────────────
+
+function RelatedLinks({ links }) {
+  if (!links?.length) return null;
+  return (
+    <div style={{ marginTop: 44, paddingTop: 32, borderTop: "1px solid rgba(30,58,138,0.2)" }}>
+      <p className="text-xs font-black uppercase tracking-widest mb-4" style={{ color: "#7dd3fc", letterSpacing: "0.16em" }}>
+        Explorer aussi
+      </p>
+      <div className="flex flex-wrap gap-2">
+        {links.map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all"
+            style={{ background: "rgba(15,23,42,0.7)", color: "#93c5fd", border: "1px solid rgba(30,58,138,0.4)" }}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(249,115,22,0.45)"; e.currentTarget.style.color = "#f97316"; e.currentTarget.style.background = "rgba(22,33,68,0.9)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(30,58,138,0.4)"; e.currentTarget.style.color = "#93c5fd"; e.currentTarget.style.background = "rgba(15,23,42,0.7)"; }}
+          >
+            {link.label}
+            <span style={{ opacity: 0.5, fontSize: 11 }}>→</span>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── Hub links section ────────────────────────────────────────────────────────
+
+function HubLinksSection({ links, gameName }) {
+  if (!links?.length) return null;
+  return (
+    <section style={{ marginTop: 52, paddingTop: 36, borderTop: "1px solid rgba(30,58,138,0.2)" }}>
+      <h2 className="text-lg font-black mb-5">
+        <span className="text-white">Tous les générateurs</span>{" "}
+        <span style={{ color: "#f97316" }}>{gameName}</span>
+      </h2>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+        {links.map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className="flex items-center justify-between rounded-xl px-4 py-3 transition-all"
+            style={{ background: "rgba(15,23,42,0.72)", border: "1px solid rgba(30,58,138,0.4)" }}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(249,115,22,0.45)"; e.currentTarget.style.background = "rgba(22,33,68,0.95)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(30,58,138,0.4)"; e.currentTarget.style.background = "rgba(15,23,42,0.72)"; }}
+          >
+            <span className="text-white text-sm font-bold">{link.label}</span>
+            <span style={{ color: "#f97316", fontSize: 14, fontWeight: 900 }}>→</span>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ─── Site footer ──────────────────────────────────────────────────────────────
+
+function SiteFooter() {
+  return (
+    <footer style={{ borderTop: "1px solid rgba(30,58,138,0.28)", background: "rgba(6,10,20,0.9)", marginTop: 48 }}>
+      <div className="max-w-4xl mx-auto px-6 py-12">
+        {/* Logo row */}
+        <div className="flex items-center gap-2 mb-10">
+          <div className="w-7 h-7 rounded-lg flex items-center justify-center font-black text-white text-sm" style={{ background: "linear-gradient(135deg,#f97316,#c2410c)" }}>N</div>
+          <span className="text-lg font-black tracking-tight">
+            <span className="text-white">Nick</span><span style={{ color: "#f97316" }}>Gen</span>
+          </span>
+          <span className="text-xs ml-2" style={{ color: "#334155" }}>Gaming Username Generator</span>
+        </div>
+
+        {/* Link columns */}
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-8 mb-10">
+          {FOOTER_COLS.map((col) => (
+            <div key={col.title}>
+              <h4 className="text-xs font-black uppercase tracking-widest mb-3.5" style={{ color: "#f97316" }}>
+                {col.title}
+              </h4>
+              <ul className="flex flex-col gap-2">
+                {col.links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-xs transition-colors"
+                      style={{ color: "#334155" }}
+                      onMouseEnter={(e) => e.currentTarget.style.color = "#7dd3fc"}
+                      onMouseLeave={(e) => e.currentTarget.style.color = "#334155"}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom bar */}
+        <div
+          className="flex flex-wrap items-center justify-between gap-3 pt-5"
+          style={{ borderTop: "1px solid rgba(30,58,138,0.2)", color: "#1e3a5f", fontSize: 11 }}
+        >
+          <span>© 2025 NickGen · Gratuit · Sans inscription</span>
+          <div className="flex gap-4">
+            {["/fortnite-name-generator", "/roblox-username-generator", "/gta6-name-generator", "/minecraft-username-generator", "/valorant-name-generator"].map((href) => (
+              <Link key={href} href={href} className="transition-colors" style={{ color: "#1e3a5f" }}
+                onMouseEnter={(e) => e.currentTarget.style.color = "#475569"}
+                onMouseLeave={(e) => e.currentTarget.style.color = "#1e3a5f"}>
+                {href.replace("/", "").replace("-name-generator", "").replace("-username-generator", "")}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 // ─── Game navigation ──────────────────────────────────────────────────────────
 
 function GameNav() {
@@ -404,10 +524,15 @@ function GameNav() {
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
-export default function GameGenerator({ game }) {
-  const { name: gameName, badge, tagline, headline, styles: styleList, defaultStyle, nameData, faq } = game;
+export default function GameGenerator({ game, preSelectedStyle, intro, faqOverride, sections }) {
+  const { name: gameName, badge, tagline, headline, styles: styleList, defaultStyle, nameData, faq: gameFaq } = game;
+  const faq = faqOverride || gameFaq;
 
-  const [style, setStyle] = useState(defaultStyle);
+  const pathname = usePathname();
+  const related = RELATED[pathname] || [];
+  const hubLinks = HUB[pathname] || [];
+
+  const [style, setStyle] = useState(preSelectedStyle || defaultStyle);
   const [names, setNames] = useState([]);
   const [copied, setCopied] = useState(null);
   const [lengthFilter, setLengthFilter] = useState("Any");
@@ -485,13 +610,27 @@ export default function GameGenerator({ game }) {
           {/* Hero */}
           <div className="text-center mb-12">
             <div className="text-xs font-black tracking-widest uppercase mb-3" style={{ color: "#f97316" }}>⚡ Gaming Username Generator</div>
-            <h1 className="text-5xl font-black text-white mb-3 leading-tight">
-              {headline.split(" ").slice(0, -1).join(" ")}{" "}
-              <span style={{ background: "linear-gradient(90deg,#f97316,#fb923c)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-                {headline.split(" ").slice(-1)[0]}
-              </span>
-            </h1>
-            <p className="text-sm" style={{ color: "#93c5fd" }}>{tagline}</p>
+            {intro ? (
+              <>
+                <h1 className="text-5xl font-black text-white mb-4 leading-tight">
+                  {intro.h1.split(" ").slice(0, -1).join(" ")}{" "}
+                  <span style={{ background: "linear-gradient(90deg,#f97316,#fb923c)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                    {intro.h1.split(" ").slice(-1)[0]}
+                  </span>
+                </h1>
+                <p className="text-sm leading-relaxed max-w-2xl mx-auto" style={{ color: "#93c5fd" }}>{intro.text}</p>
+              </>
+            ) : (
+              <>
+                <h1 className="text-5xl font-black text-white mb-3 leading-tight">
+                  {headline.split(" ").slice(0, -1).join(" ")}{" "}
+                  <span style={{ background: "linear-gradient(90deg,#f97316,#fb923c)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                    {headline.split(" ").slice(-1)[0]}
+                  </span>
+                </h1>
+                <p className="text-sm" style={{ color: "#93c5fd" }}>{tagline}</p>
+              </>
+            )}
             <FlameCounter total={dailyBase + dailyUserCount} />
           </div>
 
@@ -567,13 +706,32 @@ export default function GameGenerator({ game }) {
             <BattleArena nameData={nameData} style={style} useSymbols={useSymbols} onShare={(name, s) => setShareTarget({ name, style: s })} onCountIncrement={addToCount} />
           )}
 
+          {/* Hub links — shown on generator hub pages */}
+          <HubLinksSection links={hubLinks} gameName={gameName} />
+
+          {/* Related links — shown on all sub-pages */}
+          <RelatedLinks links={related} />
+
           {/* FAQ */}
           {faq?.length > 0 && <FAQAccordion items={faq} />}
+
+          {/* SEO Sections (H2) */}
+          {sections?.length > 0 && (
+            <div style={{ marginTop: 56, borderTop: "1px solid rgba(30,58,138,0.2)", paddingTop: 48 }}>
+              {sections.map((sec, i) => (
+                <div key={i} style={{ marginBottom: 44 }}>
+                  <h2 className="text-xl font-black mb-3 flex items-center gap-3" style={{ color: "#e2e8f0" }}>
+                    <span style={{ color: "#f97316", fontWeight: 900, fontSize: 20 }}>—</span>
+                    {sec.h2}
+                  </h2>
+                  <p className="text-sm leading-relaxed" style={{ color: "#93c5fd", maxWidth: "68ch" }}>{sec.text}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </main>
 
-        <footer className="text-center py-6" style={{ color: "#1e3a5f", fontSize: "12px" }}>
-          NickGen — Gaming Username Generator
-        </footer>
+        <SiteFooter />
       </div>
 
       {/* History panel */}

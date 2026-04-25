@@ -2,8 +2,10 @@
 
 export const GAME_NAV = [
   { name: "Fortnite",      slug: "/",          badge: "BR"    },
-  { name: "Valorant",      slug: "/valorant",  badge: "FPS"   },
+  { name: "Roblox",        slug: "/roblox",    badge: "MMO"   },
+  { name: "GTA 6",         slug: "/gta6",      badge: "RPG"   },
   { name: "Minecraft",     slug: "/minecraft", badge: "CRAFT" },
+  { name: "Valorant",      slug: "/valorant",  badge: "FPS"   },
   { name: "Apex Legends",  slug: "/apex",      badge: "BR"    },
   { name: "Call of Duty",  slug: "/cod",       badge: "FPS"   },
 ];
@@ -67,6 +69,121 @@ export const GAMES = {
       { q: "Est-ce que NickGen est gratuit ?", a: "Oui, NickGen est 100% gratuit et sans inscription. Génère autant de pseudos que tu veux, utilise le mode Battle pour choisir entre deux options et partage tes pseudos préférés sur Twitter, WhatsApp ou Discord." },
       { q: "Comment partager mon pseudo Fortnite avec mes amis ?", a: "Clique sur le bouton 📤 d'une carte. NickGen génère un lien unique que tes amis peuvent ouvrir pour voir ton pseudo mis en avant — et générer le leur." },
       { q: "Qu'est-ce que le mode Battle de NickGen ?", a: "Le mode Battle génère deux pseudos face à face et tu votes pour ton préféré. Idéal quand tu hésites entre plusieurs options. Le gagnant peut être partagé directement sur tes réseaux sociaux." },
+    ],
+  },
+
+  // ── Roblox ──────────────────────────────────────────────────────────────────
+  roblox: {
+    name: "Roblox",
+    badge: "ROBLOX",
+    slug: "/roblox",
+    headline: "Roblox Username Generator",
+    tagline: "Find the perfect Roblox username — 3 to 20 characters, no spaces",
+    styles: ["Cute", "Cool", "Funny", "Aesthetic", "ProPlayer"],
+    defaultStyle: "Cool",
+    nameData: {
+      Cute: {
+        prefixes: { ascii: ["Little_", "Sweet_", "Baby_", "Soft_", "Tiny_", "Mini_"] },
+        words: ["Bunny", "Kitty", "Berry", "Cookie", "Daisy", "Sugar", "Honey", "Pixie", "Fluffy", "Blossom", "Peach", "Cherry"],
+        suffixes: { ascii: ["_Owo", "_Uwu", "_Cute", "xo", "_Soft", "_Pink"] },
+      },
+      Cool: {
+        prefixes: { ascii: ["Dark_", "Pro_", "Epic_", "Ultra_", "Mega_", "Hyper_"] },
+        words: ["Shadow", "Vortex", "Nexus", "Storm", "Blaze", "Nova", "Phantom", "Frost", "Surge", "Thunder", "Apex", "Force"],
+        suffixes: { ascii: ["_X", "_Pro", "_HD", "_GG", "_V2", "_Elite"] },
+      },
+      Funny: {
+        prefixes: { ascii: ["Im_", "Just_A_", "NotA_", "Fake_", "Real_"] },
+        words: ["Noob", "Potato", "Derp", "Troll", "BrickHead", "OofMaster", "BaconHair", "Gamer", "Clutch", "Speedrun", "Sussy", "Impostor"],
+        suffixes: { ascii: ["_Lol", "_XD", "_Oof", "_Bruh", "_Rip", "_999"] },
+      },
+      Aesthetic: {
+        prefixes: { ascii: ["Soft_", "Dream_", "Moon_", "Star_", "Cloud_", "Sky_"] },
+        words: ["Lunar", "Aurora", "Crystal", "Dreamer", "Starlight", "Moonbeam", "Glimmer", "Shimmer", "Radiance", "Ethereal", "Celestial", "Twilight"],
+        suffixes: { ascii: ["_Dream", "_Glow", "_Sky", "_Star", "_Moon", "_Soft"] },
+      },
+      ProPlayer: {
+        prefixes: { ascii: ["Top_", "Best_", "Ranked_", "Elite_", "God_", "Sweat_"] },
+        words: ["Clutch", "Legend", "Master", "Champion", "Carry", "Grinder", "SkillZ", "Tryhard", "Ranked", "Winner", "Dominant", "Hardstuck"],
+        suffixes: { ascii: ["_Pro", "_GG", "_W", "_1v1", "_Win", "_TTV"] },
+      },
+    },
+    faq: [
+      { q: "Quelle est la longueur d'un pseudo Roblox ?", a: "Les pseudos Roblox doivent faire entre 3 et 20 caractères. Seuls les lettres, chiffres et underscores (_) sont autorisés. Les espaces et symboles spéciaux ne sont pas acceptés par la plateforme." },
+      { q: "Comment changer son pseudo Roblox ?", a: "Connecte-toi sur roblox.com, clique sur l'icône de profil > Paramètres > Compte > Modifier le nom d'utilisateur. Le changement coûte 1 000 Robux (environ 10€). Choisis bien avant de payer !" },
+      { q: "Un pseudo Roblox peut-il contenir des espaces ?", a: "Non, les espaces ne sont pas autorisés dans les pseudos Roblox. Utilise l'underscore (_) pour séparer les mots, comme Dark_Shadow ou Pro_Player. NickGen génère automatiquement des pseudos compatibles avec cette règle." },
+      { q: "Pourquoi mon pseudo Roblox est-il refusé ?", a: "Roblox refuse les pseudos déjà pris, ceux contenant des mots inappropriés, ou ceux ne respectant pas le format (3-20 chars, lettres/chiffres/underscores). NickGen génère des pseudos originaux qui maximisent les chances de disponibilité." },
+      { q: "Quels pseudos sont populaires sur Roblox en 2025 ?", a: "Les pseudos Cute (BunnyXo, SoftDream), Cool (ShadowX, VortexPro) et Aesthetic (LunarGlow, AuroraDream) sont très populaires sur Roblox. Le style ProPlayer monte en puissance avec l'essor du gaming compétitif Roblox." },
+    ],
+  },
+
+  // ── GTA 6 ────────────────────────────────────────────────────────────────────
+  gta6: {
+    name: "GTA 6",
+    badge: "GTA VI",
+    slug: "/gta6",
+    headline: "GTA 6 Name Generator",
+    tagline: "Build your Vice City criminal empire with the perfect callsign",
+    styles: ["Hustler", "Criminal", "Outlaw", "Street", "Kingpin", "RP", "Gang", "Crew", "Character", "Mafia"],
+    defaultStyle: "Criminal",
+    nameData: {
+      Hustler: {
+        prefixes: { ascii: ["Vice_", "Miami_", "Neon_", "Surf_", "South_"] },
+        words: ["Hustle", "Stack", "Grind", "Chase", "Score", "Paper", "Bread", "Drip", "Flow", "Hype", "Wave", "Vibe"],
+        suffixes: { ascii: ["_305", "_VC", "_786", "_Bando", "_Gang"] },
+      },
+      Criminal: {
+        prefixes: { ascii: ["Mob_", "Crime_", "Heist_", "Cartel_", "Crew_"] },
+        words: ["Viper", "Cobra", "Boss", "Phantom", "Reaper", "Ghost", "Shadow", "Kingpin", "Don", "Capo", "Hitman", "Pistol"],
+        suffixes: { ascii: ["_OG", "_GTA", "_VI", "_Six", "_Crime"] },
+      },
+      Outlaw: {
+        prefixes: { ascii: ["Wild_", "Free_", "Rogue_", "Lone_", "Rebel_"] },
+        words: ["Bandit", "Outlaw", "Renegade", "Maverick", "Vagabond", "Drifter", "Fugitive", "Desperado", "Rogue", "Exile", "Wanted", "Runaway"],
+        suffixes: { ascii: ["_666", "_Wanted", "_Out", "_Law", "_Free"] },
+      },
+      Street: {
+        prefixes: { ascii: ["Block_", "Hood_", "Corner_", "Strip_", "East_"] },
+        words: ["Rider", "Cruiser", "Lowrider", "Banger", "Drifter", "Runner", "Roller", "Slinger", "Rep", "Local", "OG", "Plug"],
+        suffixes: { ascii: ["_LA", "_VC", "_305", "_Neon", "_Strip"] },
+      },
+      Kingpin: {
+        prefixes: { ascii: ["Big_", "Top_", "Head_", "Chief_", "Boss_"] },
+        words: ["King", "Don", "Godfather", "Emperor", "Overlord", "Warlord", "Baron", "Duke", "Lord", "Czar", "Sovereign", "Tyrant"],
+        suffixes: { ascii: ["_VI", "_Boss", "_OG", "_King", "_Crown"] },
+      },
+      RP: {
+        prefixes: { ascii: ["Tommy_", "Luis_", "Carlos_", "Marcus_", "Rico_", "Dante_", "Jason_", "Miguel_", "Ray_", "Tyrone_"] },
+        words: ["Rivera", "Santos", "Cruz", "Torres", "Vega", "Martinez", "Reyes", "Castillo", "Morales", "Delgado", "Ramirez", "Espinoza"],
+        suffixes: { ascii: ["_RP", "_305", "_Vice", "_VC", "_VI"] },
+      },
+      Gang: {
+        prefixes: { ascii: ["East_", "South_", "Vice_", "Bay_", "North_", "West_"] },
+        words: ["Banger", "Rider", "Shooter", "Stepper", "Pusher", "Slinger", "Mobber", "Baller", "Thumper", "Roller", "Sapper", "Kicker"],
+        suffixes: { ascii: ["_Gang", "_Set", "_Block", "_Hood", "_Click"] },
+      },
+      Crew: {
+        prefixes: { ascii: ["Crew_", "Squad_", "Team_", "Unit_", "Pack_"] },
+        words: ["Phantom", "Shadow", "Spectre", "Cipher", "Raven", "Ghost", "Havoc", "Chaos", "Apex", "Venom", "Cobra", "Predator"],
+        suffixes: { ascii: ["_Crew", "_Squad", "_Unit", "_Force", "_Pack"] },
+      },
+      Character: {
+        prefixes: { ascii: ["Vice_", "Miami_", "Neon_", "Palm_", "Ocean_", "Bay_"] },
+        words: ["Valentino", "Esposito", "DeLuca", "Marchetti", "Carbone", "Ricci", "Romano", "Ferraro", "Conti", "Marino", "Leone", "Riva"],
+        suffixes: { ascii: ["_VC", "_305", "_VI", "_Vice", "_786"] },
+      },
+      Mafia: {
+        prefixes: { ascii: ["Don_", "Il_", "La_", "Capo_", "Boss_"] },
+        words: ["Valentini", "Esposito", "DeLuca", "Marchetti", "Carbone", "Ricci", "Romano", "Ferraro", "Conti", "Moretti", "Barbieri", "Amato"],
+        suffixes: { ascii: ["_Don", "_Capo", "_Boss", "_Famiglia", "_Family"] },
+      },
+    },
+    faq: [
+      { q: "Peut-on personnaliser son pseudo dans GTA 6 Online ?", a: "Oui, GTA 6 Online permettra la personnalisation du nom de personnage comme dans GTA 5 Online. Choisis bien ton pseudo dès le lancement — il devient ton identité dans tout GTA Online." },
+      { q: "Quel style de pseudo choisir pour GTA 6 ?", a: "Pour GTA 6 (Vice City), les pseudos inspirés du milieu criminel, du style Miami/305, ou des noms de gangsters fonctionnent parfaitement. NickGen propose 5 styles : Hustler, Criminal, Outlaw, Street et Kingpin." },
+      { q: "Quelle est la longueur idéale d'un pseudo GTA Online ?", a: "Les pseudos GTA Online acceptent jusqu'à 16 caractères. Un pseudo court (6-10 car.) est plus impactant en mission et dans les sessions libres. Utilise le filtre Short de NickGen pour cibler cette plage." },
+      { q: "GTA 6 est-il sorti en 2025 ?", a: "GTA 6 est attendu pour 2026 sur PlayStation 5 et Xbox Series X/S. Prépare ton pseudo dès maintenant avec NickGen pour être prêt dès le jour du lancement de GTA 6 Online." },
+      { q: "Comment avoir un pseudo intimidant dans GTA 6 ?", a: "Le style Criminal et Kingpin de NickGen génèrent des pseudos basés sur des références mafieuses et des termes de Vice City (les deux protagonistes de GTA 6 se déroulent à Leonida / Vice City). Des noms comme 'Don_Cartel' ou 'BigBoss_VI' créent immédiatement une aura menaçante." },
     ],
   },
 

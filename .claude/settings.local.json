@@ -13,7 +13,12 @@
       "WebFetch(domain:www.gamertag.net)",
       "WebFetch(domain:glima.ai)",
       "WebFetch(domain:www.name-generator.org.uk)",
-      "WebFetch(domain:fontlix.com)"
+      "WebFetch(domain:fontlix.com)",
+      "PowerShell(Start-Sleep -Seconds 4; $urls = @\\(\"/fortnite-name-generator\",\"/cool-fortnite-names\",\"/sweaty-fortnite-names\",\"/tryhard-fortnite-names\",\"/og-fortnite-names\",\"/funny-fortnite-names\",\"/aesthetic-fortnite-names\",\"/badass-fortnite-names\"\\); foreach \\($u in $urls\\) { $r = Invoke-WebRequest -Uri \"http://localhost:3000$u\" -UseBasicParsing; Write-Host \"$u -> $\\($r.StatusCode\\)\" })",
+      "PowerShell(Start-Sleep -Seconds 4; $urls = @\\(\"/roblox-username-generator\",\"/roblox-usernames\",\"/aesthetic-roblox-usernames\",\"/cute-roblox-usernames\",\"/cool-roblox-usernames\",\"/funny-roblox-usernames\"\\); foreach \\($u in $urls\\) { $r = Invoke-WebRequest -Uri \"http://localhost:3000$u\" -UseBasicParsing; Write-Host \"$u -> $\\($r.StatusCode\\)\" })",
+      "PowerShell(Start-Sleep -Seconds 5; $urls = @\\(\"/valorant-name-generator\",\"/valorant-usernames\",\"/cool-valorant-names\",\"/sweaty-valorant-names\",\"/valorant-username-ideas\",\"/tryhard-valorant-names\",\"/minecraft-username-generator\",\"/minecraft-usernames\",\"/cool-minecraft-usernames\",\"/minecraft-username-ideas\",\"/funny-minecraft-usernames\",\"/good-minecraft-usernames\"\\); foreach \\($u in $urls\\) { $r = Invoke-WebRequest -Uri \"http://localhost:3000$u\" -UseBasicParsing; Write-Host \"$u -> $\\($r.StatusCode\\)\" })",
+      "PowerShell(Start-Sleep -Seconds 5; $urls = @\\(\"/gta6-name-generator\",\"/gta6-rp-names\",\"/gta6-gang-names\",\"/gta6-crew-names\",\"/gta6-character-names\",\"/gta6-mafia-names\"\\); foreach \\($u in $urls\\) { $r = Invoke-WebRequest -Uri \"http://localhost:3000$u\" -UseBasicParsing; Write-Host \"$u -> $\\($r.StatusCode\\)\" })",
+      "PowerShell(Start-Sleep -Seconds 5; $urls = @\\(\"/\", \"/fortnite-name-generator\", \"/sweaty-fortnite-names\", \"/roblox-username-generator\", \"/aesthetic-roblox-usernames\", \"/gta6-name-generator\", \"/gta6-rp-names\", \"/minecraft-username-generator\", \"/valorant-name-generator\", \"/apex\"\\); foreach \\($u in $urls\\) { $r = Invoke-WebRequest -Uri \"http://localhost:3000$u\" -UseBasicParsing; Write-Host \"$u -> $\\($r.StatusCode\\)\" })"
     ]
   }
 }
