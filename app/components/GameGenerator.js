@@ -553,6 +553,30 @@ function SiteFooter() {
             ))}
           </div>
         </div>
+
+        {/* Contact line */}
+        <div className="text-center pt-4 mt-1">
+          <a
+            href="mailto:Factorytoolpro@gmail.com"
+            className="inline-flex items-center gap-2 text-xs font-medium transition-all group"
+            style={{ color: "#475569" }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = "#f97316";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = "#475569";
+            }}
+          >
+            <span>Interested in working together?</span>
+            <span style={{ color: "#334155" }} className="group-hover:text-orange-500">→</span>
+            <span
+              className="underline underline-offset-2 decoration-dotted"
+              style={{ textDecorationColor: "rgba(249,115,22,0.4)" }}
+            >
+              Factorytoolpro@gmail.com
+            </span>
+          </a>
+        </div>
       </div>
     </footer>
   );
