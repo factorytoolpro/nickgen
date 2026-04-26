@@ -27,7 +27,8 @@
       "PowerShell(Start-Sleep -Seconds 5; $urls = @\\(\"/fortnite-name-generator\",\"/roblox-username-generator\",\"/gta6-name-generator\",\"/minecraft-username-generator\",\"/valorant-name-generator\",\"/apex-legends-name-generator\",\"/call-of-duty-name-generator\"\\); foreach \\($u in $urls\\) { $r = Invoke-WebRequest -Uri \"http://localhost:3000$u\" -UseBasicParsing; Write-Host \"$u -> $\\($r.StatusCode\\)\" })",
       "PowerShell(Start-Sleep -Seconds 4; $r = Invoke-WebRequest \"http://localhost:3000\" -UseBasicParsing; Write-Host \"/ -> $\\($r.StatusCode\\)\"; $r2 = Invoke-WebRequest \"http://localhost:3000/fortnite-name-generator\" -UseBasicParsing; Write-Host \"/fortnite-name-generator -> $\\($r2.StatusCode\\)\")",
       "PowerShell(Start-Sleep -Seconds 4; $r = Invoke-WebRequest \"http://localhost:3000\" -UseBasicParsing; Write-Host \"/ -> $\\($r.StatusCode\\)\"; $r2 = Invoke-WebRequest \"http://localhost:3000/roblox-username-generator\" -UseBasicParsing; Write-Host \"/roblox-username-generator -> $\\($r2.StatusCode\\)\")",
-      "PowerShell(Start-Sleep -Seconds 3; $r = Invoke-WebRequest \"http://localhost:3000\" -UseBasicParsing; Write-Host \"/ -> $\\($r.StatusCode\\)\")"
+      "PowerShell(Start-Sleep -Seconds 3; $r = Invoke-WebRequest \"http://localhost:3000\" -UseBasicParsing; Write-Host \"/ -> $\\($r.StatusCode\\)\")",
+      "PowerShell(Start-Sleep -Seconds 4; $r = Invoke-WebRequest \"http://localhost:3000\" -UseBasicParsing; Write-Host \"/ -> $\\($r.StatusCode\\)\"; $r2 = Invoke-WebRequest \"http://localhost:3000/roblox-username-generator\" -UseBasicParsing; Write-Host \"/roblox -> $\\($r2.StatusCode\\)\")"
     ]
   }
 }

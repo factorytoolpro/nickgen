@@ -684,7 +684,7 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
   const [useSymbols, setUseSymbols] = useState(true);
   const [history, setHistory] = useState([]);
   const [showHistory, setShowHistory] = useState(false);
-  const [isGenerating, setIsGenerating] = useState(false);
+  const [revealKey, setRevealKey] = useState(0);
   const [dailyBase, setDailyBase] = useState(0);
   const [dailyUserCount, setDailyUserCount] = useState(0);
   const [mode, setMode] = useState("normal");
@@ -705,14 +705,11 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
   }, []);
 
   const generate = () => {
-    setIsGenerating(true);
-    setTimeout(() => {
-      const newNames = generateNames(nameData, style, lengthFilter, useSymbols, 5);
-      setNames(newNames);
-      setHistory((prev) => [...newNames.map((n) => ({ name: n, style })), ...prev].slice(0, 20));
-      addToCount(newNames.length);
-      setIsGenerating(false);
-    }, 280);
+    const newNames = generateNames(nameData, style, lengthFilter, useSymbols, 5);
+    setNames(newNames);
+    setRevealKey((k) => k + 1);
+    setHistory((prev) => [...newNames.map((n) => ({ name: n, style })), ...prev].slice(0, 20));
+    addToCount(newNames.length);
   };
 
   const copyName = useCallback(async (name, index) => {
@@ -724,9 +721,16 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
   const generateMore = () => {
     const moreNames = generateNames(nameData, style, lengthFilter, useSymbols, 5);
     setNames((prev) => [...prev, ...moreNames].slice(0, 20));
+    setRevealKey((k) => k + 1);
     setHistory((prev) => [...moreNames.map((n) => ({ name: n, style })), ...prev].slice(0, 20));
     addToCount(moreNames.length);
   };
+
+  // Auto-generate names on mount — give immediate value without user interaction
+  useEffect(() => {
+    setNames(generateNames(nameData, style, "Any", true, 5));
+    setRevealKey(1);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="min-h-screen relative" style={{ background: "#0d1224" }}>
@@ -832,16 +836,31 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
           {mode === "normal" && (
             <>
               <div className="flex justify-center mb-12">
-                <button onClick={generate} disabled={isGenerating} className="px-14 py-4 font-black text-lg rounded-2xl transition-all active:scale-95"
-                  style={{ background: isGenerating ? "rgba(249,115,22,0.35)" : "linear-gradient(135deg,#f97316,#ea580c)", color: "#fff", boxShadow: isGenerating ? "none" : "0 8px 44px rgba(249,115,22,0.52), inset 0 1px 0 rgba(255,210,120,0.22)", cursor: isGenerating ? "not-allowed" : "pointer" }}>
-                  {isGenerating ? "Generating..." : "⚡ Generate Names"}
+                <button
+                  onClick={generate}
+                  className="px-14 py-4 font-black text-lg rounded-2xl transition-all active:scale-95"
+                  style={{ background: "linear-gradient(135deg,#f97316,#ea580c)", color: "#fff", boxShadow: "0 8px 44px rgba(249,115,22,0.52), inset 0 1px 0 rgba(255,210,120,0.22)" }}
+                >
+                  ⚡ {names.length > 0 ? "Régénérer" : "Generate Names"}
                 </button>
               </div>
               {names.length > 0 ? (
                 <div>
                   <p className="text-xs text-center uppercase tracking-widest mb-5" style={{ color: "#334155" }}>{style} · {lengthFilter} · {useSymbols ? "Symbols ON" : "Symbols OFF"} · {names.length} names</p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                    {names.map((name, i) => <NameCard key={`${name}-${i}`} name={name} isCopied={copied === i} onCopy={(n) => copyName(n, i)} onShare={() => setShareTarget({ name, style })} />)}
+                    {names.map((name, i) => (
+                      <div
+                        key={`${revealKey}-${i}`}
+                        style={{ animation: `card-reveal 0.22s ease-out ${i * 70}ms both` }}
+                      >
+                        <NameCard
+                          name={name}
+                          isCopied={copied === i}
+                          onCopy={(n) => copyName(n, i)}
+                          onShare={() => setShareTarget({ name, style })}
+                        />
+                      </div>
+                    ))}
                   </div>
 
                   {/* Generate more */}
