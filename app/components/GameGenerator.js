@@ -464,13 +464,17 @@ function NameCard({ name, isCopied, onCopy, onShare, isBest }) {
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{
         position: "relative",
-        background: hov ? "linear-gradient(135deg,rgba(22,33,68,0.95),rgba(28,18,52,0.92))" : isBest ? "rgba(18,27,56,0.90)" : "rgba(16,25,50,0.84)",
-        border: `1px solid ${hov ? "rgba(249,115,22,0.6)" : isBest ? "rgba(249,115,22,0.28)" : "rgba(30,58,138,0.4)"}`,
-        boxShadow: hov ? "0 6px 28px rgba(249,115,22,0.2),inset 0 0 40px rgba(249,115,22,0.04)" : isBest ? "0 2px 14px rgba(249,115,22,0.12)" : "0 2px 10px rgba(0,0,0,0.35)",
-        transform: hov ? "translateY(-3px) scale(1.015)" : "none",
-        transition: "all 0.18s ease",
+        background: hov
+          ? "linear-gradient(135deg,rgba(24,36,75,0.98),rgba(30,20,58,0.95))"
+          : isBest ? "rgba(18,27,56,0.90)" : "rgba(16,25,50,0.86)",
+        border: `1px solid ${hov ? "rgba(249,115,22,0.65)" : isBest ? "rgba(249,115,22,0.28)" : "rgba(30,58,138,0.42)"}`,
+        boxShadow: hov
+          ? "0 8px 32px rgba(249,115,22,0.25), 0 2px 8px rgba(0,0,0,0.4), inset 0 0 50px rgba(249,115,22,0.04)"
+          : isBest ? "0 2px 14px rgba(249,115,22,0.12)" : "0 2px 12px rgba(0,0,0,0.4)",
+        transform: hov ? "translateY(-4px) scale(1.02)" : "none",
+        transition: "all 0.2s cubic-bezier(0.34,1.56,0.64,1)",
       }}
-      className="flex items-center justify-between rounded-xl px-4 py-3 gap-2"
+      className="flex items-center justify-between rounded-xl px-4 py-3.5 gap-2"
     >
       {isBest && (
         <div style={{
@@ -492,7 +496,7 @@ function NameCard({ name, isCopied, onCopy, onShare, isBest }) {
           🔥 Best One
         </div>
       )}
-      <span className="text-white font-bold text-sm flex-1" style={{ textShadow: hov ? "0 0 14px rgba(249,115,22,0.35)" : "none", overflowWrap: "anywhere", wordBreak: "break-word", minWidth: 0 }}>{name}</span>
+      <span className="text-white font-bold flex-1" style={{ fontSize: 15, textShadow: hov ? "0 0 16px rgba(249,115,22,0.45)" : "none", overflowWrap: "anywhere", wordBreak: "break-word", minWidth: 0, letterSpacing: hov ? "0.01em" : "normal", transition: "all 0.2s ease" }}>{name}</span>
       <div className="flex items-center gap-1.5 shrink-0">
         <button onClick={onShare} title="Partager" className="text-sm px-2 py-1.5 rounded-lg transition-all" style={{ color: hov ? "#f97316" : "#475569", background: hov ? "rgba(249,115,22,0.1)" : "transparent" }}>📤</button>
         <button onClick={() => onCopy(name)} className="text-xs font-black px-3 py-1.5 rounded-lg transition-all whitespace-nowrap"
@@ -1033,56 +1037,93 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
             </div>
           </div>
 
-          {/* ── 2. Generate (refresh) + Battle Mode toggle ── */}
-          <div className="flex flex-col items-center gap-3 mb-7">
+          {/* ── 2. Generate + Battle Mode — côte à côte ── */}
+          <div className="flex flex-wrap items-stretch justify-center gap-3 mb-7">
             {mode === "normal" && (
               <button
                 onClick={generate}
-                className="px-14 py-4 font-black text-lg rounded-2xl transition-all active:scale-95"
-                style={{ background: "linear-gradient(135deg,#f97316,#ea580c)", color: "#fff", boxShadow: "0 8px 44px rgba(249,115,22,0.52), inset 0 1px 0 rgba(255,210,120,0.22)" }}
+                className="px-10 py-4 font-black text-base rounded-2xl transition-all active:scale-95"
+                style={{
+                  background: "linear-gradient(135deg,#f97316,#ea580c)",
+                  color: "#fff",
+                  boxShadow: "0 8px 44px rgba(249,115,22,0.52), inset 0 1px 0 rgba(255,210,120,0.22)",
+                  minWidth: 180,
+                }}
               >
                 ⚡ {names.length > 0 ? "Régénérer" : "Generate Names"}
               </button>
             )}
             <button
               onClick={() => setMode(mode === "battle" ? "normal" : "battle")}
-              className="flex items-center gap-2 text-xs font-black px-5 py-2 rounded-xl transition-all active:scale-95"
+              className="px-10 py-4 font-black text-base rounded-2xl transition-all active:scale-95"
               style={mode === "battle"
-                ? { background: "rgba(249,115,22,0.15)", color: "#f97316", border: "1px solid rgba(249,115,22,0.4)" }
-                : { background: "transparent", color: "#475569", border: "1px solid rgba(30,58,138,0.25)" }
+                ? {
+                    background: "linear-gradient(135deg,#f97316,#ea580c)",
+                    color: "#fff",
+                    boxShadow: "0 8px 44px rgba(249,115,22,0.45)",
+                    minWidth: 180,
+                  }
+                : {
+                    background: "rgba(16,25,50,0.9)",
+                    color: "#60a5fa",
+                    border: "1.5px solid rgba(30,64,175,0.55)",
+                    minWidth: 180,
+                  }
               }
-              onMouseEnter={(e) => { if (mode !== "battle") e.currentTarget.style.color = "#7dd3fc"; e.currentTarget.style.borderColor = "rgba(30,64,175,0.5)"; }}
-              onMouseLeave={(e) => { if (mode !== "battle") { e.currentTarget.style.color = "#475569"; e.currentTarget.style.borderColor = "rgba(30,58,138,0.25)"; } }}
+              onMouseEnter={(e) => {
+                if (mode !== "battle") {
+                  e.currentTarget.style.borderColor = "rgba(59,130,246,0.85)";
+                  e.currentTarget.style.color = "#93c5fd";
+                  e.currentTarget.style.boxShadow = "0 0 22px rgba(59,130,246,0.25)";
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (mode !== "battle") {
+                  e.currentTarget.style.borderColor = "rgba(30,64,175,0.55)";
+                  e.currentTarget.style.color = "#60a5fa";
+                  e.currentTarget.style.boxShadow = "none";
+                }
+              }}
             >
-              {mode === "battle" ? "← Back to Generator" : "⚔ Battle Mode"}
+              {mode === "battle" ? "← Retour au générateur" : "⚔ Battle Mode"}
             </button>
           </div>
 
-          {/* ── 3. Customize (optional) — visually subtle ── */}
-          <div
-            className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 mb-8 px-5 py-3 rounded-xl"
-            style={{ background: "rgba(12,18,36,0.5)", border: "1px solid rgba(30,58,138,0.18)" }}
-          >
-            {/* Length */}
-            <div className="flex items-center gap-2.5">
-              <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#334155" }}>Length</span>
-              <div className="flex gap-1.5">
-                {lengths.map((l) => (
-                  <button key={l} onClick={() => setLengthFilter(l)}
-                    className="px-2.5 py-1 rounded-lg text-xs font-black transition-all"
-                    style={lengthFilter === l
-                      ? { background: "rgba(249,115,22,0.18)", color: "#f97316", border: "1px solid rgba(249,115,22,0.4)" }
-                      : { background: "transparent", color: "#475569", border: "1px solid rgba(30,58,138,0.25)" }
-                    }>
-                    {l}
-                  </button>
-                ))}
+          {/* ── 3. Customize (optional) ── */}
+          <div className="mb-8">
+            <p className="text-xs font-black uppercase tracking-widest text-center mb-3"
+              style={{ color: "#475569", letterSpacing: "0.15em" }}>
+              ⚙ Customize (optional)
+            </p>
+            <div
+              className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 px-6 py-4 rounded-2xl"
+              style={{
+                background: "rgba(13,19,38,0.7)",
+                border: "1px solid rgba(30,58,138,0.3)",
+                backdropFilter: "blur(6px)",
+              }}
+            >
+              {/* Length */}
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#64748b" }}>Length</span>
+                <div className="flex gap-1.5">
+                  {lengths.map((l) => (
+                    <button key={l} onClick={() => setLengthFilter(l)}
+                      className="px-3 py-1.5 rounded-lg text-xs font-black transition-all active:scale-95"
+                      style={lengthFilter === l
+                        ? { background: "rgba(249,115,22,0.2)", color: "#f97316", border: "1px solid rgba(249,115,22,0.45)" }
+                        : { background: "rgba(16,25,50,0.6)", color: "#64748b", border: "1px solid rgba(30,58,138,0.3)" }
+                      }>
+                      {l}
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
-            {/* Symbols */}
-            <div className="flex items-center gap-2.5">
-              <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#334155" }}>Symbols</span>
-              <Toggle value={useSymbols} onChange={setUseSymbols} />
+              {/* Symbols */}
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#64748b" }}>Symbols</span>
+                <Toggle value={useSymbols} onChange={setUseSymbols} />
+              </div>
             </div>
           </div>
 
