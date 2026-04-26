@@ -288,6 +288,44 @@ export const RELATED = {
     { href: "/funny-discord-names",          label: "Funny Names" },
     { href: "/discord-username-generator",   label: "All Discord Names" },
   ],
+
+  // TikTok hub + sub-pages
+  "/tiktok-username-generator": [
+    { href: "/discord-username-generator",   label: "Discord Generator" },
+    { href: "/roblox-username-generator",    label: "Roblox Generator" },
+    { href: "/fortnite-name-generator",      label: "Fortnite Generator" },
+    { href: "/valorant-name-generator",      label: "Valorant Generator" },
+  ],
+  "/cool-tiktok-usernames": [
+    { href: "/aesthetic-tiktok-usernames",   label: "Aesthetic Usernames" },
+    { href: "/unique-tiktok-usernames",      label: "Unique Usernames" },
+    { href: "/funny-tiktok-usernames",       label: "Funny Usernames" },
+    { href: "/tiktok-username-generator",    label: "All TikTok Names" },
+  ],
+  "/aesthetic-tiktok-usernames": [
+    { href: "/cool-tiktok-usernames",        label: "Cool Usernames" },
+    { href: "/unique-tiktok-usernames",      label: "Unique Usernames" },
+    { href: "/tiktok-name-ideas",            label: "TikTok Name Ideas" },
+    { href: "/tiktok-username-generator",    label: "All TikTok Names" },
+  ],
+  "/funny-tiktok-usernames": [
+    { href: "/cool-tiktok-usernames",        label: "Cool Usernames" },
+    { href: "/unique-tiktok-usernames",      label: "Unique Usernames" },
+    { href: "/tiktok-name-ideas",            label: "TikTok Name Ideas" },
+    { href: "/tiktok-username-generator",    label: "All TikTok Names" },
+  ],
+  "/unique-tiktok-usernames": [
+    { href: "/cool-tiktok-usernames",        label: "Cool Usernames" },
+    { href: "/aesthetic-tiktok-usernames",   label: "Aesthetic Usernames" },
+    { href: "/tiktok-name-ideas",            label: "TikTok Name Ideas" },
+    { href: "/tiktok-username-generator",    label: "All TikTok Names" },
+  ],
+  "/tiktok-name-ideas": [
+    { href: "/cool-tiktok-usernames",        label: "Cool Usernames" },
+    { href: "/aesthetic-tiktok-usernames",   label: "Aesthetic Usernames" },
+    { href: "/funny-tiktok-usernames",       label: "Funny Usernames" },
+    { href: "/tiktok-username-generator",    label: "TikTok Generator" },
+  ],
 };
 
 // ─── Hub pages → their sub-pages ─────────────────────────────────────────────
@@ -336,6 +374,13 @@ export const HUB = {
     { href: "/cute-discord-names",       label: "Cute Names" },
     { href: "/funny-discord-names",      label: "Funny Names" },
     { href: "/unique-discord-usernames", label: "Unique Usernames" },
+  ],
+  "/tiktok-username-generator": [
+    { href: "/cool-tiktok-usernames",        label: "Cool Usernames" },
+    { href: "/aesthetic-tiktok-usernames",   label: "Aesthetic Usernames" },
+    { href: "/funny-tiktok-usernames",       label: "Funny Usernames" },
+    { href: "/unique-tiktok-usernames",      label: "Unique Usernames" },
+    { href: "/tiktok-name-ideas",            label: "TikTok Name Ideas" },
   ],
 };
 
@@ -408,6 +453,17 @@ export const FOOTER_COLS = [
       { href: "/funny-discord-names",         label: "Funny Names" },
       { href: "/cute-discord-names",          label: "Cute Names" },
       { href: "/unique-discord-usernames",    label: "Unique Usernames" },
+    ],
+  },
+  {
+    title: "TikTok",
+    links: [
+      { href: "/tiktok-username-generator",   label: "Username Generator" },
+      { href: "/cool-tiktok-usernames",       label: "Cool Usernames" },
+      { href: "/aesthetic-tiktok-usernames",  label: "Aesthetic Usernames" },
+      { href: "/funny-tiktok-usernames",      label: "Funny Usernames" },
+      { href: "/unique-tiktok-usernames",     label: "Unique Usernames" },
+      { href: "/tiktok-name-ideas",           label: "Name Ideas" },
     ],
   },
 ];

@@ -86,14 +86,97 @@ function generateAestheticBatch(words, useSymbols, count) {
   return shuffled.slice(0, count).map(recipe => recipe(pick(words)));
 }
 
+// ─── Natural name generation (all non-Aesthetic styles) ─────────────────────
+
+const _NAT_SFX = [".vibe", ".exe", ".mp4", ".dev", ".gg", ".io"];
+const _NAT_NUM = ["7", "99", "47", "x", "1", "77", "0"];
+
+// Stylized word variant: editz, clutchzz, zerox, shadow…
+function _vary(w) {
+  const r = Math.random();
+  if (r < 0.18) return w.toLowerCase();
+  if (r < 0.33) return w + "z";
+  if (r < 0.44) return w + "zz";
+  if (r < 0.55) return w + "x";
+  if (r < 0.65) return w + "xx";
+  if (r < 0.80) return w[0].toUpperCase() + w.slice(1).toLowerCase();
+  return w;
+}
+
+function generateNaturalName(data, style, useSymbols) {
+  const w1 = pick(data.words);
+
+  // ── Realistic / RP styles → keep structured "Firstname_Lastname" format ─────
+  if (["RP", "Character", "Mafia"].includes(style)) {
+    const parts = getParts(data.prefixes, useSymbols);
+    const p = parts?.length ? pick(parts).replace(/_+$/, "") : "";
+    return p ? `${p}_${w1}` : w1;
+  }
+
+  // ── Funny → raw word (it's already absurd) + humorous format ─────────────────
+  if (style === "Funny") {
+    const r = Math.random();
+    if (r < 0.22) return w1 + ".exe";
+    if (r < 0.42) {
+      const parts = getParts(data.prefixes, useSymbols);
+      const p = parts?.length ? pick(parts).replace(/_+$/, "").toLowerCase() : "im_";
+      return p + w1.toLowerCase();
+    }
+    if (r < 0.58) return w1 + pick(["_lol", "_irl", "_bruh", "_xd", "_rip"]);
+    return w1;
+  }
+
+  // ── Tactical / COD NATO → plain word, clean format ────────────────────────────
+  if (style === "Tactical") {
+    const r = Math.random();
+    const parts = getParts(data.prefixes, useSymbols);
+    const p = parts?.length ? pick(parts).replace(/_+$/, "") : "";
+    if (r < 0.45 && p) return `${p}_${w1}`;
+    if (r < 0.75) return w1 + pick(["_Lead", "_Six", "_Actual", "_Two", "_Ops"]);
+    return w1;
+  }
+
+  // ── General styles: full variation engine ─────────────────────────────────────
+  const r = Math.random();
+
+  // 20% → modern suffix (.vibe, .exe…)
+  if (r < 0.20) return w1 + pick(_NAT_SFX);
+
+  // 30% → stylized variant (editz, clutchzz, zerox…)
+  if (r < 0.50) return _vary(w1);
+
+  // 50% → clean formats
+  const r2 = Math.random();
+
+  if (r2 < 0.35) {
+    // CamelCase two words (ClutchEdit, GhostZone…)
+    const w2 = pick(data.words);
+    if (w2 !== w1 && w1.length + w2.length <= 13) return w1 + w2;
+    return w1;
+  }
+
+  if (r2 < 0.65) {
+    // Prefix fused with word (FaZeClutch, NRGEdit, ProGhost…)
+    const parts = getParts(data.prefixes, useSymbols);
+    if (parts?.length) {
+      const rawP = pick(parts).replace(/^_+|_+$/g, "");
+      if (rawP.length >= 2 && rawP.length <= 7) return rawP + w1;
+    }
+    return w1;
+  }
+
+  if (r2 < 0.83) return w1 + pick(_NAT_NUM); // Clutch7, Shadow99…
+
+  // Underscore (~8.5% total → stays under 20% target)
+  const p2 = (getParts(data.prefixes, useSymbols)?.[0] ? pick(getParts(data.prefixes, useSymbols)) : "");
+  const sfx = (getParts(data.suffixes, useSymbols)?.[0] ? pick(getParts(data.suffixes, useSymbols)) : "");
+  return `${p2}${w1}${sfx}`;
+}
+
 function generateName(nameData, style, useSymbols) {
   const data = nameData[style];
-  // Aesthetic → special visual transform pipeline
   if (style === "Aesthetic") return generateAestheticName(data.words, useSymbols);
-  const prefix = Math.random() > 0.38 ? pick(getParts(data.prefixes, useSymbols)) : "";
-  const word = pick(data.words);
-  const suffix = Math.random() > 0.38 ? pick(getParts(data.suffixes, useSymbols)) : "";
-  return `${prefix}${word}${suffix}`;
+  return generateNaturalName(data, style, useSymbols);
 }
 
 const LENGTH_RANGES = { Any: null, Short: [1, 8], Medium: [9, 13], Long: [14, 99] };
@@ -587,7 +670,7 @@ function SiteFooter() {
         </div>
 
         {/* Link columns */}
-        <div className="grid grid-cols-2 sm:grid-cols-6 gap-8 mb-10">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-8 mb-10">
           {FOOTER_COLS.map((col) => (
             <div key={col.title}>
               <h4 className="text-xs font-black uppercase tracking-widest mb-3.5" style={{ color: "#f97316" }}>
@@ -670,6 +753,7 @@ const GAME_EMOJI = {
   "/apex-legends-name-generator":     "🔥",
   "/call-of-duty-name-generator":     "💀",
   "/discord-username-generator":      "💬",
+  "/tiktok-username-generator":       "🎵",
 };
 
 function GameNav() {

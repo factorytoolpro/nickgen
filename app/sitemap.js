@@ -50,5 +50,13 @@ export default function sitemap() {
     url("/funny-discord-names",             { priority: 0.8 }),
     url("/cute-discord-names",              { priority: 0.8 }),
     url("/unique-discord-usernames",        { priority: 0.7 }),
+
+    // ── TikTok ───────────────────────────────────────────────────────────────
+    url("/tiktok-username-generator",       { priority: 0.9, changeFrequency: "weekly" }),
+    url("/cool-tiktok-usernames",           { priority: 0.8 }),
+    url("/aesthetic-tiktok-usernames",      { priority: 0.8 }),
+    url("/funny-tiktok-usernames",          { priority: 0.8 }),
+    url("/unique-tiktok-usernames",         { priority: 0.7 }),
+    url("/tiktok-name-ideas",               { priority: 0.8 }),
   ];
 }

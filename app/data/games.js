@@ -9,6 +9,7 @@ export const GAME_NAV = [
   { name: "Apex Legends",  slug: "/apex-legends-name-generator",     badge: "BR"    },
   { name: "Call of Duty",  slug: "/call-of-duty-name-generator",     badge: "FPS"   },
   { name: "Discord",       slug: "/discord-username-generator",      badge: "CHAT"  },
+  { name: "TikTok",        slug: "/tiktok-username-generator",       badge: "SOCIAL" },
 ];
 
 // ─── Games data ───────────────────────────────────────────────────────────────
@@ -416,6 +417,57 @@ export const GAMES = {
       { q: "Quelle est la différence entre username et display name sur Discord ?", a: "Le username (@nom) est unique sur toute la plateforme et sert à identifier ton compte. Le display name est le nom affiché et peut être différent — il accepte les espaces, accents et emojis. NickGen génère des usernames (le champ unique), pas les display names." },
       { q: "Peut-on avoir des emojis dans un username Discord ?", a: "Non, les emojis ne sont pas autorisés dans le username Discord (@username). Ils sont acceptés dans le display name. Avec le toggle Symbols de NickGen, des caractères Unicode proches des emojis (✦, ☽, ◈) sont ajoutés — vérifie leur compatibilité avec Discord avant de valider." },
       { q: "Est-ce que NickGen génère des usernames Discord disponibles ?", a: "NickGen génère des combinaisons originales maximisant les chances de disponibilité, sans vérification en temps réel. Après avoir copié ton pseudo, essaie de changer ton username dans les paramètres Discord pour vérifier. Si le nom est pris, génère 5 nouvelles options avec le bouton '+5 pseudos'." },
+    ],
+  },
+
+  // ── TikTok ───────────────────────────────────────────────────────────────────
+  tiktok: {
+    name: "TikTok",
+    badge: "TIKTOK",
+    slug: "/tiktok-username-generator",
+    headline: "TikTok Username Generator",
+    tagline: "Find the perfect TikTok username to grow your account and go viral",
+    styles: ["Viral", "Aesthetic", "Clean", "Funny", "Influencer"],
+    defaultStyle: "Viral",
+    nameData: {
+      Viral: {
+        prefixes: { ascii: ["its_", "notthe", "official_", "real_", "the"] },
+        words: ["Trending", "Viral", "FYP", "Views", "Duet", "Wave", "Clip", "Vibe", "Slay", "Hit", "Trend", "Content"],
+        suffixes: { ascii: ["_tv", "tok", "_official", ".fy", "_clips"] },
+      },
+      Aesthetic: {
+        prefixes: {
+          ascii: ["soft.", "luna.", "star.", "its.", "mellow."],
+          unicode: ["✦", "☽", "◈", "★"],
+        },
+        words: ["Celestial", "Dreamy", "Neon", "Pastel", "Bloom", "Mellow", "Haze", "Glow", "Lush", "Velvet", "Drift", "Lune"],
+        suffixes: {
+          ascii: [".glow", "_soft", ".lush", "_dreamy"],
+          unicode: ["✦", "☽"],
+        },
+      },
+      Clean: {
+        prefixes: { ascii: ["its", "the", "just", "only", "hey"] },
+        words: ["Clean", "Simple", "Clear", "Neat", "Sharp", "Light", "Pure", "Fresh", "Crisp", "Smooth", "Calm", "Still"],
+        suffixes: { ascii: ["x", "1", "7", "99", "0"] },
+      },
+      Funny: {
+        prefixes: { ascii: ["im_a_", "just_", "local_", "literally_", "not_"] },
+        words: ["Chaotic", "POV", "Unhinged", "Gremlin", "Goblin", "Clown", "Awkward", "NPC", "Flop", "Era", "Rat", "Chaos"],
+        suffixes: { ascii: [".exe", "_irl", "_pov", "_era", "_szn"] },
+      },
+      Influencer: {
+        prefixes: { ascii: ["its", "im", "just", "hey", "xo"] },
+        words: ["Creator", "Content", "Brand", "Daily", "Life", "Vibes", "Energy", "Goals", "World", "Show", "Story", "Journey"],
+        suffixes: { ascii: ["_official", "_daily", "_tv", "_studio", "_creates"] },
+      },
+    },
+    faq: [
+      { q: "Quelles sont les règles pour un username TikTok ?", a: "Un username TikTok doit faire entre 2 et 24 caractères. Il accepte les lettres, chiffres, underscores (_) et points (.). Les espaces, emojis et symboles spéciaux ne sont pas autorisés. Le username est unique sur toute la plateforme et visible sur ton profil public." },
+      { q: "Comment changer son username TikTok ?", a: "Ouvre TikTok, va dans Profil > Modifier le profil > Nom d'utilisateur. TikTok limite les changements de username à une fois tous les 30 jours. Choisis bien ton pseudo avec NickGen avant de valider — tu devras attendre un mois pour le modifier à nouveau." },
+      { q: "Peut-on utiliser des points dans un username TikTok ?", a: "Oui, les points (.) sont autorisés dans les usernames TikTok. C'est une particularité qui permet des formats comme 'its.aurora' ou 'luna.glow' très populaires dans les niches aesthetic et lifestyle." },
+      { q: "Quel username TikTok favorise l'algorithme ?", a: "L'algorithme TikTok n'est pas directement influencé par le username, mais un pseudo mémorable et cohérent avec ta niche aide à la reconnaissance et au bouche-à-oreille. Un username court, unique et facile à mentionner dans les commentaires augmente naturellement ta découvrabilité." },
+      { q: "NickGen génère-t-il des usernames TikTok disponibles ?", a: "NickGen génère des combinaisons originales avec de bonnes chances d'être disponibles, sans vérification en temps réel. Après avoir copié ton pseudo préféré, essaie de changer ton username dans les paramètres TikTok pour vérifier sa disponibilité." },
     ],
   },
 };
