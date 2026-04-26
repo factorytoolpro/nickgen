@@ -555,23 +555,24 @@ function SiteFooter() {
         </div>
 
         {/* Contact line */}
-        <div className="text-center pt-4 mt-1">
+        <div className="text-center pt-5 mt-2" style={{ borderTop: "1px solid rgba(30,58,138,0.18)" }}>
           <a
             href="mailto:Factorytoolpro@gmail.com"
-            className="inline-flex items-center gap-2 text-xs font-medium transition-all group"
-            style={{ color: "#475569" }}
+            className="inline-flex items-center gap-2 text-xs font-semibold transition-all"
             onMouseEnter={(e) => {
-              e.currentTarget.style.color = "#f97316";
+              e.currentTarget.querySelector(".contact-email").style.color = "#fb923c";
+              e.currentTarget.querySelector(".contact-email").style.textDecoration = "underline";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.color = "#475569";
+              e.currentTarget.querySelector(".contact-email").style.color = "#f97316";
+              e.currentTarget.querySelector(".contact-email").style.textDecoration = "none";
             }}
           >
-            <span>Interested in working together?</span>
-            <span style={{ color: "#334155" }} className="group-hover:text-orange-500">→</span>
+            <span style={{ color: "#94a3b8" }}>Interested in working together?</span>
+            <span style={{ color: "#64748b" }}>→</span>
             <span
-              className="underline underline-offset-2 decoration-dotted"
-              style={{ textDecorationColor: "rgba(249,115,22,0.4)" }}
+              className="contact-email"
+              style={{ color: "#f97316", transition: "color 0.15s ease" }}
             >
               Factorytoolpro@gmail.com
             </span>
