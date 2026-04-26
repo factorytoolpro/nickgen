@@ -17,8 +17,79 @@ function getParts(parts, useSymbols) {
   return useSymbols && parts.unicode ? [...parts.ascii, ...parts.unicode] : parts.ascii;
 }
 
+// ─── Aesthetic unicode transforms ─────────────────────────────────────────────
+
+const _AE_SCRIPT = {
+  a:'𝒶',b:'𝒷',c:'𝒸',d:'𝒹',e:'𝑒',f:'𝒻',g:'𝑔',h:'𝒽',i:'𝒾',j:'𝒿',k:'𝓀',l:'𝓁',m:'𝓂',
+  n:'𝓃',o:'𝑜',p:'𝓅',q:'𝓆',r:'𝓇',s:'𝓈',t:'𝓉',u:'𝓊',v:'𝓋',w:'𝓌',x:'𝓍',y:'𝓎',z:'𝓏',
+  A:'𝒜',B:'ℬ',C:'𝒞',D:'𝒟',E:'ℰ',F:'ℱ',G:'𝒢',H:'ℋ',I:'ℐ',J:'𝒥',K:'𝒦',L:'ℒ',M:'ℳ',
+  N:'𝒩',O:'𝒪',P:'𝒫',Q:'𝒬',R:'ℛ',S:'𝒮',T:'𝒯',U:'𝒰',V:'𝒱',W:'𝒲',X:'𝒳',Y:'𝒴',Z:'𝒵',
+};
+
+const _AE_FULL = {
+  a:'ａ',b:'ｂ',c:'ｃ',d:'ｄ',e:'ｅ',f:'ｆ',g:'ｇ',h:'ｈ',i:'ｉ',j:'ｊ',k:'ｋ',l:'ｌ',m:'ｍ',
+  n:'ｎ',o:'ｏ',p:'ｐ',q:'ｑ',r:'ｒ',s:'ｓ',t:'ｔ',u:'ｕ',v:'ｖ',w:'ｗ',x:'ｘ',y:'ｙ',z:'ｚ',
+  A:'Ａ',B:'Ｂ',C:'Ｃ',D:'Ｄ',E:'Ｅ',F:'Ｆ',G:'Ｇ',H:'Ｈ',I:'Ｉ',J:'Ｊ',K:'Ｋ',L:'Ｌ',M:'Ｍ',
+  N:'Ｎ',O:'Ｏ',P:'Ｐ',Q:'Ｑ',R:'Ｒ',S:'Ｓ',T:'Ｔ',U:'Ｕ',V:'Ｖ',W:'Ｗ',X:'Ｘ',Y:'Ｙ',Z:'Ｚ',
+};
+
+// Helper transforms
+const _aes  = (w) => [...w].map(c => _AE_SCRIPT[c] || c).join(''); // 𝒮𝑒𝓇𝒶𝓅𝒽
+const _aef  = (w) => [...w].map(c => _AE_FULL[c]   || c).join(''); // Ｓｅｒａｐｈ
+const _aesp = (w) => [...w.toLowerCase()].join(' ');                // s e r a p h
+
+// 20 distinct recipes — guaranteed variety (one per card in the batch)
+// Structure: script+soft · full+cyber · spaced+dark · plain+kawaii · modern · …
+const AE_RECIPES = [
+  // ── Script + wrappers ─────────────────────────────────────────────────
+  (w) => `♡ ${_aes(w)} ♡`,
+  (w) => `✧ ${_aes(w)} ✧`,
+  (w) => `𖤐 ${_aes(w)} 𖤐`,
+  (w) => `☽ ${_aes(w)} ☾`,
+  // ── Fullwidth + wrappers ──────────────────────────────────────────────
+  (w) => `【${_aef(w)}】`,
+  (w) => `｡˚ ${_aef(w)} ˚｡`,
+  (w) => `≪ ${_aef(w)} ≫`,
+  (w) => `✦ ${_aef(w)} ✦`,
+  // ── Spaced + wrappers ─────────────────────────────────────────────────
+  (w) => `⋆ ${_aesp(w)} ⋆`,
+  (w) => `˚₊‧ ${_aesp(w)} ‧₊˚`,
+  (w) => `꒰ ${_aesp(w)} ꒱`,
+  // ── Plain + wrappers ──────────────────────────────────────────────────
+  (w) => `꒰ ${w} ꒱`,
+  (w) => `ʚ ${w} ɞ`,
+  (w) => `⌒(${w})⌒`,
+  (w) => `·˚ ${w} ˚·`,
+  (w) => `✩ ${w} ✩`,
+  // ── Modern suffixes (clean aesthetic) ─────────────────────────────────
+  (w) => `${w}.vibe`,
+  (w) => `${_aef(w)}.soft`,
+  (w) => `${_aes(w)}.exe`,
+  // ── Pure clean (≈20 % = 1 slot out of 5 picked) ───────────────────────
+  (w) => w,
+];
+
+// Single name — used by Battle mode
+function generateAestheticName(words, useSymbols) {
+  const word = pick(words);
+  if (!useSymbols) return Math.random() > 0.5 ? _aesp(word) : word;
+  return pick(AE_RECIPES)(word);
+}
+
+// Batch — shuffle recipes so each of the 5 cards has a visually unique style
+function generateAestheticBatch(words, useSymbols, count) {
+  if (!useSymbols) {
+    const simple = [(w) => _aesp(w), (w) => w, (w) => w.toLowerCase(), (w) => `${w}.soft`, (w) => `${w}.vibe`];
+    return Array.from({ length: count }, (_, i) => simple[i % simple.length](pick(words)));
+  }
+  const shuffled = [...AE_RECIPES].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count).map(recipe => recipe(pick(words)));
+}
+
 function generateName(nameData, style, useSymbols) {
   const data = nameData[style];
+  // Aesthetic → special visual transform pipeline
+  if (style === "Aesthetic") return generateAestheticName(data.words, useSymbols);
   const prefix = Math.random() > 0.38 ? pick(getParts(data.prefixes, useSymbols)) : "";
   const word = pick(data.words);
   const suffix = Math.random() > 0.38 ? pick(getParts(data.suffixes, useSymbols)) : "";
@@ -28,6 +99,10 @@ function generateName(nameData, style, useSymbols) {
 const LENGTH_RANGES = { Any: null, Short: [1, 8], Medium: [9, 13], Long: [14, 99] };
 
 function generateNames(nameData, style, lengthFilter, useSymbols, count = 5) {
+  // Aesthetic: recipe-based batch — guaranteed visual variety across all cards
+  if (style === "Aesthetic") {
+    return generateAestheticBatch(nameData[style].words, useSymbols, count);
+  }
   const range = LENGTH_RANGES[lengthFilter];
   if (!range) return Array.from({ length: count }, () => generateName(nameData, style, useSymbols));
   const results = [];
