@@ -300,13 +300,40 @@ function BattleArena({ nameData, style, useSymbols, onShare, onCountIncrement })
 
 // ─── Name card ────────────────────────────────────────────────────────────────
 
-function NameCard({ name, isCopied, onCopy, onShare }) {
+function NameCard({ name, isCopied, onCopy, onShare, isBest }) {
   const [hov, setHov] = useState(false);
   return (
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      style={{ background: hov ? "linear-gradient(135deg,rgba(22,33,68,0.95),rgba(28,18,52,0.92))" : "rgba(16,25,50,0.84)", border: `1px solid ${hov ? "rgba(249,115,22,0.6)" : "rgba(30,58,138,0.4)"}`, boxShadow: hov ? "0 6px 28px rgba(249,115,22,0.2),inset 0 0 40px rgba(249,115,22,0.04)" : "0 2px 10px rgba(0,0,0,0.35)", transform: hov ? "translateY(-3px) scale(1.015)" : "none", transition: "all 0.18s ease" }}
+      style={{
+        position: "relative",
+        background: hov ? "linear-gradient(135deg,rgba(22,33,68,0.95),rgba(28,18,52,0.92))" : isBest ? "rgba(18,27,56,0.90)" : "rgba(16,25,50,0.84)",
+        border: `1px solid ${hov ? "rgba(249,115,22,0.6)" : isBest ? "rgba(249,115,22,0.28)" : "rgba(30,58,138,0.4)"}`,
+        boxShadow: hov ? "0 6px 28px rgba(249,115,22,0.2),inset 0 0 40px rgba(249,115,22,0.04)" : isBest ? "0 2px 14px rgba(249,115,22,0.12)" : "0 2px 10px rgba(0,0,0,0.35)",
+        transform: hov ? "translateY(-3px) scale(1.015)" : "none",
+        transition: "all 0.18s ease",
+      }}
       className="flex items-center justify-between rounded-xl px-4 py-3 gap-2"
     >
+      {isBest && (
+        <div style={{
+          position: "absolute",
+          top: -11,
+          left: 10,
+          background: "linear-gradient(135deg,#f97316,#ea580c)",
+          color: "#fff",
+          fontSize: 10,
+          fontWeight: 900,
+          padding: "2px 9px",
+          borderRadius: 20,
+          letterSpacing: "0.06em",
+          boxShadow: "0 2px 10px rgba(249,115,22,0.45)",
+          whiteSpace: "nowrap",
+          animation: "badge-pop 0.3s ease-out 0.15s both",
+          pointerEvents: "none",
+        }}>
+          🔥 Best One
+        </div>
+      )}
       <span className="text-white font-bold text-sm flex-1" style={{ textShadow: hov ? "0 0 14px rgba(249,115,22,0.35)" : "none", overflowWrap: "anywhere", wordBreak: "break-word", minWidth: 0 }}>{name}</span>
       <div className="flex items-center gap-1.5 shrink-0">
         <button onClick={onShare} title="Partager" className="text-sm px-2 py-1.5 rounded-lg transition-all" style={{ color: hov ? "#f97316" : "#475569", background: hov ? "rgba(249,115,22,0.1)" : "transparent" }}>📤</button>
@@ -851,13 +878,17 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
                     {names.map((name, i) => (
                       <div
                         key={`${revealKey}-${i}`}
-                        style={{ animation: `card-reveal 0.22s ease-out ${i * 70}ms both` }}
+                        style={{
+                          animation: `card-reveal 0.22s ease-out ${i * 70}ms both`,
+                          paddingTop: i === 0 ? 12 : 0,
+                        }}
                       >
                         <NameCard
                           name={name}
                           isCopied={copied === i}
                           onCopy={(n) => copyName(n, i)}
                           onShare={() => setShareTarget({ name, style })}
+                          isBest={i === 0}
                         />
                       </div>
                     ))}

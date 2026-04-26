@@ -6,16 +6,14 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata = {
-  metadataBase: new URL("https://nickgen.gg"),
+  metadataBase: new URL("https://nickgen-kappa.vercel.app/"),
   title: {
     default: "NickGen — Générateur de Pseudo Gaming",
     template: "%s — NickGen",
   },
-  
   verification: {
-  google: "kU2vHQFbzkx6KdWeSGgb8K2mdsGe2muPZHZINeREfKw",
-},
-
+    google: "kU2vHQFbzkx6KdWeSGgb8K2mdsGe2muPZHZINeREfKw",
+  },
   description: "Génère des pseudos gaming uniques pour Fortnite, Valorant, Minecraft, Apex Legends et Call of Duty. Styles variés, mode Battle, partage social. Gratuit et sans inscription.",
   keywords: ["pseudo gaming", "générateur de pseudo", "gaming username", "gamertag generator", "fortnite names", "valorant names", "minecraft username", "apex legends name", "call of duty name"],
   authors: [{ name: "NickGen" }],
@@ -37,9 +35,6 @@ export const metadata = {
     index: true,
     follow: true,
     googleBot: { index: true, follow: true },
-  },
-  alternates: {
-    canonical: "https://nickgen.gg",
   },
 };
 
