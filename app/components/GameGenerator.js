@@ -938,6 +938,15 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
     addToCount(moreNames.length);
   };
 
+  // Triggered when user clicks a style — immediate generation with the chosen style
+  const generateWithStyle = (newStyle) => {
+    const newNames = generateNames(nameData, newStyle, lengthFilter, useSymbols, 5);
+    setNames(newNames);
+    setRevealKey((k) => k + 1);
+    setHistory((prev) => [...newNames.map((n) => ({ name: n, style: newStyle })), ...prev].slice(0, 20));
+    addToCount(newNames.length);
+  };
+
   // Auto-generate names on mount — give immediate value without user interaction
   useEffect(() => {
     setNames(generateNames(nameData, style, "Any", true, 5));
@@ -1002,60 +1011,84 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
             <FlameCounter total={dailyBase + dailyUserCount} />
           </div>
 
-          {/* Controls */}
-          <div className="flex flex-wrap items-end justify-between gap-5 p-5 rounded-2xl mb-8" style={{ background: "rgba(14,22,44,0.84)", border: "1px solid rgba(30,58,138,0.4)", backdropFilter: "blur(8px)" }}>
-            <div>
-              <p className="text-xs font-black uppercase tracking-widest mb-2.5" style={{ color: "#7dd3fc" }}>Length</p>
-              <div className="flex gap-2">
-                {lengths.map((l) => (
-                  <button key={l} onClick={() => setLengthFilter(l)} className="px-3 py-1.5 rounded-lg text-xs font-black transition-all active:scale-95"
-                    style={lengthFilter === l ? { background: "rgba(249,115,22,0.2)", color: "#f97316", border: "1px solid rgba(249,115,22,0.45)", boxShadow: "0 0 10px rgba(249,115,22,0.15)" } : { background: "rgba(16,25,50,0.82)", color: "#60a5fa", border: "1px solid rgba(30,64,175,0.3)" }}>
-                    {l}
-                  </button>
-                ))}
-              </div>
-            </div>
-            <div>
-              <p className="text-xs font-black uppercase tracking-widest mb-2.5" style={{ color: "#7dd3fc" }}>Unicode Symbols</p>
-              <Toggle value={useSymbols} onChange={setUseSymbols} />
-            </div>
-          </div>
-
-          {/* Style selector */}
-          <div className="mb-8">
-            <p className="text-xs uppercase tracking-widest mb-4 text-center font-black" style={{ color: "#7dd3fc" }}>Choose your style</p>
+          {/* ── 1. Style selector — first & prominent, click auto-generates ── */}
+          <div className="mb-7">
+            <p className="text-xs uppercase tracking-widest mb-4 text-center font-black" style={{ color: "#7dd3fc" }}>
+              Choose your style
+            </p>
             <div className="flex flex-wrap justify-center gap-3">
               {styleList.map((s) => (
-                <button key={s} onClick={() => setStyle(s)} className="px-6 py-2 rounded-full text-sm font-black transition-all active:scale-95"
-                  style={style === s ? { background: "linear-gradient(135deg,#f97316,#ea580c)", color: "#fff", boxShadow: "0 0 22px rgba(249,115,22,0.38)" } : { background: "rgba(16,25,50,0.82)", color: "#93c5fd", border: "1px solid rgba(30,58,138,0.5)" }}>
+                <button
+                  key={s}
+                  onClick={() => { setStyle(s); generateWithStyle(s); }}
+                  className="px-6 py-2.5 rounded-full text-sm font-black transition-all active:scale-95"
+                  style={style === s
+                    ? { background: "linear-gradient(135deg,#f97316,#ea580c)", color: "#fff", boxShadow: "0 0 22px rgba(249,115,22,0.38)" }
+                    : { background: "rgba(16,25,50,0.82)", color: "#93c5fd", border: "1px solid rgba(30,58,138,0.5)" }
+                  }
+                >
                   {s}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Mode tabs */}
-          <div className="flex justify-center gap-3 mb-8">
-            {[{ id: "normal", label: "⚡ Générateur" }, { id: "battle", label: "⚔ Battle Mode" }].map(({ id, label }) => (
-              <button key={id} onClick={() => setMode(id)} className="px-6 py-2.5 rounded-xl text-sm font-black transition-all active:scale-95"
-                style={mode === id ? { background: "linear-gradient(135deg,#f97316,#ea580c)", color: "#fff", boxShadow: "0 0 22px rgba(249,115,22,0.35)" } : { background: "rgba(16,25,50,0.82)", color: "#60a5fa", border: "1px solid rgba(30,58,138,0.45)" }}>
-                {label}
+          {/* ── 2. Generate (refresh) + Battle Mode toggle ── */}
+          <div className="flex flex-col items-center gap-3 mb-7">
+            {mode === "normal" && (
+              <button
+                onClick={generate}
+                className="px-14 py-4 font-black text-lg rounded-2xl transition-all active:scale-95"
+                style={{ background: "linear-gradient(135deg,#f97316,#ea580c)", color: "#fff", boxShadow: "0 8px 44px rgba(249,115,22,0.52), inset 0 1px 0 rgba(255,210,120,0.22)" }}
+              >
+                ⚡ {names.length > 0 ? "Régénérer" : "Generate Names"}
               </button>
-            ))}
+            )}
+            <button
+              onClick={() => setMode(mode === "battle" ? "normal" : "battle")}
+              className="flex items-center gap-2 text-xs font-black px-5 py-2 rounded-xl transition-all active:scale-95"
+              style={mode === "battle"
+                ? { background: "rgba(249,115,22,0.15)", color: "#f97316", border: "1px solid rgba(249,115,22,0.4)" }
+                : { background: "transparent", color: "#475569", border: "1px solid rgba(30,58,138,0.25)" }
+              }
+              onMouseEnter={(e) => { if (mode !== "battle") e.currentTarget.style.color = "#7dd3fc"; e.currentTarget.style.borderColor = "rgba(30,64,175,0.5)"; }}
+              onMouseLeave={(e) => { if (mode !== "battle") { e.currentTarget.style.color = "#475569"; e.currentTarget.style.borderColor = "rgba(30,58,138,0.25)"; } }}
+            >
+              {mode === "battle" ? "← Back to Generator" : "⚔ Battle Mode"}
+            </button>
+          </div>
+
+          {/* ── 3. Customize (optional) — visually subtle ── */}
+          <div
+            className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 mb-8 px-5 py-3 rounded-xl"
+            style={{ background: "rgba(12,18,36,0.5)", border: "1px solid rgba(30,58,138,0.18)" }}
+          >
+            {/* Length */}
+            <div className="flex items-center gap-2.5">
+              <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#334155" }}>Length</span>
+              <div className="flex gap-1.5">
+                {lengths.map((l) => (
+                  <button key={l} onClick={() => setLengthFilter(l)}
+                    className="px-2.5 py-1 rounded-lg text-xs font-black transition-all"
+                    style={lengthFilter === l
+                      ? { background: "rgba(249,115,22,0.18)", color: "#f97316", border: "1px solid rgba(249,115,22,0.4)" }
+                      : { background: "transparent", color: "#475569", border: "1px solid rgba(30,58,138,0.25)" }
+                    }>
+                    {l}
+                  </button>
+                ))}
+              </div>
+            </div>
+            {/* Symbols */}
+            <div className="flex items-center gap-2.5">
+              <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#334155" }}>Symbols</span>
+              <Toggle value={useSymbols} onChange={setUseSymbols} />
+            </div>
           </div>
 
           {/* Normal mode */}
           {mode === "normal" && (
             <>
-              <div className="flex justify-center mb-12">
-                <button
-                  onClick={generate}
-                  className="px-14 py-4 font-black text-lg rounded-2xl transition-all active:scale-95"
-                  style={{ background: "linear-gradient(135deg,#f97316,#ea580c)", color: "#fff", boxShadow: "0 8px 44px rgba(249,115,22,0.52), inset 0 1px 0 rgba(255,210,120,0.22)" }}
-                >
-                  ⚡ {names.length > 0 ? "Régénérer" : "Generate Names"}
-                </button>
-              </div>
               {names.length > 0 ? (
                 <div>
                   <p className="text-xs text-center uppercase tracking-widest mb-5" style={{ color: "#334155" }}>{style} · {lengthFilter} · {useSymbols ? "Symbols ON" : "Symbols OFF"} · {names.length} names</p>
