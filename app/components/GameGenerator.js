@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { GAME_NAV } from "../data/games";
 import { RELATED, HUB, FOOTER_COLS } from "../data/internal-links";
+import { generateAdvancedName, generateBatch as generateAdvancedBatch } from "../data/nameEngine";
 
 // ─── Name generation ──────────────────────────────────────────────────────────
 
@@ -103,101 +104,37 @@ function _vary(w) {
   return w;
 }
 
-function generateNaturalName(data, style, useSymbols) {
-  const w1 = pick(data.words);
-
-  // ── Realistic / RP styles → keep structured "Firstname_Lastname" format ─────
-  if (["RP", "Character", "Mafia"].includes(style)) {
-    const parts = getParts(data.prefixes, useSymbols);
-    const p = parts?.length ? pick(parts).replace(/_+$/, "") : "";
-    return p ? `${p}_${w1}` : w1;
-  }
-
-  // ── Funny → raw word (it's already absurd) + humorous format ─────────────────
-  if (style === "Funny") {
-    const r = Math.random();
-    if (r < 0.22) return w1 + ".exe";
-    if (r < 0.42) {
-      const parts = getParts(data.prefixes, useSymbols);
-      const p = parts?.length ? pick(parts).replace(/_+$/, "").toLowerCase() : "im_";
-      return p + w1.toLowerCase();
-    }
-    if (r < 0.58) return w1 + pick(["_lol", "_irl", "_bruh", "_xd", "_rip"]);
-    return w1;
-  }
-
-  // ── Tactical / COD NATO → plain word, clean format ────────────────────────────
-  if (style === "Tactical") {
-    const r = Math.random();
-    const parts = getParts(data.prefixes, useSymbols);
-    const p = parts?.length ? pick(parts).replace(/_+$/, "") : "";
-    if (r < 0.45 && p) return `${p}_${w1}`;
-    if (r < 0.75) return w1 + pick(["_Lead", "_Six", "_Actual", "_Two", "_Ops"]);
-    return w1;
-  }
-
-  // ── General styles: full variation engine ─────────────────────────────────────
-  const r = Math.random();
-
-  // 20% → modern suffix (.vibe, .exe…)
-  if (r < 0.20) return w1 + pick(_NAT_SFX);
-
-  // 30% → stylized variant (editz, clutchzz, zerox…)
-  if (r < 0.50) return _vary(w1);
-
-  // 50% → clean formats
-  const r2 = Math.random();
-
-  if (r2 < 0.35) {
-    // CamelCase two words (ClutchEdit, GhostZone…)
-    const w2 = pick(data.words);
-    if (w2 !== w1 && w1.length + w2.length <= 13) return w1 + w2;
-    return w1;
-  }
-
-  if (r2 < 0.65) {
-    // Prefix fused with word (FaZeClutch, NRGEdit, ProGhost…)
-    const parts = getParts(data.prefixes, useSymbols);
-    if (parts?.length) {
-      const rawP = pick(parts).replace(/^_+|_+$/g, "");
-      if (rawP.length >= 2 && rawP.length <= 7) return rawP + w1;
-    }
-    return w1;
-  }
-
-  if (r2 < 0.83) return w1 + pick(_NAT_NUM); // Clutch7, Shadow99…
-
-  // Underscore (~8.5% total → stays under 20% target)
-  const p2 = (getParts(data.prefixes, useSymbols)?.[0] ? pick(getParts(data.prefixes, useSymbols)) : "");
-  const sfx = (getParts(data.suffixes, useSymbols)?.[0] ? pick(getParts(data.suffixes, useSymbols)) : "");
-  return `${p2}${w1}${sfx}`;
+function generateNaturalName(data, style, useSymbols, gameName) {
+  return generateAdvancedName(data.words || [], style, gameName || "generic", useSymbols);
 }
 
-function generateName(nameData, style, useSymbols) {
+function generateName(nameData, style, useSymbols, gameName) {
   const data = nameData[style];
   if (style === "Aesthetic") return generateAestheticName(data.words, useSymbols);
-  return generateNaturalName(data, style, useSymbols);
+  return generateNaturalName(data, style, useSymbols, gameName);
 }
 
 const LENGTH_RANGES = { Any: null, Short: [1, 8], Medium: [9, 13], Long: [14, 99] };
 
-function generateNames(nameData, style, lengthFilter, useSymbols, count = 5) {
+function generateNames(nameData, style, lengthFilter, useSymbols, count = 5, gameName = "generic") {
   // Aesthetic: recipe-based batch — guaranteed visual variety across all cards
   if (style === "Aesthetic") {
     return generateAestheticBatch(nameData[style].words, useSymbols, count);
   }
+
+  // Advanced engine handles dedup + quality filtering internally
+  const batch = generateAdvancedBatch(nameData[style]?.words || [], style, gameName, useSymbols, count);
+
+  // Apply length filter if requested (not Any)
   const range = LENGTH_RANGES[lengthFilter];
-  if (!range) return Array.from({ length: count }, () => generateName(nameData, style, useSymbols));
-  const results = [];
-  let attempts = 0;
-  while (results.length < count && attempts < 3000) {
-    attempts++;
-    const name = generateName(nameData, style, useSymbols);
-    const len = [...name].filter((c) => c.charCodeAt(0) < 0x300).length;
-    if (len >= range[0] && len <= range[1]) results.push(name);
-  }
-  while (results.length < count) results.push(generateName(nameData, style, useSymbols));
-  return results;
+  if (!range) return batch;
+
+  // Filter by visual length; fallback to unfiltered if too restrictive
+  const filtered = batch.filter(n => {
+    const vis = n.replace(/[^\x00-\x7F]/g, "xx").length;
+    return vis >= range[0] && vis <= range[1];
+  });
+  return filtered.length >= count ? filtered.slice(0, count) : batch;
 }
 
 // ─── Daily counter ────────────────────────────────────────────────────────────
@@ -921,7 +858,7 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
   }, []);
 
   const generate = () => {
-    const newNames = generateNames(nameData, style, lengthFilter, useSymbols, 5);
+    const newNames = generateNames(nameData, style, lengthFilter, useSymbols, 5, gameName);
     setNames(newNames);
     setRevealKey((k) => k + 1);
     setHistory((prev) => [...newNames.map((n) => ({ name: n, style })), ...prev].slice(0, 20));
@@ -935,7 +872,7 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
   }, []);
 
   const generateMore = () => {
-    const moreNames = generateNames(nameData, style, lengthFilter, useSymbols, 5);
+    const moreNames = generateNames(nameData, style, lengthFilter, useSymbols, 5, gameName);
     setNames((prev) => [...prev, ...moreNames].slice(0, 20));
     setRevealKey((k) => k + 1);
     setHistory((prev) => [...moreNames.map((n) => ({ name: n, style })), ...prev].slice(0, 20));
@@ -944,7 +881,7 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
 
   // Triggered when user clicks a style — immediate generation with the chosen style
   const generateWithStyle = (newStyle) => {
-    const newNames = generateNames(nameData, newStyle, lengthFilter, useSymbols, 5);
+    const newNames = generateNames(nameData, newStyle, lengthFilter, useSymbols, 5, gameName);
     setNames(newNames);
     setRevealKey((k) => k + 1);
     setHistory((prev) => [...newNames.map((n) => ({ name: n, style: newStyle })), ...prev].slice(0, 20));
@@ -953,7 +890,7 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
 
   // Auto-generate names on mount — give immediate value without user interaction
   useEffect(() => {
-    setNames(generateNames(nameData, style, "Any", true, 5));
+    setNames(generateNames(nameData, style, "Any", true, 5, gameName));
     setRevealKey(1);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
