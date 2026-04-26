@@ -1,4 +1,4 @@
-const BASE = "https://nickgen.gg";
+const BASE = "https://nickgen-kappa.vercel.app";
 
 export const VALORANT_PAGES = {
 
