@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Start-Sleep -Seconds 10; Get-Content \"C:\\\\Users\\\\Lukas\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Lukas-nickgen\\\\4bcff97e-c622-4669-8557-bea385b1076f\\\\tasks\\\\brckjwb4q.output\" -Tail 6; Write-Host \"---\"; Start-Sleep 3; $urls = @\\(\"/discord-username-generator\",\"/aesthetic-discord-names\",\"/fortnite-name-generator\"\\); foreach \\($u in $urls\\) { try { $r = Invoke-WebRequest \"http://localhost:54112${u}\" -UseBasicParsing -TimeoutSec 5 -EA Stop; Write-Host \"${u}: $\\($r.StatusCode\\)\" } catch { Write-Host \"${u}: FAIL\" } })"
+    ]
+  }
+}

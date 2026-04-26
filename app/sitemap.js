@@ -42,5 +42,13 @@ export default function sitemap() {
     url("/sweaty-valorant-names",           { priority: 0.7 }),
     url("/valorant-username-ideas",         { priority: 0.7 }),
     url("/tryhard-valorant-names",          { priority: 0.7 }),
+
+    // ── Discord ──────────────────────────────────────────────────────────────
+    url("/discord-username-generator",      { priority: 0.9, changeFrequency: "weekly" }),
+    url("/aesthetic-discord-names",         { priority: 0.8 }),
+    url("/cool-discord-usernames",          { priority: 0.8 }),
+    url("/funny-discord-names",             { priority: 0.8 }),
+    url("/cute-discord-names",              { priority: 0.8 }),
+    url("/unique-discord-usernames",        { priority: 0.7 }),
   ];
 }

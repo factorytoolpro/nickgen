@@ -512,7 +512,7 @@ function SiteFooter() {
         </div>
 
         {/* Link columns */}
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-8 mb-10">
+        <div className="grid grid-cols-2 sm:grid-cols-6 gap-8 mb-10">
           {FOOTER_COLS.map((col) => (
             <div key={col.title}>
               <h4 className="text-xs font-black uppercase tracking-widest mb-3.5" style={{ color: "#f97316" }}>
@@ -569,6 +569,7 @@ const GAME_EMOJI = {
   "/valorant-name-generator":         "🎯",
   "/apex-legends-name-generator":     "🔥",
   "/call-of-duty-name-generator":     "💀",
+  "/discord-username-generator":      "💬",
 };
 
 function GameNav() {

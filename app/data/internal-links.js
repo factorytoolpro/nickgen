@@ -250,6 +250,44 @@ export const RELATED = {
     { href: "/gta6-name-generator",          label: "GTA 6 Generator" },
     { href: "/fortnite-name-generator",      label: "Fortnite Generator" },
   ],
+
+  // Discord hub + sub-pages
+  "/discord-username-generator": [
+    { href: "/fortnite-name-generator",      label: "Fortnite Generator" },
+    { href: "/roblox-username-generator",    label: "Roblox Generator" },
+    { href: "/valorant-name-generator",      label: "Valorant Generator" },
+    { href: "/minecraft-username-generator", label: "Minecraft Generator" },
+  ],
+  "/aesthetic-discord-names": [
+    { href: "/cute-discord-names",           label: "Cute Names" },
+    { href: "/cool-discord-usernames",       label: "Cool Usernames" },
+    { href: "/unique-discord-usernames",     label: "Unique Usernames" },
+    { href: "/discord-username-generator",   label: "All Discord Names" },
+  ],
+  "/cool-discord-usernames": [
+    { href: "/aesthetic-discord-names",      label: "Aesthetic Names" },
+    { href: "/unique-discord-usernames",     label: "Unique Usernames" },
+    { href: "/funny-discord-names",          label: "Funny Names" },
+    { href: "/discord-username-generator",   label: "All Discord Names" },
+  ],
+  "/funny-discord-names": [
+    { href: "/cute-discord-names",           label: "Cute Names" },
+    { href: "/cool-discord-usernames",       label: "Cool Usernames" },
+    { href: "/unique-discord-usernames",     label: "Unique Usernames" },
+    { href: "/discord-username-generator",   label: "All Discord Names" },
+  ],
+  "/cute-discord-names": [
+    { href: "/aesthetic-discord-names",      label: "Aesthetic Names" },
+    { href: "/funny-discord-names",          label: "Funny Names" },
+    { href: "/unique-discord-usernames",     label: "Unique Usernames" },
+    { href: "/discord-username-generator",   label: "All Discord Names" },
+  ],
+  "/unique-discord-usernames": [
+    { href: "/cool-discord-usernames",       label: "Cool Usernames" },
+    { href: "/aesthetic-discord-names",      label: "Aesthetic Names" },
+    { href: "/funny-discord-names",          label: "Funny Names" },
+    { href: "/discord-username-generator",   label: "All Discord Names" },
+  ],
 };
 
 // ─── Hub pages → their sub-pages ─────────────────────────────────────────────
@@ -291,6 +329,13 @@ export const HUB = {
     { href: "/sweaty-valorant-names",    label: "Sweaty Names" },
     { href: "/valorant-username-ideas",  label: "Username Ideas" },
     { href: "/tryhard-valorant-names",   label: "Tryhard Names" },
+  ],
+  "/discord-username-generator": [
+    { href: "/aesthetic-discord-names",  label: "Aesthetic Names" },
+    { href: "/cool-discord-usernames",   label: "Cool Usernames" },
+    { href: "/cute-discord-names",       label: "Cute Names" },
+    { href: "/funny-discord-names",      label: "Funny Names" },
+    { href: "/unique-discord-usernames", label: "Unique Usernames" },
   ],
 };
 
@@ -352,6 +397,17 @@ export const FOOTER_COLS = [
       { href: "/sweaty-valorant-names",    label: "Sweaty Valorant" },
       { href: "/apex-legends-name-generator",    label: "Apex Legends Generator" },
       { href: "/call-of-duty-name-generator",    label: "Call of Duty Generator" },
+    ],
+  },
+  {
+    title: "Discord",
+    links: [
+      { href: "/discord-username-generator",  label: "Username Generator" },
+      { href: "/aesthetic-discord-names",     label: "Aesthetic Names" },
+      { href: "/cool-discord-usernames",      label: "Cool Usernames" },
+      { href: "/funny-discord-names",         label: "Funny Names" },
+      { href: "/cute-discord-names",          label: "Cute Names" },
+      { href: "/unique-discord-usernames",    label: "Unique Usernames" },
     ],
   },
 ];

@@ -8,6 +8,7 @@ export const GAME_NAV = [
   { name: "Valorant",      slug: "/valorant-name-generator",         badge: "FPS"   },
   { name: "Apex Legends",  slug: "/apex-legends-name-generator",     badge: "BR"    },
   { name: "Call of Duty",  slug: "/call-of-duty-name-generator",     badge: "FPS"   },
+  { name: "Discord",       slug: "/discord-username-generator",      badge: "CHAT"  },
 ];
 
 // ─── Games data ───────────────────────────────────────────────────────────────
@@ -364,6 +365,57 @@ export const GAMES = {
       { q: "Peut-on utiliser des clan tags dans COD Warzone ?", a: "Oui, Warzone supporte les clan tags entre crochets comme [TAG] devant ton pseudo. Le style Tactical de NickGen génère des prefixes courts qui fonctionnent parfaitement comme clan tags (Alpha_, Bravo_)." },
       { q: "Quels sont les pseudos les plus populaires sur COD ?", a: "Les noms militaires (Ghost, Phantom, Shadow), les références aux personnages iconiques (Price, Soap) et les callsigns NATO (Alpha, Bravo, Delta) dominent le top des pseudos COD populaires." },
       { q: "Comment avoir un pseudo intimidant dans Warzone ?", a: "Le style Ghost de NickGen génère des pseudos sombres et menaçants : noms évocateurs de la mort, préfixes stealth, références au lore COD. L'objectif est de créer une aura de danger dès le lobby." },
+    ],
+  },
+
+  // ── Discord ──────────────────────────────────────────────────────────────────
+  discord: {
+    name: "Discord",
+    badge: "DISCORD",
+    slug: "/discord-username-generator",
+    headline: "Discord Username Generator",
+    tagline: "Find the perfect Discord username for your servers and communities",
+    styles: ["Aesthetic", "Cool", "Funny", "Cute", "Unique"],
+    defaultStyle: "Aesthetic",
+    nameData: {
+      Aesthetic: {
+        prefixes: {
+          ascii: ["Soft_", "Luna_", "Star_", "Neon_", "Dream_", "Haze_"],
+          unicode: ["✦", "☽", "◈", "★", "⋆"],
+        },
+        words: ["Luminous", "Celestial", "Velvet", "Solace", "Aurora", "Prism", "Iris", "Mirage", "Lyra", "Bloom", "Zephyr", "Opaque"],
+        suffixes: {
+          ascii: ["_glow", "_soft", "_bloom", "_dream", "_haze"],
+          unicode: ["✦", "☽", "◈", "⋆", "°"],
+        },
+      },
+      Cool: {
+        prefixes: { ascii: ["Dark_", "Hyper_", "Neo_", "Cyber_", "Ultra_", "Void_"] },
+        words: ["Nexus", "Cipher", "Ghost", "Vector", "Nova", "Surge", "Apex", "Vortex", "Zero", "Flux", "Orbit", "Phantom"],
+        suffixes: { ascii: ["_x", "_pro", "_gg", "_hd", "_v2", "_zero"] },
+      },
+      Funny: {
+        prefixes: { ascii: ["im_", "not_a_", "just_", "local_", "your_"] },
+        words: ["PotatoGod", "NoodleBrain", "ChaosGoblin", "GremlinMode", "CoffeeCriminal", "ProblemChild", "VibeCheck", "LocalCryptid", "CosmicGremlin", "SleepDeprived", "HobbyDemon", "ProfessionalIdiot"],
+        suffixes: { ascii: ["_lol", "_xd", "_bruh", "_irl", "_rip"] },
+      },
+      Cute: {
+        prefixes: { ascii: ["tiny_", "sweet_", "fluffy_", "itsy_", "baby_", "lil_"] },
+        words: ["Mochi", "Biscuit", "Pudding", "Pebble", "Sprinkle", "Clover", "Daisy", "Maple", "Cinnamon", "Honey", "Petal", "Boba"],
+        suffixes: { ascii: ["_uwu", "_owo", "_soft", "xo", "_pink", "_bb"] },
+      },
+      Unique: {
+        prefixes: { ascii: ["xn_", "qz_", "zr_", "vy_", "kx_", "nv_"] },
+        words: ["Axiom", "Quasar", "Zephyr", "Lyric", "Vesper", "Noctis", "Lazuli", "Selene", "Aether", "Soleil", "Tempest", "Vexil"],
+        suffixes: { ascii: ["_ix", "_og", "_rare", "_unit", "_onyx"] },
+      },
+    },
+    faq: [
+      { q: "Quelles sont les règles pour un username Discord en 2025 ?", a: "Depuis la mise à jour Discord de 2023, les usernames sont entièrement uniques (sans discriminateur #1234). Ils doivent faire entre 2 et 32 caractères et n'acceptent que les lettres, chiffres, underscores (_) et points (.). Les espaces et emojis ne sont pas autorisés dans le username (mais sont acceptés dans le display name)." },
+      { q: "Comment changer son username Discord ?", a: "Ouvre Discord, clique sur ton avatar en bas à gauche > Modifier le profil > Nom d'utilisateur. Entre ton nouveau nom et confirme avec ton mot de passe. Le changement est gratuit et immédiat." },
+      { q: "Quelle est la différence entre username et display name sur Discord ?", a: "Le username (@nom) est unique sur toute la plateforme et sert à identifier ton compte. Le display name est le nom affiché et peut être différent — il accepte les espaces, accents et emojis. NickGen génère des usernames (le champ unique), pas les display names." },
+      { q: "Peut-on avoir des emojis dans un username Discord ?", a: "Non, les emojis ne sont pas autorisés dans le username Discord (@username). Ils sont acceptés dans le display name. Avec le toggle Symbols de NickGen, des caractères Unicode proches des emojis (✦, ☽, ◈) sont ajoutés — vérifie leur compatibilité avec Discord avant de valider." },
+      { q: "Est-ce que NickGen génère des usernames Discord disponibles ?", a: "NickGen génère des combinaisons originales maximisant les chances de disponibilité, sans vérification en temps réel. Après avoir copié ton pseudo, essaie de changer ton username dans les paramètres Discord pour vérifier. Si le nom est pris, génère 5 nouvelles options avec le bouton '+5 pseudos'." },
     ],
   },
 };
