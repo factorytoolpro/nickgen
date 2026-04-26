@@ -1,4 +1,4 @@
-const BASE = "https://nickgen-kappa.vercel.app";
+const BASE = "https://nickgen.xyz";
 const UPDATED = "2025-04-25";
 
 function url(path, { priority = 0.7, changeFrequency = "monthly" } = {}) {

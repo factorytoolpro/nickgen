@@ -1,4 +1,4 @@
-const BASE = "https://nickgen-kappa.vercel.app";
+const BASE = "https://nickgen.xyz";
 
 export const MINECRAFT_PAGES = {
 

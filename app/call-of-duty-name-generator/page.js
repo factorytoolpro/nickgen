@@ -5,11 +5,11 @@ export const metadata = {
   title: "Call of Duty Name Generator — Générateur de Pseudo COD Gratuit",
   description: "Génère des pseudos Call of Duty uniques pour Warzone et Modern Warfare : Operator, Ghost, Warzone, Tactical, Prestige. Callsigns militaires stylés. Gratuit.",
   keywords: ["call of duty name generator", "cod name generator", "warzone username generator", "call of duty pseudo generator", "cod name ideas", "générateur pseudo cod"],
-  alternates: { canonical: "https://nickgen-kappa.vercel.app/call-of-duty-name-generator" },
+  alternates: { canonical: "https://nickgen.xyz/call-of-duty-name-generator" },
   openGraph: {
     title: "Call of Duty Name Generator — NickGen",
     description: "Génère des pseudos COD uniques pour Warzone et MW : Operator, Ghost, Warzone, Tactical, Prestige.",
-    url: "https://nickgen-kappa.vercel.app/call-of-duty-name-generator",
+    url: "https://nickgen.xyz/call-of-duty-name-generator",
   },
 };
 
@@ -19,7 +19,7 @@ const jsonLd = {
     {
       "@type": "WebApplication",
       "name": "Call of Duty Name Generator — NickGen",
-      "url": "https://nickgen-kappa.vercel.app/call-of-duty-name-generator",
+      "url": "https://nickgen.xyz/call-of-duty-name-generator",
       "description": "Générateur de pseudos gratuit pour Call of Duty et Warzone",
       "applicationCategory": "GameApplication",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },

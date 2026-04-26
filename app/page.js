@@ -9,11 +9,11 @@ export const metadata = {
   title: "Générateur de Pseudo Fortnite Gratuit",
   description: "Génère des pseudos Fortnite uniques en 1 clic : Sweaty, OG, Funny, Aesthetic, Tryhard, Badass. Mode Battle, partage social, 100% gratuit et sans inscription.",
   keywords: ["pseudo fortnite", "générateur pseudo fortnite", "fortnite name generator", "sweaty fortnite names", "og fortnite pseudo", "nom fortnite gratuit"],
-  alternates: { canonical: "https://nickgen-kappa.vercel.app/" },
+  alternates: { canonical: "https://nickgen.xyz/" },
   openGraph: {
     title: "Générateur de Pseudo Fortnite Gratuit — NickGen",
     description: "Génère des pseudos Fortnite uniques : Sweaty, OG, Funny, Aesthetic, Tryhard, Badass.",
-    url: "https://nickgen-kappa.vercel.app/",
+    url: "https://nickgen.xyz/",
   },
 };
 
@@ -22,9 +22,9 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebApplication",
-      "@id": "https://nickgen-kappa.vercel.app/#app",
+      "@id": "https://nickgen.xyz/#app",
       "name": "NickGen — Générateur de Pseudo Fortnite",
-      "url": "https://nickgen-kappa.vercel.app",
+      "url": "https://nickgen.xyz",
       "description": "Générateur de pseudos gaming gratuit pour Fortnite et autres jeux",
       "applicationCategory": "GameApplication",
       "operatingSystem": "Web",

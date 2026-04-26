@@ -5,11 +5,11 @@ export const metadata = {
   title: "Apex Legends Name Generator — Générateur de Pseudo Apex Gratuit",
   description: "Génère des pseudos Apex Legends uniques pour ton compte EA : Legend, Aggressive, Support, Recon, Wraith. Callsigns parfaits pour Apex. 100% gratuit.",
   keywords: ["apex legends name generator", "apex name generator", "apex legends username generator", "apex pseudo generator", "apex legends name ideas", "générateur pseudo apex"],
-  alternates: { canonical: "https://nickgen-kappa.vercel.app/apex-legends-name-generator" },
+  alternates: { canonical: "https://nickgen.xyz/apex-legends-name-generator" },
   openGraph: {
     title: "Apex Legends Name Generator — NickGen",
     description: "Génère des pseudos Apex Legends uniques : Legend, Aggressive, Support, Recon, Wraith.",
-    url: "https://nickgen-kappa.vercel.app/apex-legends-name-generator",
+    url: "https://nickgen.xyz/apex-legends-name-generator",
   },
 };
 
@@ -19,7 +19,7 @@ const jsonLd = {
     {
       "@type": "WebApplication",
       "name": "Apex Legends Name Generator — NickGen",
-      "url": "https://nickgen-kappa.vercel.app/apex-legends-name-generator",
+      "url": "https://nickgen.xyz/apex-legends-name-generator",
       "description": "Générateur de pseudos gratuit pour Apex Legends",
       "applicationCategory": "GameApplication",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
