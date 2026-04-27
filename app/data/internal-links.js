@@ -1,12 +1,12 @@
 // ─── Related links per page (2–4 entries, same game + hub) ───────────────────
 
 export const RELATED = {
-  // Fortnite main
+  // Homepage — cross-platform internal links
   "/": [
-    { href: "/fortnite-name-generator", label: "Fortnite Name Generator" },
-    { href: "/sweaty-fortnite-names",   label: "Sweaty Names" },
-    { href: "/og-fortnite-names",       label: "OG Names" },
-    { href: "/cool-fortnite-names",     label: "Cool Names" },
+    { href: "/fortnite-name-generator",      label: "Fortnite Name Generator" },
+    { href: "/call-of-duty-name-generator",  label: "Call of Duty Generator" },
+    { href: "/tiktok-username-generator",    label: "TikTok Username Generator" },
+    { href: "/minecraft-username-generator", label: "Minecraft Username Generator" },
   ],
   // Fortnite sub-pages
   "/fortnite-name-generator": [
