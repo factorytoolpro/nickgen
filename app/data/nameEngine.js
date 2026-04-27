@@ -197,6 +197,162 @@ function isGood(name) {
   return score(name) >= 52;
 }
 
+// ─── GTA 6 — Specialized generation system ────────────────────────────────────
+// Completely isolated from the generic engine.
+// Each style has its own sub-generator with realistic GTA / RP / street logic.
+
+const GTA6 = {
+  // ── First names (Latino / Italian / American street) ──────────────────────
+  firstNames: [
+    "Carlos","Luis","Tony","Diego","Marco","Rafael","Miguel","Angelo",
+    "Rico","Dante","Victor","Eduardo","Antonio","Mateo","Alejandro",
+    "Sofia","Isabella","Lucia","Carmen","Elena","Rosa","Valentina",
+    "Tommy","Jason","Marcus","Ray","Tyrone","Malik","Andre","DeShawn",
+    "Luca","Nico","Pablo","Sergio","Hector","Ernesto","Raul","Ivan",
+  ],
+
+  // ── Last names (Latino / Italian / mixed) ─────────────────────────────────
+  lastNames: [
+    "Vega","Martinez","Moretti","Alvarez","Santos","Esposito","Delgado",
+    "Rossi","Romano","Torres","Reyes","Garcia","Rivera","Conti",
+    "DeLuca","Marchetti","Cruz","Flores","Ferrari","Colombo",
+    "Jimenez","Herrera","Medina","Castillo","Ramos","Ortega","Salazar",
+    "Ricci","Barbieri","Amato","Leone","Marino","Ferraro","Conti",
+  ],
+
+  // ── Nicknames used in RP / Mafia ──────────────────────────────────────────
+  // Format: Carlos "El Toro" Vega
+  nicknames: [
+    "El Toro","Ghost","Diablo","Scar","Shadow","Cobra","Tigre",
+    "El Lobo","Fantasma","El Cuchillo","Silencio","La Vibora",
+    "Serpiente","Machete","El Sicario","Viper","El Patron",
+  ],
+
+  // ── Street / Gang prefixes ────────────────────────────────────────────────
+  gangPrefixes: [
+    "Lil","Big","Young","OG","Baby","Dirty","Trap","Slim",
+    "Trigga","Ghost","Loc","Vato","Tiny","Solo","Lucky",
+  ],
+
+  // ── Street / Gang suffixes ────────────────────────────────────────────────
+  gangSuffixes: [
+    "Savage","Ghost","Rider","King","Shooter","Banger","Hustler",
+    "Loc","Capone","Cartel","Sicario","Santos","Reyes","Vega",
+  ],
+
+  // ── Dark words for Criminal / Outlaw combos ───────────────────────────────
+  darkWords: [
+    "Night","Shadow","Blood","Venom","Dark","Silent","Phantom",
+    "Vice","Death","Black","Cold","Steel","Iron","Viper",
+  ],
+
+  // ── GTA-universe nouns ────────────────────────────────────────────────────
+  gtaNouns: [
+    "Cartel","Syndicate","Familia","Phantom","Ghost","Reaper",
+    "Viper","Outlaw","Bandido","Sicario","Rider","Crew",
+  ],
+
+  // ── Kingpin / Boss titles ─────────────────────────────────────────────────
+  bossTitles: [
+    "ElPatron","ElJefe","ElPadrino","LaFamilia","ElGrande",
+    "TheDon","IlPatrone","ElBoss","LaVoz","ElSenor",
+  ],
+
+  // ── Crew / group name parts ───────────────────────────────────────────────
+  crewLocations: [
+    "Vice","Santos","Leonida","EastSide","SouthBeach","Downtown",
+    "WestSide","NorthSide","Uptown","Southside","305","786",
+  ],
+  crewNouns: [
+    "Cartel","Familia","Kings","Phantoms","Hustlers","Crew",
+    "Syndicate","Riders","Brotherhood","Saints","Vipers","Squad",
+  ],
+};
+
+// Style → generation route
+const GTA6_ROUTES = {
+  rp:"rp", character:"rp",
+  mafia:"mafia",
+  gang:"gang", street:"gang", hustler:"gang",
+  criminal:"criminal", outlaw:"criminal",
+  kingpin:"kingpin",
+  crew:"crew",
+};
+
+/** RP / Character → "Carlos Vega", "Luis 'El Toro' Martinez", "CarlosVega" */
+function _gta6RP(d) {
+  const first = p(d.firstNames), last = p(d.lastNames);
+  const r = Math.random();
+  if (r < 0.07) return `${first} '${p(d.nicknames)}' ${last}`; // rare full nickname format
+  if (r < 0.55) return `${first} ${last}`;                      // most common (spaces OK in GTA)
+  return first + last;                                           // gamertag-safe CamelCase
+}
+
+/** Mafia → DonVega, CapoEsposito, "Don Carlo Vega", ElPatron */
+function _gta6Mafia(d) {
+  const last = p(d.lastNames), first = p(d.firstNames);
+  const r = Math.random();
+  if (r < 0.28) return p(["Don","Capo","Boss","Patron","Padrino"]) + last;   // DonVega
+  if (r < 0.52) return `${p(["Don","Capo","Il","La"])} ${first} ${last}`;   // Don Carlo Vega
+  if (r < 0.72) return first + last;                                          // TonyMoretti
+  return p(d.bossTitles);                                                     // ElPatron
+}
+
+/** Gang / Street / Hustler → LilVega, RicoSavage, OGShadow, VegaRider */
+function _gta6Gang(d) {
+  const r = Math.random();
+  if (r < 0.38) return p(d.gangPrefixes) + p(d.lastNames);   // LilVega
+  if (r < 0.62) return p(d.firstNames)   + p(d.gangSuffixes);// RicoSavage
+  if (r < 0.80) return p(d.lastNames)    + p(d.gangSuffixes);// VegaRider
+  return p(d.gangPrefixes) + p(d.firstNames);                 // BigTony
+}
+
+/** Criminal / Outlaw → ShadowVega, ElBandido, ViceReaper, NightRider */
+function _gta6Criminal(d) {
+  const r = Math.random();
+  if (r < 0.33) return p(d.darkWords) + p(d.lastNames);    // ShadowVega
+  if (r < 0.58) return "El" + p([                          // ElBandido
+    "Bandido","Sicario","Fantasma","Lobo","Viper",
+    "Cobra","Diablo","Cuchillo","Sombra","Toro",
+  ]);
+  if (r < 0.78) return p(d.darkWords) + p(d.gtaNouns);     // BloodPhantom
+  return p(["Vice","Dark","Midnight","Iron","Steel"]) + p(["Rider","Ghost","Reaper","Viper","Outlaw"]);
+}
+
+/** Kingpin → ElPatron, DonVega, KingReyes, VegaBoss */
+function _gta6Kingpin(d) {
+  const r = Math.random();
+  if (r < 0.30) return p(d.bossTitles);                                           // ElPatron
+  if (r < 0.65) return p(["Don","King","Lord","Boss","ElGrande"]) + p(d.lastNames);// DonVega
+  return p(d.lastNames) + p(["Boss","King","Don","ElPatron"]);                     // VegaBoss
+}
+
+/** Crew → VegaCartel, EastSideKings, LosPhantoms */
+function _gta6Crew(d) {
+  const r = Math.random();
+  if (r < 0.35) return p(d.lastNames)      + p(d.crewNouns);       // VegaCartel
+  if (r < 0.62) return p(d.crewLocations)  + p(d.crewNouns);       // EastSideRiders
+  if (r < 0.80) return p(d.lastNames)      + p(["Cartel","Familia","Crew","Gang"]);
+  return p(["The","Los","Los Santos","Vice"]) + p(d.crewNouns);     // ThePhantoms
+}
+
+/**
+ * GTA 6 main router — calls the right sub-generator per style.
+ * Completely isolated: never touches the generic engine.
+ */
+function generateGTA6Name(style) {
+  const route = GTA6_ROUTES[style.toLowerCase()] || "gang";
+  switch (route) {
+    case "rp":       return _gta6RP(GTA6);
+    case "mafia":    return _gta6Mafia(GTA6);
+    case "gang":     return _gta6Gang(GTA6);
+    case "criminal": return _gta6Criminal(GTA6);
+    case "kingpin":  return _gta6Kingpin(GTA6);
+    case "crew":     return _gta6Crew(GTA6);
+    default:         return _gta6Gang(GTA6);
+  }
+}
+
 // ─── Hub bank lookup ───────────────────────────────────────────────────────────
 
 function getBank(gameName, style) {
@@ -213,6 +369,11 @@ function getBank(gameName, style) {
  * Falls back to gameWords if hub bank not found.
  */
 export function generateAdvancedName(gameWords, style, gameName, useSymbols) {
+  // ── GTA 6 → dedicated realistic generator (isolated system) ──────────────
+  if (gameName === "GTA 6" || gameName === "GTA") {
+    return generateGTA6Name(style);
+  }
+
   const bank = getBank(gameName, style);
 
   // If no hub bank, use gameWords with simple patterns

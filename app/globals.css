@@ -43,6 +43,12 @@ body {
   100% { transform: scale(1);    }
 }
 
+/* Elite card ambient pulse */
+@keyframes elite-pulse {
+  0%, 100% { box-shadow: 0 0 14px rgba(251,191,36,0.15), 0 2px 8px rgba(0,0,0,0.4); }
+  50%       { box-shadow: 0 0 28px rgba(251,191,36,0.32), 0 2px 8px rgba(0,0,0,0.4); }
+}
+
 /* Badge pop-in on first card */
 @keyframes badge-pop {
   from { opacity: 0; transform: translateY(-5px) scale(0.85); }

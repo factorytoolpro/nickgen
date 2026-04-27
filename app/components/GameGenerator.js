@@ -393,52 +393,204 @@ function BattleArena({ nameData, style, useSymbols, onShare, onCountIncrement })
   );
 }
 
+// ─── Card helpers ─────────────────────────────────────────────────────────────
+
+// Deterministic 0–1 seed from name (same name → same badge/flavor always)
+function _nameSeed(name) {
+  let h = 0;
+  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) & 0x7fffffff;
+  return (h % 10000) / 10000;
+}
+
+// Badge tiers: threshold is the max seed value to get that badge
+const _BADGES = [
+  { label: "👑 ELITE", color: "#fbbf24", bg: "rgba(251,191,36,0.18)", t: 0.05 },
+  { label: "💎 RARE",  color: "#a78bfa", bg: "rgba(167,139,250,0.16)", t: 0.13 },
+  { label: "🔥 HOT",   color: "#f97316", bg: "rgba(249,115,22,0.15)", t: 0.25 },
+  { label: "⚡ CLEAN", color: "#60a5fa", bg: "rgba(96,165,250,0.12)",  t: 0.38 },
+];
+
+const _FLAVORS = [
+  "🔥 Clean name",   "💀 Dark vibe",   "👑 Main character energy",
+  "⚡ Viral potential","🎯 Easy to remember","💎 Rare find",
+  "🌟 Stands out",   "🎮 Gamer energy", "🚀 FYP material",
+  "🧠 Unforgettable","🎭 Role play ready","💥 Impact name",
+];
+
 // ─── Name card ────────────────────────────────────────────────────────────────
 
-function NameCard({ name, isCopied, onCopy, onShare, isBest }) {
+function NameCard({ name, isCopied, onCopy, onShare, isBest, onBattle }) {
   const [hov, setHov] = useState(false);
+  const [saved, setSaved] = useState(false);
+
+  // Read saved state from localStorage on mount
+  useEffect(() => {
+    try {
+      const s = JSON.parse(localStorage.getItem("nickgen_saved") || "[]");
+      setSaved(s.includes(name));
+    } catch { /* ignore */ }
+  }, [name]);
+
+  const seed   = _nameSeed(name);
+  const badge  = isBest ? null : _BADGES.find(b => seed < b.t) || null;
+  const rarity = seed < 0.05 ? "elite" : seed < 0.13 ? "rare" : "normal";
+  const flavor = _FLAVORS[Math.floor(seed * _FLAVORS.length)];
+
+  const handleSave = () => {
+    try {
+      const key = "nickgen_saved";
+      const existing = JSON.parse(localStorage.getItem(key) || "[]");
+      const next = saved ? existing.filter(n => n !== name) : [...existing, name];
+      localStorage.setItem(key, JSON.stringify(next));
+      setSaved(!saved);
+    } catch { /* ignore */ }
+  };
+
+  // ── Rarity-driven visual tokens ──────────────────────────────────────────
+  const isElite = rarity === "elite", isRare = rarity === "rare";
+
+  const cardBg = isElite
+    ? hov ? "linear-gradient(135deg,rgba(52,36,8,0.99),rgba(42,28,5,0.99))" : "rgba(30,22,8,0.92)"
+    : isRare
+    ? hov ? "linear-gradient(135deg,rgba(30,18,58,0.99),rgba(24,14,52,0.99))" : "rgba(20,14,42,0.9)"
+    : hov ? "linear-gradient(135deg,rgba(24,36,75,0.98),rgba(30,20,58,0.95))" : isBest ? "rgba(18,27,56,0.92)" : "rgba(16,25,50,0.86)";
+
+  const cardBorder = isElite
+    ? `1px solid ${hov ? "rgba(251,191,36,0.75)" : "rgba(251,191,36,0.42)"}`
+    : isRare
+    ? `1px solid ${hov ? "rgba(167,139,250,0.75)" : "rgba(167,139,250,0.38)"}`
+    : `1px solid ${hov ? "rgba(249,115,22,0.65)" : isBest ? "rgba(249,115,22,0.32)" : "rgba(30,58,138,0.42)"}`;
+
+  const cardShadow = isElite
+    ? hov ? "0 8px 36px rgba(251,191,36,0.38),0 2px 8px rgba(0,0,0,0.45)" : "0 2px 16px rgba(251,191,36,0.18)"
+    : isRare
+    ? hov ? "0 8px 32px rgba(167,139,250,0.32),0 2px 8px rgba(0,0,0,0.45)" : "0 2px 14px rgba(167,139,250,0.14)"
+    : hov ? "0 8px 32px rgba(249,115,22,0.28),0 2px 8px rgba(0,0,0,0.4)" : isBest ? "0 2px 14px rgba(249,115,22,0.14)" : "0 2px 12px rgba(0,0,0,0.4)";
+
+  const glowColor = isElite ? "rgba(251,191,36,0.55)" : isRare ? "rgba(167,139,250,0.55)" : "rgba(249,115,22,0.5)";
+
   return (
-    <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+    <div
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
       style={{
         position: "relative",
-        background: hov
-          ? "linear-gradient(135deg,rgba(24,36,75,0.98),rgba(30,20,58,0.95))"
-          : isBest ? "rgba(18,27,56,0.90)" : "rgba(16,25,50,0.86)",
-        border: `1px solid ${hov ? "rgba(249,115,22,0.65)" : isBest ? "rgba(249,115,22,0.28)" : "rgba(30,58,138,0.42)"}`,
-        boxShadow: hov
-          ? "0 8px 32px rgba(249,115,22,0.25), 0 2px 8px rgba(0,0,0,0.4), inset 0 0 50px rgba(249,115,22,0.04)"
-          : isBest ? "0 2px 14px rgba(249,115,22,0.12)" : "0 2px 12px rgba(0,0,0,0.4)",
-        transform: hov ? "translateY(-4px) scale(1.02)" : "none",
+        background: cardBg,
+        border: cardBorder,
+        boxShadow: cardShadow,
+        transform: hov ? "translateY(-4px) scale(1.03)" : "none",
         transition: "all 0.2s cubic-bezier(0.34,1.56,0.64,1)",
+        animation: isElite ? "elite-pulse 3s ease-in-out infinite" : "none",
       }}
-      className="flex items-center justify-between rounded-xl px-4 py-3.5 gap-2"
+      className="flex flex-col rounded-2xl px-4 pt-5 pb-4 gap-3"
     >
+      {/* ── Best label ──────────────────────────────────────────────────── */}
       {isBest && (
         <div style={{
-          position: "absolute",
-          top: -11,
-          left: 10,
+          position: "absolute", top: -12, left: 10,
           background: "linear-gradient(135deg,#f97316,#ea580c)",
-          color: "#fff",
-          fontSize: 10,
-          fontWeight: 900,
-          padding: "2px 9px",
-          borderRadius: 20,
-          letterSpacing: "0.06em",
-          boxShadow: "0 2px 10px rgba(249,115,22,0.45)",
-          whiteSpace: "nowrap",
-          animation: "badge-pop 0.3s ease-out 0.15s both",
-          pointerEvents: "none",
+          color: "#fff", fontSize: 10, fontWeight: 900,
+          padding: "3px 10px", borderRadius: 20,
+          boxShadow: "0 2px 12px rgba(249,115,22,0.55)",
+          whiteSpace: "nowrap", letterSpacing: "0.06em",
+          animation: "badge-pop 0.3s ease-out 0.15s both", pointerEvents: "none",
         }}>
-          🔥 Best One
+          🔥 BEST PICK FOR YOU
         </div>
       )}
-      <span className="text-white font-bold flex-1" style={{ fontSize: 15, textShadow: hov ? "0 0 16px rgba(249,115,22,0.45)" : "none", overflowWrap: "anywhere", wordBreak: "break-word", minWidth: 0, letterSpacing: hov ? "0.01em" : "normal", transition: "all 0.2s ease" }}>{name}</span>
-      <div className="flex items-center gap-1.5 shrink-0">
-        <button onClick={onShare} title="Partager" className="text-sm px-2 py-1.5 rounded-lg transition-all" style={{ color: hov ? "#f97316" : "#475569", background: hov ? "rgba(249,115,22,0.1)" : "transparent" }}>📤</button>
-        <button onClick={() => onCopy(name)} className="text-xs font-black px-3 py-1.5 rounded-lg transition-all whitespace-nowrap"
-          style={isCopied ? { background: "rgba(74,222,128,0.15)", color: "#4ade80", border: "1px solid rgba(74,222,128,0.35)", minWidth: 72 } : { background: hov ? "rgba(249,115,22,0.18)" : "rgba(30,58,138,0.35)", color: hov ? "#f97316" : "#7dd3fc", border: `1px solid ${hov ? "rgba(249,115,22,0.4)" : "rgba(30,64,175,0.4)"}`, minWidth: 72 }}>
-          {isCopied ? "COPIED ✓" : "COPY"}
+
+      {/* ── Rarity badge ────────────────────────────────────────────────── */}
+      {badge && !isBest && (
+        <div style={{
+          position: "absolute", top: -10, right: 10,
+          background: badge.bg, color: badge.color,
+          fontSize: 9, fontWeight: 900,
+          padding: "2px 8px", borderRadius: 20,
+          border: `1px solid ${badge.color}45`,
+          whiteSpace: "nowrap",
+          animation: "badge-pop 0.3s ease-out 0.2s both", pointerEvents: "none",
+        }}>
+          {badge.label}
+        </div>
+      )}
+
+      {/* ── Pseudo — centré, hiérarchie principale ──────────────────────── */}
+      <div className="text-center">
+        <p
+          className="font-black break-all leading-tight"
+          style={{
+            fontSize: isBest ? 19 : 16,
+            color: "#f8fafc",
+            overflowWrap: "anywhere",
+            wordBreak: "break-word",
+            textShadow: hov ? `0 0 18px ${glowColor}` : isElite ? "0 0 10px rgba(251,191,36,0.22)" : isRare ? "0 0 8px rgba(167,139,250,0.18)" : "none",
+            transition: "text-shadow 0.2s ease",
+          }}
+        >
+          {name}
+        </p>
+        {/* Flavor */}
+        <p style={{ fontSize: 10, color: "#475569", marginTop: 4, fontWeight: 700, letterSpacing: "0.04em" }}>
+          {flavor}
+        </p>
+      </div>
+
+      {/* ── Actions ─────────────────────────────────────────────────────── */}
+      <div
+        className="flex items-center gap-1.5"
+        style={{ borderTop: "1px solid rgba(30,58,138,0.18)", paddingTop: 10 }}
+      >
+        {/* SAVE ❤️ */}
+        <button
+          onClick={handleSave}
+          className="text-xs font-black px-2.5 py-1.5 rounded-lg transition-all"
+          style={saved
+            ? { background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)" }
+            : { background: "transparent", color: "#475569", border: "1px solid rgba(30,58,138,0.25)" }
+          }
+          onMouseEnter={e => { if (!saved) { e.currentTarget.style.color = "#f87171"; e.currentTarget.style.borderColor = "rgba(239,68,68,0.35)"; } }}
+          onMouseLeave={e => { if (!saved) { e.currentTarget.style.color = "#475569"; e.currentTarget.style.borderColor = "rgba(30,58,138,0.25)"; } }}
+          title={saved ? "Retirer des favoris" : "Sauvegarder"}
+        >
+          {saved ? "❤️" : "🤍"}
+        </button>
+
+        {/* COPY ⎘ */}
+        <button
+          onClick={() => onCopy(name)}
+          className="flex-1 flex items-center justify-center gap-1 text-xs font-black py-1.5 rounded-lg transition-all"
+          style={isCopied
+            ? { background: "rgba(74,222,128,0.15)", color: "#4ade80", border: "1px solid rgba(74,222,128,0.35)" }
+            : { background: "rgba(249,115,22,0.12)", color: "#f97316", border: "1px solid rgba(249,115,22,0.32)" }
+          }
+        >
+          {isCopied ? "✓ COPIED" : "⎘ COPY"}
+        </button>
+
+        {/* BATTLE ⚔️ */}
+        {onBattle && (
+          <button
+            onClick={onBattle}
+            className="text-xs font-black px-2.5 py-1.5 rounded-lg transition-all"
+            style={{ background: "transparent", color: "#475569", border: "1px solid rgba(30,58,138,0.25)" }}
+            onMouseEnter={e => { e.currentTarget.style.color = "#f97316"; e.currentTarget.style.borderColor = "rgba(249,115,22,0.4)"; e.currentTarget.style.background = "rgba(249,115,22,0.08)"; }}
+            onMouseLeave={e => { e.currentTarget.style.color = "#475569"; e.currentTarget.style.borderColor = "rgba(30,58,138,0.25)"; e.currentTarget.style.background = "transparent"; }}
+            title="Battle Mode"
+          >
+            ⚔️
+          </button>
+        )}
+
+        {/* SHARE 📤 */}
+        <button
+          onClick={onShare}
+          className="text-xs font-black px-2.5 py-1.5 rounded-lg transition-all"
+          style={{ background: "transparent", color: "#475569", border: "1px solid rgba(30,58,138,0.25)" }}
+          onMouseEnter={e => { e.currentTarget.style.color = "#60a5fa"; e.currentTarget.style.borderColor = "rgba(30,64,175,0.5)"; }}
+          onMouseLeave={e => { e.currentTarget.style.color = "#475569"; e.currentTarget.style.borderColor = "rgba(30,58,138,0.25)"; }}
+          title="Partager"
+        >
+          📤
         </button>
       </div>
     </div>
@@ -1070,13 +1222,14 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
               {names.length > 0 ? (
                 <div>
                   <p className="text-xs text-center uppercase tracking-widest mb-5" style={{ color: "#334155" }}>{style} · {lengthFilter} · {useSymbols ? "Symbols ON" : "Symbols OFF"} · {names.length} names</p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {names.map((name, i) => (
                       <div
                         key={`${revealKey}-${i}`}
+                        className={i === 0 ? "sm:col-span-2" : ""}
                         style={{
-                          animation: `card-reveal 0.22s ease-out ${i * 70}ms both`,
-                          paddingTop: i === 0 ? 12 : 0,
+                          animation: `card-reveal 0.28s cubic-bezier(0.34,1.56,0.64,1) ${i * 80}ms both`,
+                          paddingTop: i === 0 ? 14 : 0,
                         }}
                       >
                         <NameCard
@@ -1085,6 +1238,7 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
                           onCopy={(n) => copyName(n, i)}
                           onShare={() => setShareTarget({ name, style })}
                           isBest={i === 0}
+                          onBattle={() => setMode("battle")}
                         />
                       </div>
                     ))}
