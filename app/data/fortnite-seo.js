@@ -73,8 +73,8 @@ export const FORTNITE_PAGES = {
   "sweaty-fortnite-names": {
     preSelectedStyle: "Sweaty",
     seo: {
-      title: "Sweaty Fortnite Names — Pseudos Sweaty Fortnite Générateur",
-      description: "Génère des sweaty Fortnite names professionnels : FaZe, NRG, TSM, _TTV, _GG. Les meilleurs pseudos sweaty Fortnite pour montrer que tu grind. Gratuit.",
+      title: "Sweaty Fortnite Names & Usernames — Best Sweaty Gamertags",
+      description: "Generate sweaty Fortnite names, usernames and gamertags: FaZe, NRG, TSM, _TTV, _GG. Best sweaty Fortnite nicknames for competitive players. Free.",
       keywords: ["sweaty fortnite names", "sweaty fortnite usernames", "sweaty fortnite name generator", "fortnite sweaty names", "sweaty names fortnite", "pseudo sweaty fortnite"],
       alternates: { canonical: `${BASE}/sweaty-fortnite-names` },
       openGraph: { title: "Sweaty Fortnite Names — NickGen", description: "Génère des sweaty Fortnite names professionnels : FaZe, NRG, _TTV, _GG.", url: `${BASE}/sweaty-fortnite-names` },
@@ -82,6 +82,23 @@ export const FORTNITE_PAGES = {
     intro: {
       h1: "Sweaty Fortnite Names",
       text: "Un sweaty Fortnite name, c'est le signal que tu envoies à tes adversaires dès le lobby : tu es là pour gagner. Les sweaty names Fortnite les plus efficaces combinent des préfixes d'organisations eSport (FaZe_, NRG_, C9_), des suffixes TTV ou YT pour signaler un streamer, et des mots comme Clutch, Grinder ou Phantom pour afficher ton niveau. Génère ton sweaty pseudo Fortnite avec NickGen.",
+    },
+    seoContent: {
+      sections: [
+        {
+          heading: "Sweaty Fortnite Names, Usernames & Gamertags",
+          text: "Sweaty Fortnite names, usernames and gamertags are designed to send a clear message before a single shot is fired: this player is serious. The best sweaty Fortnite usernames combine eSport organization prefixes (FaZe_, NRG_, C9_, 100T_, Liquid_) with content creator suffixes (_TTV, _YT) and skill-signaling words (Clutch, Grinder, Edit, Crank). Whether you need cool sweaty Fortnite names for ranked play, unique sweaty Fortnite gamertags for streaming, or classic sweaty Fortnite nicknames for competitive lobbies, NickGen generates professional-quality options instantly.",
+        },
+        {
+          heading: "Best Sweaty Fortnite Usernames for Competitive Play",
+          text: "The best sweaty Fortnite usernames in 2025 are short, aggressive and immediately recognizable. Top sweaty Fortnite gamertags feature gameplay-specific words: EditSpeed, ZeroPing, BoxFight, ClutchElim. The sweaty naming convention evolves with the meta — NickGen's Sweaty style tracks current competitive naming trends to generate modern, credible gamertags that fit the 2025 ranked ecosystem. Try also our Tryhard Fortnite Names for maximum leetspeak intensity.",
+        },
+        {
+          level: 3,
+          heading: "Sweaty Fortnite Nicknames vs Tryhard Names",
+          text: "Sweaty Fortnite nicknames emphasize eSport branding and professional aesthetics (FaZe_Clutch, NRG_Edit). Tryhard names go further with leetspeak and aggressive symbols (M4X_W1N, L33T_Crank). Both intimidate, but sweaty names carry more credibility. Also explore our OG Fortnite Names for veteran status or Cool Fortnite Usernames for a versatile identity.",
+        },
+      ],
     },
     faq: [
       { q: "C'est quoi un sweaty Fortnite name ?", a: "Un sweaty Fortnite name est un pseudo qui communique immédiatement que son porteur est un joueur compétitif et acharné. Ces noms incluent des préfixes d'orgas eSport (FaZe_, TSM_, 100T_), des suffixes TTV ou YT (pour simuler un streamer pro), et des mots évoquant l'élite comme Clutch, Apex ou Grinder." },
@@ -94,8 +111,8 @@ export const FORTNITE_PAGES = {
   "tryhard-fortnite-names": {
     preSelectedStyle: "Tryhard",
     seo: {
-      title: "Tryhard Fortnite Names — Générateur de Pseudo Tryhard Fortnite",
-      description: "Génère des tryhard Fortnite names uniques : leetspeak, symboles, ultra-compétitif. Les meilleurs pseudos tryhard Fortnite pour dominer le lobby. Gratuit.",
+      title: "Tryhard Fortnite Names, Usernames & Gamertags — Best Tryhard Nicknames",
+      description: "Generate tryhard Fortnite names, usernames and gamertags: leetspeak, symbols, ultra-competitive. Best tryhard Fortnite nicknames to dominate the lobby. Free.",
       keywords: ["tryhard fortnite names", "tryhard fortnite name generator", "fortnite tryhard username", "tryhard names fortnite", "pseudo tryhard fortnite", "best tryhard fortnite names"],
       alternates: { canonical: `${BASE}/tryhard-fortnite-names` },
       openGraph: { title: "Tryhard Fortnite Names — NickGen", description: "Génère des tryhard Fortnite names : leetspeak, symboles, ultra-compétitif.", url: `${BASE}/tryhard-fortnite-names` },
@@ -103,6 +120,23 @@ export const FORTNITE_PAGES = {
     intro: {
       h1: "Tryhard Fortnite Names",
       text: "Les tryhard Fortnite names sont conçus pour envoyer un message sans équivoque : tu es là pour dominer, pas pour t'amuser. Les meilleurs pseudos tryhard Fortnite jouent sur le leetspeak (M4X_, L33T_, H4X_), des symboles de puissance (Ω, ∞, Δ) et des mots évoquant la supériorité absolue — Godlike, Unstoppable, Flawless. Génère ton tryhard name Fortnite en un clic avec NickGen.",
+    },
+    seoContent: {
+      sections: [
+        {
+          heading: "Tryhard Fortnite Names, Usernames & Gamertags",
+          text: "Tryhard Fortnite names, usernames and gamertags are the most visually aggressive identities in competitive play. A tryhard Fortnite nickname uses selective leetspeak (4, 3, 1, 0 replacing letters), intensity-signal prefixes (xX, M4X_, L33T_) and power words (Godlike, Flawless, Unstoppable, Dominant). Cool tryhard Fortnite gamertags communicate maximum competitive effort before the match begins. The best tryhard Fortnite usernames combine multiple intimidation layers into one cohesive, memorable identity.",
+        },
+        {
+          heading: "Best Tryhard Fortnite Usernames with Leetspeak",
+          text: "The best tryhard Fortnite usernames master selective leetspeak — replacing 1-2 key letters creates visual impact without sacrificing readability. M4X_Clutch, L33T_Edit, W1N_Zone — these unique tryhard Fortnite gamertags are instantly recognizable as competitive. NickGen's Tryhard generator applies optimal leetspeak transformations combined with power symbols (Ω, ∞, Δ) for maximum impact.",
+        },
+        {
+          level: 3,
+          heading: "Tryhard Fortnite Nicknames — Related Competitive Names",
+          text: "Tryhard Fortnite nicknames are for players who want maximum visual aggression. For a more polished competitive look, explore our Sweaty Fortnite Names with eSport branding. For veteran credibility, try OG Fortnite Usernames. For dark intensity without leetspeak, check our Badass Fortnite Gamertags.",
+        },
+      ],
     },
     faq: [
       { q: "Qu'est-ce qu'un tryhard name sur Fortnite ?", a: "Un tryhard Fortnite name communique une intensité maximale et une volonté de gagner à tout prix. Ces pseudos utilisent le leetspeak (remplacer des lettres par des chiffres : M4X, L33T, H4X), des préfixes agressifs et des mots évoquant la domination totale : Godlike, Unstoppable, Infinite, Flawless." },
@@ -115,8 +149,8 @@ export const FORTNITE_PAGES = {
   "og-fortnite-names": {
     preSelectedStyle: "OG",
     seo: {
-      title: "OG Fortnite Names — Pseudos OG Fortnite Originaux",
-      description: "Génère des OG Fortnite names authentiques : _OG, _2011, _Legacy, _Classic. Montre que tu étais là avant tout le monde avec un pseudo OG Fortnite. Gratuit.",
+      title: "OG Fortnite Names, Usernames & Gamertags — Best OG Nicknames",
+      description: "Generate OG Fortnite names, usernames and gamertags: _OG, _2011, _Legacy, _Classic. Best OG Fortnite nicknames for veteran players. Prove you were there first.",
       keywords: ["og fortnite names", "og fortnite usernames", "original fortnite names", "fortnite og names", "pseudo og fortnite", "og names fortnite 2025"],
       alternates: { canonical: `${BASE}/og-fortnite-names` },
       openGraph: { title: "OG Fortnite Names — NickGen", description: "Génère des OG Fortnite names authentiques : _OG, _Legacy, _Classic.", url: `${BASE}/og-fortnite-names` },
@@ -124,6 +158,23 @@ export const FORTNITE_PAGES = {
     intro: {
       h1: "OG Fortnite Names",
       text: "Les OG Fortnite names sont le badge ultime du vétéran — un signal que tu étais là avant la popularité du jeu. Un pseudo OG Fortnite authentique inclut des suffixes nostalgiques comme _OG, _2011, _2012, _Legacy ou _Original, associés à des mots qui évoquent la grandeur : Legend, King, Champion, Pioneer. Génère ton nom OG Fortnite avec NickGen et affirme ton ancienneté.",
+    },
+    seoContent: {
+      sections: [
+        {
+          heading: "OG Fortnite Names, Usernames & Gamertags",
+          text: "OG Fortnite names, usernames and gamertags represent the ultimate veteran identity. An OG Fortnite nickname instantly communicates that you were part of the original community — before the mainstream explosion. The best OG Fortnite usernames blend nostalgic references (Season1, Chapter1, Tilted, Dusty) with time-stamped suffixes (_2018, _S1, _OG, _Legacy). Whether you want cool OG Fortnite names, unique OG Fortnite gamertags or classic OG Fortnite nicknames, NickGen generates authentic combinations that honor early Fortnite culture.",
+        },
+        {
+          heading: "Best OG Fortnite Usernames & Nicknames in 2025",
+          text: "The best OG Fortnite usernames in 2025 keep the classic aesthetic alive while remaining fresh. Good OG Fortnite nicknames reference early Fortnite culture: Chapter1_, S1_, Day1_ prefixes signal veteran status immediately. Unique OG Fortnite gamertags avoid overused combinations — pair nostalgic words (Tilted, Dusty, Vault) with original suffixes (_Original, _2018, _S1). NickGen's OG style generator produces filtered, quality-scored results.",
+        },
+        {
+          level: 3,
+          heading: "Cool OG Fortnite Gamertags vs Sweaty Names",
+          text: "Cool OG Fortnite gamertags stay clean and classic — no modern trends like .exe or .vibe. The most sought-after OG Fortnite names feel earned rather than generated. For competitive vibes, explore our Sweaty Fortnite Names. For humor, try Funny Fortnite Usernames. For visual flair, check Aesthetic Fortnite Names.",
+        },
+      ],
     },
     faq: [
       { q: "Qu'est-ce qu'un OG Fortnite name ?", a: "Un OG Fortnite name (OG = Original Gangster) est un pseudo qui signale que son porteur joue à Fortnite depuis les débuts du jeu (2017-2018). Ces noms incluent des suffixes temporels (_2011, _2012, _2018), des références à la culture OG gaming et des termes de respect comme Legend, Veteran ou Pioneer." },
