@@ -1,171 +1,150 @@
 /**
- * NickGen Advanced Name Engine — 2025
- * Generates authentic, stylized, platform-appropriate usernames.
+ * NickGen Pro Engine v3 — Hub-isolated high-quality generation
+ * Each hub has its own word banks. Universes never mix.
  */
 
-// ─── Global quality word pools ────────────────────────────────────────────────
+// ─── Hub-isolated word banks ──────────────────────────────────────────────────
 
-const POOL = {
-  // Short impactful roots (4-7 chars, great in any combo)
-  core: ["Void", "Storm", "Flux", "Nova", "Apex", "Zero", "Peak", "Edge", "Core", "Rift",
-         "Neon", "Slick", "Sharp", "Crisp", "Bold", "Grit", "Haze", "Sync", "Echo", "Phase"],
-
-  // Energy & movement
-  energy: ["Surge", "Rush", "Blaze", "Flash", "Bolt", "Spark", "Arc", "Volt", "Charge", "Pulse",
-            "Wave", "Flow", "Tide", "Drift", "Shift", "Burst", "Dash", "Zip", "Rip", "Cut"],
-
-  // Nature & atmosphere
-  nature: ["Luna", "Frost", "Bloom", "Ember", "Mist", "Dusk", "Dawn", "Veil", "Ash", "Haze",
-            "Jade", "Flint", "Reef", "Crest", "Vale", "Glade", "Slate", "Cove", "Fern", "Dune"],
-
-  // Dark & mysterious
-  dark: ["Wraith", "Shade", "Raven", "Ghost", "Specter", "Noir", "Vex", "Dusk", "Gloom", "Umbre",
-          "Reaper", "Bane", "Ruin", "Doom", "Wrath", "Scorn", "Fang", "Claw", "Grim", "Dirge"],
-
-  // Tech & abstract
-  tech: ["Pixel", "Cache", "Node", "Token", "Stack", "Byte", "Grid", "Link", "Scope", "Prism",
-          "Vector", "Matrix", "Cipher", "Binary", "Codec", "Kernel", "Proxy", "Index", "Shard", "Mesh"],
-
-  // Aesthetic & soft
-  soft: ["Luna", "Lyra", "Aura", "Lune", "Iris", "Miel", "Sable", "Pearl", "Dewey", "Mochi",
-          "Pastel", "Velvet", "Lush", "Serene", "Mellow", "Hazy", "Dreamy", "Dainty", "Wispy", "Glassy"],
-
-  // Viral & internet culture
-  viral: ["Vibe", "Hype", "Slay", "Drip", "Flex", "Lit", "Fire", "Clout", "Wave", "Trend",
-           "Chaos", "Era", "Szn", "Arc", "Core", "Mode", "Run", "Moment", "Move", "Energy"],
-
-  // RP & realism
-  realist: ["Marco", "Dante", "Rico", "Angelo", "Diego", "Leon", "Santi", "Victor", "Remy", "Cayo",
-             "Rivera", "Santos", "Cruz", "Vega", "Torres", "Reyes", "Morales", "Delgado", "Rojas", "Luna"],
-};
-
-// ─── Hub-specific augments ─────────────────────────────────────────────────────
-// These blend with the game's existing nameData.words for contextual richness
-
-const HUB = {
+const BANKS = {
   Fortnite: {
-    sweaty:    ["Edit", "Crank", "Elim", "Zone", "Piece", "Storm", "Clutch", "Pump", "Box", "Build"],
-    funny:     ["Llama", "Default", "Troll", "Noob", "Rotate", "Loot", "Revive", "Bush", "Medkit", "Storm"],
-    og:        ["Season1", "Chapter1", "Tilted", "Dusty", "Launch", "Vault", "OGWin", "Classic", "Trophy", "Veteran"],
-    tryhard:   ["ZeroPing", "60fps", "Flick", "AimAssist", "BuildFight", "ClickSpeed", "TrackRate", "Mongraal", "React", "Input"],
-    badass:    ["Titan", "Slayer", "Warlord", "Destroyer", "Ravager", "Skull", "Inferno", "Wreck", "Savage", "Fury"],
+    sweaty:    { roots: ["Edit","Crank","Elim","Clutch","Zone","Piece","Storm","Pump","Build","Boxfight","Layer","Reset","Sprint","Piece","ZeroPing"],            pfx: ["FaZe","NRG","C9","TSM","100T","Pro","Real","Top","Raw"],   sfx: ["TTV","YT","GG","W","Dubs","Clips","Edits"] },
+    tryhard:   { roots: ["AimBot","FlickShot","ZeroPing","BuildFight","ClickTime","TrackRate","EditSpeed","ReactTime","Mongraal","60fps"],                         pfx: ["xX","0ms","Max","L33T","W1N"],                             sfx: ["999","666","TH","1v1","Ranked"] },
+    funny:     { roots: ["Llama","Default","Noob","Camper","Loot","Troll","Rotate","Medkit","BushHide","Revive","Tilted","Storm"],                                  pfx: ["Im_A_","Just_","Local_","Free_","Your_"],                  sfx: ["_Lol","_Oof","_Bruh","_Ngl","_Fr"] },
+    og:        { roots: ["Tilted","Dusty","Season1","Chapter1","Default","Veteran","Launch","Vault","OGWin","Classic","Trophy","S1"],                               pfx: ["OG_","S1_","Day1_","Real_","Chapter1_"],                   sfx: ["_OG","_S1","_2018","_Legacy","_Classic"] },
+    badass:    { roots: ["Reaper","Titan","Slayer","Warlord","Destroyer","Skull","Inferno","Savage","Fury","Nemesis","Ravager","Wreck"],                            pfx: ["Dark","Storm","Iron","Black","Death","Grim"],              sfx: ["X","Z","_Prime","666","_Alpha","_Sigma"] },
+    aesthetic: { roots: ["Lunar","Solar","Frost","Neon","Crystal","Aurora","Void","Phantom","Nexus","Seraph","Lyra","Aether"],                                     pfx: ["✦","☽","◈","★"],                                         sfx: ["✦","☽","◈","♡"] },
   },
+
   Roblox: {
-    cute:      ["Bunny", "Star", "Cloud", "Petal", "Honey", "Sugar", "Mochi", "Boba", "Sprinkle", "Glitter"],
-    cool:      ["Shadow", "Nova", "Apex", "Surge", "Titan", "Strike", "Nexus", "Blaze", "Core", "Edge"],
-    funny:     ["BaconHair", "OofMaster", "GuestMode", "Scammer", "Moderator", "AdminAbuse", "NubSlay", "TradeBot", "LimitedHunt", "Sussy"],
-    aesthetic: ["Dreamcore", "Softlight", "Moonveil", "Starbloom", "Lunarise", "Cloudberry", "Mochipetal", "Sugarfrost", "Lilacwave", "Ivorybloom"],
-    proplayer: ["GrindSet", "SkillCheck", "MetaSlayer", "OpCombo", "CarryMode", "SweatLord", "RankedUp", "TopFragger", "FlickMaster", "AimGod"],
+    cute:      { roots: ["Bunny","Star","Cloud","Petal","Honey","Kawaii","Glitter","Angel","Mochi","Bloom","Sparkle","Sugar"],                                     pfx: ["Lil_","Sweet_","Baby_","Tiny_","Soft_"],                   sfx: ["_Uwu","_Soft","_Pink","Xo","_Bb"] },
+    cool:      { roots: ["Shadow","Storm","Nova","Edge","Blaze","Strike","Titan","Nexus","Force","Core","Alpha","Surge"],                                           pfx: ["Dark_","Pro_","Ultra_","Epic_","Mega_"],                   sfx: ["_X","_Pro","_GG","_V2","_Elite"] },
+    funny:     { roots: ["BaconHair","OofMaster","Troll","Lag","Scammer","Admin","Guest","Mod","Sussy","Impostor","Hacker","Noob"],                                 pfx: ["Im_","Local_","Fake_","NotA_","Just_"],                    sfx: ["_Oof","_Lol","_XD","_Bruh","_Banned"] },
+    proplayer: { roots: ["Clutch","Carry","Grind","Meta","Combo","Skill","Slay","Aim","OP","Win","GrindSet","SweatLord"],                                          pfx: ["Top_","Pro_","God_","Elite_","Ranked_"],                   sfx: ["_Pro","_GG","_W","_TTV","_1v1"] },
+    aesthetic: { roots: ["Lunar","Aurora","Crystal","Dreamer","Starlight","Moonbeam","Glimmer","Shimmer","Ethereal","Celestial","Twilight","Radiance"],            pfx: ["Soft_","Dream_","Moon_","Star_","Cloud_"],                 sfx: ["_Dream","_Glow","_Sky","_Star","_Moon"] },
   },
+
   TikTok: {
-    viral:     ["FYPKing", "ViewsBug", "ForYouPage", "DuetThis", "TrendSetter", "ViralClip", "BlownUp", "Fypage", "SlateTok", "Cloutchase"],
-    aesthetic: ["softluna", "itsdreamy", "mellowglow", "starbloom", "hazyvibe", "lunasoft", "dreamymist", "pastelwave", "moonlush", "isleydrift"],
-    clean:     ["CleanShot", "CrispEdit", "SharpEye", "NeatVibes", "PureWave", "FreshCut", "CleanVibes", "StillWater", "ClearNote", "LightTouch"],
-    funny:     ["LiterallyMe", "NotUnhinged", "SaneEnough", "NormalTok", "NullPointer", "Chaos.exe", "LocalGremlin", "CertifiedMess", "PovClown", "EraOfChaos"],
-    influencer:["ItsKayla", "JustVibing", "DailyDose", "MainContent", "CreatorMode", "BrandBuildr", "ContentLife", "XoJourney", "ShowRunnerr", "MyStudio"],
+    viral:     { roots: ["FYP","Views","Duet","Clip","Vibe","Slay","Trend","Wave","Hit","Fire","Viral","Content"],                                                 pfx: ["its","notthe","official_","real_","the"],                  sfx: ["_tv","tok","_official",".fy","_clips"] },
+    aesthetic: { roots: ["Celestial","Dreamy","Neon","Pastel","Bloom","Mellow","Haze","Glow","Lush","Velvet","Drift","Lune"],                                     pfx: ["soft.","luna.","star.","its.","mellow."],                  sfx: [".glow","_soft",".lush","_dreamy"] },
+    clean:     { roots: ["Clean","Sharp","Light","Pure","Fresh","Crisp","Smooth","Calm","Still","Clear","Neat","Simple"],                                          pfx: ["its","the","just","only","hey"],                          sfx: ["x","1","7","99","0"] },
+    funny:     { roots: ["Chaotic","POV","Unhinged","Gremlin","Goblin","Clown","Awkward","NPC","Flop","Era","Chaos","Rat"],                                        pfx: ["im_a_","just_","local_","literally_","not_"],              sfx: [".exe","_irl","_pov","_era","_szn"] },
+    influencer:{ roots: ["Creator","Content","Brand","Daily","Life","Vibes","Energy","Goals","World","Show","Story","Journey"],                                    pfx: ["its","xo","hey","just","im"],                             sfx: ["_official","_daily","_tv","_studio","_creates"] },
   },
+
   GTA: {
-    rp:        ["TommyVera", "RicoSantos", "MarcoCruz", "DanteTorres", "LuisVega", "CarlosReyes", "JasperMoore", "RayMorales", "TyroneWebb", "MiguelRojas"],
-    gang:      ["EastViper", "SouthRider", "ViceCartel", "BlockKing", "GroveRep", "StreetShot", "HoodClick", "BayBanger", "NorthSet", "LeonaRep"],
-    criminal:  ["HeistKing", "ScoreDrop", "LickMaster", "MoveFlipper", "JobRunner", "MarkHunter", "JobDropper", "CrowbarKid", "SmokeSign", "NeonJob"],
-    outlaw:    ["RoadRunner", "LoneRider", "RebelYell", "WantedMan", "FugitiveX", "RogueRider", "BanditKing", "OutlawDawn", "WildFlight", "DustDevil"],
-    mafia:     ["DonValentini", "CapoEsposito", "BossMarco", "PatronDeLuca", "SenhorMoraes", "SignorRicci", "PatreConti", "CaporegRomano", "ConsigliereAmato", "UnderbossMarin"],
+    rp:        { roots: ["Rivera","Santos","Cruz","Torres","Vega","Martinez","Reyes","Castillo","Morales","Delgado","Ramirez","Espinoza"],                         pfx: ["Tommy_","Luis_","Carlos_","Marcus_","Rico_","Dante_"],     sfx: ["_RP","_305","_Vice","_VI"] },
+    gang:      { roots: ["Cartel","Viper","Grove","Banger","Block","Hood","Rider","Click","Shot","Set","Rep","Kingpin"],                                           pfx: ["East_","South_","Vice_","Leonida_","Beach_"],              sfx: ["_Gang","_Set","_Block","_Hood","_Click"] },
+    criminal:  { roots: ["Heist","Score","Hustle","Grind","Chase","Paper","Drip","Stack","Flip","Drop","Lick","Flow"],                                             pfx: ["Vice_","Miami_","Neon_","South_","305_"],                  sfx: ["_VC","_305","_786","_Bando"] },
+    outlaw:    { roots: ["Bandit","Outlaw","Renegade","Maverick","Drifter","Fugitive","Desperado","Rogue","Exile","Wanted","Runaway","Vagrant"],                   pfx: ["Wild_","Free_","Lone_","Rebel_","Rogue_"],                 sfx: ["_666","_Wanted","_Law","_Free","_Out"] },
+    mafia:     { roots: ["Valentini","Esposito","DeLuca","Marchetti","Carbone","Ricci","Romano","Ferraro","Conti","Moretti","Barbieri","Amato"],                   pfx: ["Don_","Il_","La_","Capo_","Boss_"],                        sfx: ["_Don","_Capo","_Boss","_Famiglia"] },
+    character: { roots: ["Valentino","Esposito","DeLuca","Marchetti","Carbone","Ricci","Romano","Ferraro","Conti","Marino","Leone","Riva"],                        pfx: ["Vice_","Miami_","Neon_","Palm_","Ocean_"],                 sfx: ["_VC","_305","_VI","_Vice","_786"] },
   },
-  Discord: {
-    aesthetic: ["softluna", "starbloom", "dreamveil", "moonhaze", "ivorywave", "lunahaze", "velvetdrift", "pearlysoft", "hushbloom", "aurorasoft"],
-    cool:      ["VoidServer", "NeonBot", "CacheNode", "ProxyStack", "SyncToken", "GridLink", "ShardCore", "IndexByte", "MeshProxy", "CodeLayer"],
-    funny:     ["LocalGoblin", "PingAbuser", "LagWizard", "AdminBait", "NerdAlert", "ModSleeping", "GhostPing", "RatInServer", "ChaosMod", "GremlinMode"],
-    cute:      ["TinyMochi", "SweetBoba", "FluffyPetal", "LilCloud", "BabyBloom", "SoftSprinkle", "IttyHoney", "MiniDaisy", "SmolStar", "TinyPebble"],
-    unique:    ["xn.Axiom", "qz.Vesper", "vy.Lazuli", "nv.Selene", "kx.Aether", "zr.Tempest", "Axiom.ix", "Quasar.og", "Vesper.rare", "Noctis.unit"],
-  },
+
   Minecraft: {
-    survival:  ["DiamondMiner", "CaveRunner", "NetherWalker", "EndSlayer", "PhantomHunter", "CreeperBane", "ZombieFarm", "SpiderSlayer", "PortalMaker", "VillageGuard"],
-    pvp:       ["ComboKing", "PearlGod", "CritLord", "SwordMaster", "AxeSwing", "BridgePro", "ClickSpeed", "StrafeMaster", "ResetKing", "ClutchPearl"],
-    creative:  ["VoxelMaster", "PixelArchitect", "BlueprintGod", "CanvasBuilder", "LayerCraft", "GridDesigner", "FrameArtist", "TilesetPro", "RenderKing", "AssetBuilder"],
-    redstone:  ["ClockMaker", "PistonKing", "CircuitGod", "LogicMaster", "GateCrafter", "SignalPro", "MemoryBuild", "PulseEngineer", "ObserverCraft", "ComparatorX"],
-    builder:   ["CastleForge", "TowerArch", "BridgeCraft", "CathedralBuild", "DomeMaster", "FortressKing", "TempleArch", "PalaceBuild", "MansionCraft", "CitadelPro"],
+    survival:  { roots: ["Diamond","Creeper","Enderman","Nether","Cave","Spider","Zombie","Village","Portal","Chest","Mine","Harvest"],                           pfx: ["Cave_","Deep_","Wild_","Dark_","Lost_"],                   sfx: ["_SMP","_MC","_S1","_Cave","_Craft"] },
+    pvp:       { roots: ["Combo","Crit","Sword","Axe","Strafe","Pearl","Duel","Click","Knockback","Bridge","Reset","Clutch"],                                      pfx: ["xX_","God_","Top_","Click_","Kill_"],                     sfx: ["_PvP","_CPS","_GG","_1v1","_Combo"] },
+    creative:  { roots: ["Pixel","Blueprint","Voxel","Canvas","Render","Sketch","Layer","Grid","Frame","Asset","Palette","Tileset"],                              pfx: ["Pixel_","Map_","Build_","Art_","Design_"],                 sfx: ["_Build","_Map","_Dev","_Art","_Create"] },
+    redstone:  { roots: ["Piston","Comparator","Repeater","Dispenser","Hopper","Observer","Dropper","Clock","Memory","Gate","Pulse","Timer"],                     pfx: ["Logic_","Circuit_","Clock_","Gate_","Signal_"],            sfx: ["_RS","_RC","_Logic","_Clock","_Bot"] },
+    builder:   { roots: ["Castle","Tower","Bridge","Cathedral","Arch","Dome","Fortress","Temple","Palace","Citadel","Mansion","Hamlet"],                          pfx: ["Master_","Epic_","Grand_","Mega_","Pro_"],                 sfx: ["_Build","_Craft","_Arch","_GG","_MC"] },
   },
+
   Valorant: {
-    agent:     ["PhoenixPrime", "CipherSeven", "BreachFlash", "ViperWall", "KilljoyTurret", "FadeMark", "NeonDash", "KayoSup", "OmenSmoke", "SovaArrow"],
-    duelist:   ["JettDash", "RazeBlast", "ReynaFeed", "NeonSprint", "PhoenixFlash", "IsoShield", "EntryFrag", "AcePop", "PeekKing", "FragLord"],
-    controller:["ViperLine", "OmenTele", "BrimSmoke", "HarborWall", "AstraOrb", "MollyPost", "WallSetup", "SmokeBlock", "ZoneClear", "PostPlant"],
-    initiator: ["SovaDrone", "BreachShock", "FadeReveal", "SkyeFlash", "KayoSuppress", "GekkoWingman", "DartRecon", "ArrowScan", "IntelRun", "FlashFire"],
-    sentinel:  ["KilljoyBot", "CypherCam", "SageWall", "ChamberTP", "DeadlockNet", "VyseTrap", "WireFlank", "TripAnchor", "LockHold", "GuardPost"],
+    agent:      { roots: ["Cipher","Phoenix","Breach","Viper","Killjoy","Fade","Neon","KayO","Omen","Sova","Jett","Sage"],                                        pfx: ["Op_","Agent_","Zero_","Delta_","Echo_"],                   sfx: ["_VII","_Prime","_GE","_EU","_NA"] },
+    duelist:    { roots: ["Jett","Raze","Reyna","Neon","Phoenix","Iso","Dash","Ace","Entry","Flash","Frag","PopFlash"],                                            pfx: ["Rush_","Entry_","Frag_","Ace_","Peek_"],                   sfx: ["_Ace","_Frag","_Entry","_Duel","_Aim"] },
+    controller: { roots: ["Viper","Omen","Brimstone","Harbor","Astra","Smokes","Molly","Orbit","Wall","Block","Setup","Control"],                                 pfx: ["Smoke_","Post_","Line_","Zone_","Setup_"],                 sfx: ["_Smoke","_Post","_Zone","_Line","_Setup"] },
+    initiator:  { roots: ["Sova","Breach","Fade","Skye","KayO","Gekko","Drone","Arrow","Recon","Intel","Ult","Reveal"],                                           pfx: ["Flash_","Recon_","Scan_","Dart_","Info_"],                 sfx: ["_Intel","_Info","_Scan","_Recon","_Flash"] },
+    sentinel:   { roots: ["Killjoy","Cypher","Sage","Chamber","Deadlock","Vyse","Turret","Wire","Flank","Trip","Anchor","Watch"],                                 pfx: ["Lock_","Flank_","Trip_","Wire_","Hold_"],                  sfx: ["_Lock","_Guard","_Watch","_Trip","_Flank"] },
   },
+
   Apex: {
-    legend:    ["WraithVoid", "OctaneBoost", "LifelineRes", "BloodhoundTrack", "PathfinderSwing", "BangaloreDig", "RevenantDeath", "SeerPulse", "HorizonGrav", "GibraltarShield"],
-    aggressive:["ThirstKing", "PushFlanker", "DiveMaster", "FightSeeker", "FragDiver", "RushBlitz", "AttackDog", "HunterX", "AggroSlayer", "DiveLog"],
-    support:   ["ResMachine", "MedicAnch", "ShieldCarry", "BackboneX", "ClutchpackPro", "GuardianX", "ProtectBot", "CoverKing", "HealField", "CarePackage"],
-    recon:     ["BloodhoundX", "CryptoBot", "SeerPing", "VantageScope", "TrackerPro", "ScanKing", "DroneEye", "RadarPing", "TagMaster", "IntelBot"],
-    wraith:    ["VoidPhase", "RiftBlink", "PhaseShift", "QuantumGhost", "TunnelFade", "PortalKing", "NexusBlink", "ShadowRift", "DimPhantom", "VortexVoid"],
+    legend:     { roots: ["Wraith","Octane","Lifeline","Bloodhound","Pathfinder","Bangalore","Revenant","Seer","Horizon","Gibraltar","Catalyst","Ballistic"],     pfx: ["Apex_","Pred_","Master_","Plat_","Gold_"],                 sfx: ["_TTV","_Pred","_Master","_Mains","_GG"] },
+    aggressive: { roots: ["Thirsti","Pusher","Flanker","Diver","Fighter","Fragger","Rusher","Aggro","Slayer","Hunter","Grinder","Blitz"],                          pfx: ["Rush_","Push_","Thirst_","Fight_","Down_"],                sfx: ["_Kills","_Frag","_Rush","_TTV","_W"] },
+    support:    { roots: ["Lifeline","Medic","Reviver","Backbone","Clutchpack","Guardian","Shield","Carrier","Anchor","Cover","Heal","Protect"],                  pfx: ["Res_","Revive_","Carry_","Save_","Shield_"],               sfx: ["_Res","_Heal","_Support","_GG","_TTV"] },
+    recon:      { roots: ["Bloodhound","Crypto","Seer","Vantage","Tracker","Scanner","Drone","Radar","Ping","Tag","Intel","Sensor"],                              pfx: ["Scout_","Track_","Eye_","Scan_","Drone_"],                 sfx: ["_Scan","_Eye","_Track","_Intel","_Tag"] },
+    wraith:     { roots: ["Void","Rift","Phase","Nexus","Portal","Ghost","Fade","Shadow","Quantum","Phantom","Blink","Tunnel"],                                   pfx: ["Void_","Rift_","Phase_","Into_","Quantum_"],               sfx: ["_Void","_Rift","_Ghost","_Phase","_Dark"] },
   },
+
   COD: {
-    operator:  ["GhostSoap", "PriceSix", "GravesActual", "RoachTwo", "GazLead", "FarahOps", "KönigMask", "MacTavish141", "ShepherdBad", "NikolaiBase"],
-    ghost:     ["PhantomSilent", "SpecterDark", "RevenantNight", "EclipseStealth", "VeilShade", "ReaperBlack", "BansheeX", "NightfallSilent", "ApparitionX", "UmbraGhost"],
-    warzone:   ["GulagKing", "PlunderPro", "ContractX", "LoadoutDrop", "ReviveMaster", "GasClear", "CircleWin", "RotatePush", "ClutchFinal", "BuyStation"],
-    tactical:  ["AlphaLead", "BravoActual", "CharlieSix", "DeltaTwo", "EchoLead", "FoxtrotOps", "HotelActual", "IndiaLead", "JulietActual", "KiloOps"],
-    prestige:  ["MaxRankX", "NuclearWin", "DiamondMaster", "PlatElite", "ChampionX", "PrestigeLord", "EliteLegend", "MasterIcon", "GloryMaster", "IconMythic"],
+    operator:  { roots: ["Ghost","Soap","Price","Graves","Roach","Gaz","Farah","König","Shepherd","Makarov","Alejandro","Horangi"],                               pfx: ["Sgt_","Spec_","Op_","Cpt_","Lt_"],                        sfx: ["_141","_Ops","_Actual","_Six","_Lead"] },
+    ghost:     { roots: ["Phantom","Specter","Revenant","Eclipse","Veil","Reaper","Banshee","Nightfall","Shade","Wraith","Apparition","Umbra"],                   pfx: ["Shadow_","Dark_","Silent_","Black_","Night_"],             sfx: ["_Ghost","_Shadow","_Dark","_Recon","_Silent"] },
+    warzone:   { roots: ["Gulag","Plunder","Contract","Loadout","Revive","Gas","Circle","Rotate","Clutch","Final","Loot","Bounty"],                               pfx: ["WZ_","Gulag_","Circle_","Drop_","Gas_"],                  sfx: ["_WZ","_Dub","_Win","_GG","_Drop"] },
+    tactical:  { roots: ["Alpha","Bravo","Charlie","Delta","Echo","Foxtrot","Hotel","India","Juliet","Kilo","Lima","Sierra"],                                     pfx: ["Alpha_","Bravo_","Charlie_","Delta_","Echo_"],            sfx: ["_Actual","_Lead","_Two","_Six","_Ops"] },
+    prestige:  { roots: ["MaxRank","Nuclear","Diamond","Platinum","Champion","Prestige","Elite","Legend","Master","Glory","Icon","Myth"],                         pfx: ["Max_","Nuke_","Diamond_","Gold_","Damasc_"],              sfx: ["_P10","_Master","_Elite","_Legend","_GG"] },
+  },
+
+  Discord: {
+    aesthetic: { roots: ["Luminous","Celestial","Velvet","Solace","Aurora","Prism","Iris","Mirage","Lyra","Bloom","Zephyr","Opaque"],                            pfx: ["Soft_","Luna_","Star_","Neon_","Dream_"],                  sfx: ["_glow","_soft","_bloom","_dream","_haze"] },
+    cool:      { roots: ["Server","Bot","Dev","Token","Node","Core","API","Cache","Proxy","Stack","Sync","Nexus"],                                                pfx: ["Dark_","Neo_","Cyber_","Void_","Ultra_"],                  sfx: ["_x","_dev","_gg","_v2","_zero"] },
+    funny:     { roots: ["Ping","Meme","Vibe","Chaos","Admin","Troll","Mod","Nerd","Lurker","Lag","Afk","Spam"],                                                  pfx: ["im_","local_","not_a_","your_","just_"],                   sfx: ["_lol","_xd","_bruh","_irl","_rip"] },
+    cute:      { roots: ["Mochi","Biscuit","Pudding","Pebble","Sprinkle","Clover","Daisy","Maple","Cinnamon","Honey","Petal","Boba"],                             pfx: ["tiny_","sweet_","fluffy_","itsy_","baby_"],                sfx: ["_uwu","_owo","_soft","xo","_pink"] },
+    unique:    { roots: ["Axiom","Quasar","Zephyr","Lyric","Vesper","Noctis","Lazuli","Selene","Aether","Soleil","Tempest","Vexil"],                              pfx: ["xn_","qz_","zr_","vy_","kx_"],                            sfx: ["_ix","_og","_rare","_unit","_onyx"] },
   },
 };
 
-// ─── Style-tuned prefixes (no trailing underscore = fuses cleanly) ─────────────
+// ─── Rare mutations ────────────────────────────────────────────────────────────
 
-const PFXS = {
-  sweaty:     ["Pro", "Real", "Top", "Raw", "Pure", "True", "OG", "Iam", "Max", "Fast"],
-  viral:      ["its", "not", "im", "just", "only", "hey", "real"],
-  aesthetic:  ["soft", "luna", "star", "its", "mellow", "hazy", "lush"],
-  funny:      ["im_a_", "just_a_", "local_", "literally_", "not_a_", "certified_"],
-  clean:      ["Neo", "Pro", "True", "Raw", "Pure", "One", "Uni"],
-  influencer: ["its", "xo", "hey", "just", "im"],
-  cute:       ["lil_", "tiny_", "sweet_", "fluffy_", "soft_"],
-  dark:       ["Dark", "Black", "Grim", "Iron", "Storm", "Death", "Blood", "Shadow"],
-};
+const LEET = { a:"4", e:"3", i:"1", o:"0", s:"5", t:"7" };
+function leet(word) {
+  let count = 0;
+  return [...word].map(c => {
+    if (count < 2 && LEET[c.toLowerCase()] && Math.random() < 0.45) {
+      count++;
+      return LEET[c.toLowerCase()];
+    }
+    return c;
+  }).join("");
+}
 
-// ─── Modern suffixes by category ───────────────────────────────────────────────
+function bracketWrap(word) {
+  const styles = [
+    w => `[${w}]`, w => `{${w}}`, w => `(${w})`,
+    w => `⌈${w}⌉`, w => `『${w}』`, w => `【${w}】`,
+  ];
+  return p(styles)(word);
+}
 
-const SFXS = {
-  neutral: ["x", "7", "99", "v2", "1", "77"],
-  modern:  [".vibe", ".gg", ".exe", ".io", ".dev"],
-  brand:   [".tv", ".daily", "_official", "_studio"],
-  style:   [".soft", ".glow", ".lush", ".drip"],
-  alpha:   ["z", "zz", "xx", "x", ""],
-};
+function mirrorCaps(word) {
+  // Alternate caps inversion: "Storm" → "sToRm"
+  return [...word].map((c, i) => i % 2 === 0 ? c.toLowerCase() : c.toUpperCase()).join("");
+}
 
-// ─── 12 generation patterns (weighted) ────────────────────────────────────────
+// ─── 12 patterns with rarity + weights ────────────────────────────────────────
 
-function buildPatterns(roots, style) {
-  const pfxList = PFXS[style] || PFXS.clean;
+function patterns(bank) {
+  const { roots, pfx, sfx } = bank;
+  const cleanPfx = () => p(pfx).replace(/^_+|_+$/g, "");
+  const cleanSfx = () => p(sfx).replace(/^_+/, "");
+
   return [
-    // Weight 3 — most used
-    { w: 3, fn: () => pick(roots) },                                                     // 1. Pure root
-    { w: 3, fn: () => { const a = pick(roots), b = pick(roots); return a !== b && a.length + b.length <= 13 ? a + b : a; } }, // 2. Fusion CamelCase
+    // ── COMMON (weight 2–3) ─────────────────────────────────────────────────
+    { rarity: "common",    w: 3.0, fn: () => p(roots) },
+    { rarity: "common",    w: 2.5, fn: () => { const a=p(roots),b=p(roots); return a!==b && a.length+b.length<=13 ? a+b : a; } },
+    { rarity: "common",    w: 2.0, fn: () => cleanPfx() + p(roots) },
+    { rarity: "common",    w: 2.0, fn: () => p(roots) + p(["x","7","99","47","1","77"]) },
+    { rarity: "common",    w: 1.8, fn: () => p(roots).toLowerCase() },
+    { rarity: "common",    w: 1.5, fn: () => p(roots) + p(["z","x","zz","xx"]) },
 
-    // Weight 2
-    { w: 2, fn: () => pick(pfxList).replace(/_+$/, "") + pick(roots) },                  // 3. Prefix fused
-    { w: 2, fn: () => { const p = pick(pfxList).replace(/_+$/, "").toLowerCase(); return `${p}.${pick(roots).toLowerCase()}`; } }, // 4. Dot style
-    { w: 2, fn: () => pick(roots) + pick(SFXS.alpha) },                                  // 5. Alpha stylized (z/x/zz)
-    { w: 2, fn: () => pick(roots) + pick(SFXS.neutral) },                                // 6. Number/neutral suffix
+    // ── RARE (weight 0.8–1.3) ───────────────────────────────────────────────
+    { rarity: "rare",      w: 1.3, fn: () => `${cleanPfx().toLowerCase()}.${p(roots).toLowerCase()}` },
+    { rarity: "rare",      w: 1.1, fn: () => p(roots) + p([".vibe",".gg",".exe",".io",".dev"]) },
+    { rarity: "rare",      w: 0.9, fn: () => { const a=p(roots),b=p(roots); return a!==b ? `${a}_${b}` : a; } },
+    { rarity: "rare",      w: 0.8, fn: () => cleanPfx() + p(roots) + cleanSfx() },
 
-    // Weight 1.5
-    { w: 1.5, fn: () => pick(roots) + pick(SFXS.modern) },                              // 7. Modern suffix (.vibe/.exe)
-    { w: 1.5, fn: () => pick(roots).toLowerCase() },                                     // 8. Clean lowercase
-
-    // Weight 1
-    { w: 1, fn: () => { const a = pick(roots), b = pick(roots); return a !== b ? `${a}_${b}` : a; } }, // 9. Underscore (rare ~8%)
-    { w: 1, fn: () => pick(pfxList).replace(/_+$/, "") + pick(roots) + pick(SFXS.neutral) }, // 10. Prefix+root+num
-    { w: 1, fn: () => pick(roots) + pick(SFXS.brand) },                                  // 11. Brand suffix
-    { w: 0.5, fn: () => [...pick(roots).toLowerCase()].join(" ") },                      // 12. Spaced aesthetic (rare)
+    // ── LEGENDARY (weight 0.25–0.5) ─────────────────────────────────────────
+    { rarity: "legendary", w: 0.5, fn: () => leet(p(roots)) },
+    { rarity: "legendary", w: 0.3, fn: () => bracketWrap(p(roots)) },
   ];
 }
 
-function pickWeighted(patterns) {
-  const total = patterns.reduce((s, p) => s + p.w, 0);
+// ─── Weighted random pick ──────────────────────────────────────────────────────
+
+function p(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+function pickWeighted(pts) {
+  const total = pts.reduce((s, x) => s + x.w, 0);
   let r = Math.random() * total;
-  for (const p of patterns) {
-    r -= p.w;
-    if (r <= 0) return p.fn();
-  }
-  return patterns[0].fn();
+  for (const x of pts) { r -= x.w; if (r <= 0) return x; }
+  return pts[0];
 }
 
 // ─── Scoring (0–100) ──────────────────────────────────────────────────────────
@@ -174,164 +153,124 @@ export function score(name) {
   let s = 100;
   const vis = name.replace(/[^\x00-\x7F]/g, "xx").length;
 
-  // Length sweet spot: 6–14 ideal
-  if (vis < 4)        s -= 40;
-  else if (vis < 6)   s -= 10;
-  else if (vis <= 14) s += 15;
+  // Length sweet spot 5–13
+  if (vis < 4)        s -= 45;
+  else if (vis < 6)   s -= 15;
+  else if (vis <= 13) s += 15;
   else if (vis <= 18) s -= 8;
   else                s -= 30;
 
-  // Underscore penalty (max 1 acceptable)
-  const us = (name.match(/_/g) || []).length;
-  s -= us * 12;
+  // Underscore penalty
+  s -= (name.match(/_/g) || []).length * 12;
 
-  // Spam patterns
-  if (/xXx/i.test(name))            s -= 60;
-  if (/\d{4,}/.test(name))          s -= 30;
-  if (/(.)\1{3,}/.test(name))       s -= 25;
-  if (/(xx|xX|Xx){2,}/.test(name)) s -= 40;
-  if (/_\d+$/.test(name))           s -= 15; // _123 at end
+  // Spam hard penalties
+  if (/xXx/i.test(name))             s -= 70;
+  if (/\d{4,}/.test(name))           s -= 30;
+  if (/(.)\1{4,}/.test(name))        s -= 25;
+  if (/(xx|xX|Xx){2,}/i.test(name)) s -= 45;
+  if (/_\d{3,}/.test(name))          s -= 20;
 
   // Quality bonuses
-  if (/^[A-Z][a-z]+[A-Z]/.test(name))          s += 10; // CamelCase
-  if (/^[a-z]+\.[a-z]+/.test(name))            s += 10; // dot.style
-  if (/\.(vibe|gg|io|exe|dev|soft|glow)$/.test(name)) s += 8;
-  if (vis >= 6 && vis <= 11)                    s += 8;  // extra short bonus
+  if (/^[A-Z][a-z]+[A-Z]/.test(name))                  s += 10; // CamelCase
+  if (/^[a-z]+\.[a-z]+/.test(name))                    s += 10; // dot.style
+  if (/\.(vibe|gg|io|exe|dev|soft|glow)$/.test(name))  s += 8;
+  if (vis >= 5 && vis <= 10)                             s += 8;  // short bonus
 
-  // Readability penalty (too many consonants in a row)
-  const runs = name.match(/[bcdfghjklmnpqrstvwxyz]{5,}/gi) || [];
-  s -= runs.length * 12;
+  // Unpronounceable consonant runs
+  s -= (name.replace(/[^a-zA-Z]/g,"").match(/[bcdfghjklmnpqrstvwxyz]{5,}/gi)||[]).length * 15;
 
   return Math.max(0, Math.min(100, s));
 }
 
 // ─── Quality filter ────────────────────────────────────────────────────────────
 
-const BLACKLIST = [
-  /xXx/i, /xX_/i, /^x+$/i,       // xXx spam
-  /\d{5,}/,                        // 5+ digits
-  /_{3,}/,                         // triple underscore
-  /(.)\1{4,}/,                     // 5+ same char
-  /(gaming|gamer|player|user\d*)$/i, // ultra-generic endings
-  /^(noname|username|myname|player)/i,
+const BAD = [
+  /xXx/i, /xX_/i, /^x{2,}$/i,
+  /\d{5,}/, /_{3,}/, /(.)\1{4,}/,
+  /(gaming|gamer|player\d*|user\d*)$/i,
+  /^(noname|username|myname)/i,
 ];
 
 function isGood(name) {
   if (name.length < 3 || name.length > 24) return false;
-  for (const rx of BLACKLIST) if (rx.test(name)) return false;
+  for (const rx of BAD) if (rx.test(name)) return false;
   return score(name) >= 52;
 }
 
-// ─── Main generation function ─────────────────────────────────────────────────
+// ─── Hub bank lookup ───────────────────────────────────────────────────────────
 
-function pick(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
+function getBank(gameName, style) {
+  const hub = BANKS[gameName];
+  if (!hub) return null;
+  const key = style.toLowerCase();
+  return hub[key] || hub[Object.keys(hub)[0]]; // fallback to first style
 }
 
+// ─── Main generation ───────────────────────────────────────────────────────────
+
 /**
- * Generate one high-quality name.
- * @param {string[]} gameWords - words from the game's nameData (games.js)
- * @param {string}   style     - style key ("Sweaty", "Funny", "Aesthetic", …)
- * @param {string}   gameName  - hub name ("Fortnite", "Roblox", "TikTok", …)
+ * Generate one quality name for a given hub+style.
+ * Falls back to gameWords if hub bank not found.
  */
 export function generateAdvancedName(gameWords, style, gameName, useSymbols) {
-  const styleKey = style.toLowerCase();
+  const bank = getBank(gameName, style);
 
-  // Build enriched word pool: game words + hub augments + global roots
-  const hubWords = (HUB[gameName] || {})[styleKey] || [];
-  const globalRoots = [
-    ...(POOL.core),
-    ...(styleKey.includes("dark") || styleKey === "badass" ? POOL.dark : []),
-    ...(styleKey === "aesthetic" || styleKey === "cute"    ? POOL.soft  : []),
-    ...(styleKey === "viral" || styleKey === "funny"       ? POOL.viral : []),
-    ...(styleKey === "clean" || styleKey === "influencer"  ? POOL.tech  : []),
-    ...(styleKey === "rp" || styleKey === "character"      ? POOL.realist : []),
-    ...POOL.energy,
-  ];
+  // If no hub bank, use gameWords with simple patterns
+  if (!bank) {
+    const root = p(gameWords.length ? gameWords : ["Player"]);
+    return root + p(["x","7","v2","","zz"]);
+  }
 
-  // Weighted blend: 50% hub/game words, 50% global roots
-  const pool = [
-    ...gameWords, ...gameWords,           // weight game words
-    ...hubWords,  ...hubWords,            // hub augments
-    ...globalRoots,                       // global quality roots
-  ].filter(Boolean);
+  // Blend bank roots with game-specific words for variety
+  const pool = [...bank.roots, ...bank.roots, ...gameWords].filter(Boolean);
+  const blendedBank = { roots: pool, pfx: bank.pfx, sfx: bank.sfx };
 
-  const patterns = buildPatterns(pool, styleKey);
+  const pts = patterns(blendedBank);
 
-  // Try up to 8 times to get a good name
-  for (let i = 0; i < 8; i++) {
-    const name = pickWeighted(patterns);
+  for (let i = 0; i < 10; i++) {
+    const chosen = pickWeighted(pts);
+    const name = chosen.fn();
     if (name && isGood(name)) return name;
   }
-  // Safe fallback
-  return pick(gameWords) || pick(POOL.core);
+
+  return p(bank.roots); // safe fallback
 }
 
 /**
- * Generate a deduplicated, quality-filtered batch.
- * @returns {string[]}
+ * Generate a deduplicated quality batch.
+ * @returns {{ names: string[], rarities: string[] }}
  */
 export function generateBatch(gameWords, style, gameName, useSymbols, count = 5) {
-  const results = new Set();
+  const bank = getBank(gameName, style);
+  const pool = bank
+    ? [...bank.roots, ...bank.roots, ...gameWords].filter(Boolean)
+    : gameWords.length ? gameWords : ["Player"];
+  const blendedBank = bank
+    ? { roots: pool, pfx: bank.pfx, sfx: bank.sfx }
+    : { roots: pool, pfx: ["Pro","Real","Top"], sfx: ["x","7","v2"] };
+
+  const pts = patterns(blendedBank);
+  const seen = new Set();
+  const names = [];
+  const rarities = [];
   let attempts = 0;
 
-  while (results.size < count && attempts < count * 12) {
+  while (names.length < count && attempts < count * 15) {
     attempts++;
-    const name = generateAdvancedName(gameWords, style, gameName, useSymbols);
-    if (name && !results.has(name)) results.add(name);
+    const chosen = pickWeighted(pts);
+    const name = chosen.fn();
+    if (name && !seen.has(name) && isGood(name)) {
+      seen.add(name);
+      names.push(name);
+      rarities.push(chosen.rarity);
+    }
   }
 
-  // Fallback: fill remaining with basic picks
-  while (results.size < count) {
-    results.add(pick(gameWords) + pick(["x", "7", ""]));
+  // Fallback fill
+  while (names.length < count) {
+    const fb = p(pool) + p(["x","7",""]);
+    if (!seen.has(fb)) { names.push(fb); rarities.push("common"); seen.add(fb); }
   }
 
-  return [...results];
+  return names; // Keep returning string[] for backward compat
 }
-
-// ─── Example output (documentation) ──────────────────────────────────────────
-/*
-  Fortnite / Sweaty:
-  FaZeEdit · ClutchElim · ZeroPingCrank · NRGZone · ProBoxfight
-  RawElim · EditPeak · ClutchStorm · TrueZone · OGBuild
-
-  Fortnite / Funny:
-  im_a_default · local_llama · just_a_troll.exe
-  NotRotating · LiterallyLooting · BushCamper.irl
-
-  Roblox / Cute:
-  TinyMochi · SweetBloom · FluffyStar.soft
-  LilCloud7 · BabyPetal · SoftSprinkle
-
-  TikTok / Viral:
-  its.aurora · FYPKing · TrendWave.tv
-  JustVibing · NeonTok · CloutWave7
-
-  TikTok / Aesthetic:
-  soft.luna · moonhaze · its.dreamy
-  mellowglow · starbloom.soft · lunasoft
-
-  GTA / RP:
-  TommyVera_Rivera · DanteCruz · MarcoSantos
-  RicoVega7 · LuisReyes · CarlosDelgado
-
-  GTA / Gang:
-  EastViper · SouthRider · ViceCartel99
-  BlockKing · GroveRep.gg · StreetShot
-
-  Discord / Funny:
-  local.goblin · PingAbuser.exe · LagWizard
-  ModSleeping · GremlinMode7 · ChaosCore
-
-  Valorant / Duelist:
-  JettDash · RazeBlast.gg · AcePop7
-  EntryFrag · PeekKingx · FragLordv2
-
-  Apex / Aggressive:
-  ThirstKing · PushFlanker.gg · DiveMaster
-  FightSeeker7 · AggroSlayer · RushBlitz99
-
-  COD / Ghost:
-  PhantomSilent · SpecterDark7 · VeilShade
-  ReaperBlack · NightfallSilent.exe · UmbraGhost
-*/
