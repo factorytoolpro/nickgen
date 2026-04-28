@@ -12,7 +12,7 @@ export const FORTNITE_PAGES = {
       openGraph: { title: "Fortnite Name Generator — NickGen", description: "Le meilleur générateur de pseudos Fortnite : 6 styles, mode Battle, partage social.", url: `${BASE}/fortnite-name-generator` },
     },
     intro: {
-      h1: "Fortnite Name Generator",
+      h1: "Fortnite Username Generator – Create a Name That Defines Your Identity",
       text: "Génère des pseudos Fortnite uniques en un clic avec NickGen. Notre Fortnite name generator propose 6 styles — Sweaty, OG, Funny, Aesthetic, Tryhard et Badass — pour trouver le pseudo parfait qui représente ton style de jeu. Filtre par longueur, active les symboles Unicode et partage ton pseudo directement sur Discord, Twitter ou WhatsApp.",
     },
     seoContent: {
