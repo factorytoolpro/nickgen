@@ -14,7 +14,7 @@ export const GTA6_PAGES = {
     },
     intro: {
       h1: "GTA 6 Name Generator",
-      text: "Génère le pseudo parfait pour GTA 6 avec notre GTA 6 name generator gratuit. Que tu prépares un personnage pour GTA 6 Online, un compte roleplay ou simplement un alias criminel stylé, NickGen propose 10 styles inspirés de l'univers de Vice City — du Hustler de rue au Kingpin du crime organisé, du nom RP réaliste au callsign de mafia italienne. GTA 6 sort en 2026 : prépare ton identité maintenant pour être prêt dès le Day One. Les meilleurs noms partent vite — génère le tien avant tout le monde.",
+      text: "Your GTA 6 name is more than just a nickname — it's your identity in the city. With NickGen, generate unique GTA 6 names for RP, gangs, crews, or characters that match your style. Whether you're building a criminal empire or creating a memorable roleplay character, find a name that stands out and defines your presence. Instantly generate powerful, creative, and original GTA 6 names — no sign-up required.",
     },
     sections: [
       {

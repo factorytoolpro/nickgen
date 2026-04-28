@@ -13,7 +13,7 @@ export const VALORANT_PAGES = {
     },
     intro: {
       h1: "Valorant Name Generator",
-      text: "Génère des pseudos Valorant uniques avec notre Valorant name generator gratuit. NickGen propose 5 styles inspirés du jeu — Agent, Duelist, Controller, Initiator et Sentinel — pour créer un Riot ID parfaitement adapté à ton rôle. Filtre par longueur, explore des dizaines de combinaisons et partage ton pseudo directement sur Discord ou Twitter.",
+      text: "Génère des pseudos Valorant uniques avec notre Valorant name generator gratuit. NickGen propose 5 styles inspirés du jeu — Agent, Duelist, Controller, Initiator et Sentinel — pour créer un Riot ID parfaitement adapté à ton rôle. Filtre par longueur, explore des dizaines de combinaisons et partage ton pseudo directement sur Discord ou Twitter.Your Valorant username is your identity in every match. With NickGen, generate unique Valorant usernames that match your playstyle — whether you're a tryhard, an aggressive fragger, or a strategic player. Stand out in every game, build your reputation, and create a name that reflects your skills and personality. Instantly generate creative and original Valorant usernames — no sign-up required.",
     },
     seoContent: {
       sections: [

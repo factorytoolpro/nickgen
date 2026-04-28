@@ -1079,7 +1079,7 @@ export default function GameGenerator({ game, preSelectedStyle, intro, faqOverri
         <main className="max-w-4xl mx-auto px-6 py-12">
           {/* Hero */}
           <div className="text-center mb-12">
-            <div className="text-xs font-black tracking-widest uppercase mb-3" style={{ color: "#f97316" }}>⚡ Gaming Username Generator</div>
+            <div className="text-xs font-black tracking-widest uppercase mb-3" style={{ color: "#f97316" }}>⚡ CREATE YOUR GAMING IDENTITY</div>
             {intro ? (
               <>
                 <h1 className="text-5xl font-black text-white mb-4 leading-tight">

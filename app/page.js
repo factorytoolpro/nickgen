@@ -95,7 +95,7 @@ export default function HomePage() {
         game={game}
         intro={{
           h1: "Gaming Username Generator",
-          text: "Create the perfect gaming username with NickGen — the free gaming username generator for players and creators worldwide. Whether you need a cool gamertag for Fortnite, a unique nickname for TikTok, or a creative username for any platform, NickGen generates stylish, memorable names instantly. Choose your style, click Generate, and get 5 original usernames in seconds. No sign-up required.",
+          text: "Your gaming username is more than just a name — it's your identity in every match, every lobby, and every community. With NickGen, generate unique usernames for Fortnite, Valorant, Minecraft, Roblox, TikTok and more. Whether you want a sweaty gamertag, an aesthetic nickname or an OG username, create a name that reflects your style, builds your reputation, and makes you stand out instantly. Generate powerful, creative, and memorable usernames in seconds — completely free.",
         }}
         faqOverride={globalFaq}
         seoContent={{

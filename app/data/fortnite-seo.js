@@ -12,8 +12,8 @@ export const FORTNITE_PAGES = {
       openGraph: { title: "Fortnite Name Generator — NickGen", description: "Le meilleur générateur de pseudos Fortnite : 6 styles, mode Battle, partage social.", url: `${BASE}/fortnite-name-generator` },
     },
     intro: {
-      h1: "Fortnite Name Generator",
-      text: "Your Fortnite username is more than just a name — it's your identity in every match. With NickGen, generate unique Fortnite usernames that match your style, whether you're sweaty, OG, aesthetic, or tryhard. Stand out in every lobby, build your reputation, and create a name players will remember. Instantly generate powerful, creative, and original Fortnite names in seconds — no sign-up required.",
+      h1: "Fortnite Username Generator",
+      text: "Your Fortnite username is more than just a name — it’s your identity in every match. With NickGen, generate unique Fortnite usernames that match your style, whether you’re sweaty, OG, aesthetic, or tryhard. Stand out in every lobby, build your reputation, and create a name players will remember. Generate powerful and original Fortnite usernames instantly — no sign-up required.",
     },
     seoContent: {
       sections: [

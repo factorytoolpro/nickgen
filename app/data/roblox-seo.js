@@ -13,7 +13,7 @@ export const ROBLOX_PAGES = {
     },
     intro: {
       h1: "Roblox Username Generator",
-      text: "Trouve le pseudo Roblox parfait avec notre générateur gratuit. Le Roblox username generator de NickGen propose 5 styles — Cute, Cool, Funny, Aesthetic et ProPlayer — pour créer des noms Roblox uniques entre 3 et 20 caractères. Chaque pseudo généré respecte les règles de la plateforme (lettres, chiffres et underscores uniquement, sans espace) et est prêt à être testé sur ton compte Roblox.",
+      text: "Your Roblox username is your identity across every game and experience. With NickGen, generate unique Roblox usernames that match your style — whether you're looking for something cool, cute, aesthetic, or funny. Stand out in the Roblox community, build your personal brand, and create a name players will remember. Instantly generate creative and original Roblox usernames — no sign-up required.",
     },
     seoContent: {
       sections: [

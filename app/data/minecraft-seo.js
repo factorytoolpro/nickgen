@@ -13,7 +13,7 @@ export const MINECRAFT_PAGES = {
     },
     intro: {
       h1: "Minecraft Username Generator",
-      text: "Génère des pseudos Minecraft uniques pour Java et Bedrock Edition avec notre générateur gratuit. Le Minecraft username generator de NickGen propose 5 styles — Survival, Creative, PvP, Redstone et Builder — pour créer des noms entre 3 et 16 caractères (lettres, chiffres et underscores uniquement). Trouve l'identité parfaite pour tes serveurs et tes aventures.",
+      text: "Your Minecraft username is your identity across every world and server. With NickGen, generate unique Minecraft usernames that match your style — whether you're building, exploring, or surviving. Create a name that stands out, fits your character, and reflects your creativity. Instantly generate original, creative, and memorable Minecraft usernames — no sign-up required.",
     },
     seoContent: {
       sections: [
